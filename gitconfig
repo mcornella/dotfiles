@@ -1,0 +1,13 @@
+[user]
+	name = Marc Cornellà
+	email = marc.cornella@live.com
+
+[alias]
+	llog = log --oneline --all --graph --decorate --color
+
+[color]
+	status = auto
+	diff = auto
+
+[push]
+	default = simple

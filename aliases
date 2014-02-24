@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# File: .aliases
+# Description:
+#   contains all aliases defined by the user. Separated from shell rc files
+#   for portability between different machines.
+#   Avoid syntax and commands not portable to other different setups,
+#   check out http://hyperpolyglot.org/unix-shells for more information
+
+
+# enable color support
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# ls output
+alias l='ls --color=always -hF --dereference-command-line-symlink-to-dir'
+alias ll='l -l'
+alias la='l -A'
+alias lla='ll -A'
+alias lac='LC_COLLATE=C la' # order: symbols, UPPERCASE, lowercase
+
+# directories
+alias mkdir >/dev/null 2>&1 && unalias mkdir # remove nocorrect (oh-my-zsh)
+alias md='mkdir -p'
+alias rd='rmdir'
+[[ -d /C ]] && alias sistema='cd /C'
+[[ -d /D ]] && alias dades='cd /D'
+
+# hdd
+alias df='df -h'
+alias du='du -h'
+
+
+# enable alias expansion after sudo (trailing space)
+alias sudo='sudo '
+# preserve environment (-E option) when login as root
+alias sudoas='sudo -E -s'
+
+
+## utilities
+
+# open with system default application
+alias o='xdg-open'
+alias o.='xdg-open .'
+# checks if argument exists in path
+alias exists='command -v >/dev/null 2>&1'
+# stdin to clipboard
+alias xclip='xclip -selection c'
+
+
+# fib
+alias fib-on='sudo /etc/init.d/fibvpn-start'
+alias fib-off='sudo /etc/init.d/fibvpn-stop'
+
+# android
+exists logcat-color.py && alias logcat='noglob logcat-color.py'
+
+# PHP
+alias composer='php ~/dev/bin/composer.phar'
+alias phpserve='php -S localhost:8888'
+

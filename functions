@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# File: .functions
+# Description:
+#   contains all functions defined by the user. Separated from shell rc files
+#   for portability between different machines.
+#   Avoid syntax and commands not portable to other different setups,
+#   check out http://hyperpolyglot.org/unix-shells for more information.
+
+# required to check if a command exists
+command -v exists >/dev/null 2>&1 || alias exists='command -v >/dev/null 2>&1'
+
+
+# run command in the background
+function background() {
+  [[ -z "$@" ]] && return 1
+  "$@" &
+}
+
+# show command help with less (if it's more than one page)
+function help() {
+  [[ -z "$@" ]] && return 1
+  "$1" --help >/dev/null 2>&1 && "$1" --help | less -FX
+}
+
+# syntax-highlighted cat
+exists highlight && {
+  function ccat() {
+    # --validate-input  remove BOM, don't parse binary files
+    # --t 2             replace tabs with 2 spaces
+    # -I                include css style in output file
+    # -O ansi           output to std output by default
+    # --failsafe        if no syntax definition, copy input to output (cat-like)
+    # --quiet           suppress "unknown source file extension" error
+    highlight --validate-input -t 2 -I -O ansi --failsafe --quiet "$@"
+  }
+}
+
+# swaps two files
+function swap() {
+  # Check if specified 2 files
+  [ $# -ne 2 ] && echo "Syntax: $0 <file1> <file2> ($# files provided)" && return 1
+
+  # Check if files specified are different
+  [ "$1" == "$2" ] && echo "Error: files must be different" && return 1
+
+  # Check if files specified exist and are files
+  [[ -f "$1" ]] || { echo "Error: '$1' does not exist or is not a valid file" && return 1 }
+  [[ -f "$2" ]] || { echo "Error: '$2' does not exist or is not a valid file" && return 1 }
+
+  # Create a temporary file
+  tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
+
+  mv "$1" "$tmpfile" && mv "$2" "$1" && mv "$tmpfile" "$2"
+  return $?
+}
+
+# opens zshall man page and looks for specified argument
+function zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
