@@ -20,7 +20,7 @@ function background() {
 # show command help with less (if it's more than one page)
 function help() {
   [[ -z "$@" ]] && return 1
-  "$1" --help >/dev/null 2>&1 && "$1" --help | less -FX
+  "$@" --help >/dev/null 2>&1 && "$@" --help | less -FX
 }
 
 # syntax-highlighted cat
