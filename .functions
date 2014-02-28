@@ -39,10 +39,10 @@ exists highlight && {
 # swaps two files
 function swap() {
   # Check if specified 2 files
-  [ $# -ne 2 ] && echo "Syntax: $0 <file1> <file2> ($# files provided)" && return 1
+  [[ $# != 2 ]] && echo "Syntax: $0 <file1> <file2> ($# files provided)" && return 1
 
   # Check if files specified are different
-  [ "$1" == "$2" ] && echo "Error: files must be different" && return 1
+  [[ "$1" == "$2" ]] && echo "Error: files must be different" && return 1
 
   # Check if files specified exist and are files
   [[ -f "$1" ]] || { echo "Error: '$1' does not exist or is not a valid file" && return 1 }
