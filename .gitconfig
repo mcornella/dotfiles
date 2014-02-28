@@ -3,7 +3,7 @@
 	email = marc.cornella@live.com
 
 [alias]
-	llog = log --oneline --all --graph --decorate --color
+	llog = log --oneline --graph --decorate --color
 
 [color]
 	status = auto
@@ -11,3 +11,6 @@
 
 [push]
 	default = simple
+
+[core]
+	pager = less -FX
