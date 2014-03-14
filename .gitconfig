@@ -3,7 +3,7 @@
 	email = marc.cornella@live.com
 
 [alias]
-	llog = log --oneline --graph --decorate --color
+	logc = log --oneline --graph --decorate --color
 
 [color]
 	status = auto
