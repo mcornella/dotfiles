@@ -55,11 +55,21 @@ source "$ZSH/oh-my-zsh.sh"
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
 
-# complete . and .. directories
-zstyle ':completion:*' special-dirs true
+# enable color support
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
 
 # ls completion dir_colors
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# complete . and .. directories
+zstyle ':completion:*' special-dirs true
 
 # paginated completion
 zstyle ':completion:*' list-prompt   ''
@@ -123,3 +133,5 @@ bindkey ^T tetris
 setopt extended_glob
 # correct behaviour when specifying commit parent (commit^)
 alias git='noglob git'
+# prevent adding files as key strokes when using bindkey
+alias bindkey='noglob bindkey'
