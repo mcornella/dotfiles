@@ -4,13 +4,16 @@
 
 [alias]
 	logc = log --oneline --graph --decorate --color
+	remotes = remote -v
 
 [color]
-	status = auto
-	diff = auto
+	ui = true
 
 [push]
 	default = simple
 
 [core]
 	pager = less -FX
+
+[help]
+	autocorrect = 1
