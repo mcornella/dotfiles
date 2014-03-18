@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -45,12 +45,9 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git batcharge z dict npm fuck)
+plugins=(git batcharge z dict npm ragekill zsh_reload gitignore)
 
 source "$ZSH/oh-my-zsh.sh"
-
-# if not running interactively, skip the rest
-[[ -z "$PS1" ]] && return
 
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
@@ -78,7 +75,6 @@ zstyle ':completion:*' select-prompt ''
 # Example aliases
 alias ohmyzsh="subl ~/.oh-my-zsh"
 alias zshconfig="subl ~/.zshrc"
-alias zshreload=". ~/.zshrc"
 
 
 ## User configuration
@@ -107,31 +103,32 @@ alias zshreload=". ~/.zshrc"
 # source path modifications
 # [[ -f ~/.paths ]] && . ~/.paths
 
-# force unique values in $PATH
-typeset -U path
-
 # bin folders
-path+="$HOME/bin"
-for i in "${HOME}"/bin/*/; do path+="${i%/}" done > /dev/null 2>&1
+if [ -d ~/bin ]; then
+  path+=~/bin
+  for i in ~/bin/*/; do path+="${i%/}" done > /dev/null 2>&1
+  unset i
+fi
 
 # android
-if [ -d "$HOME/dev/android" ]; then
-  path+="$HOME/dev/android/tools"
-  path+="$HOME/dev/android/platform-tools"
+if [ -d ~/dev/android ]; then
+  path+=(~/dev/android/{platform-,}tools)
 fi
 
 # current directory at the end
 path+=.
 
+# force unique values in $PATH
+typeset -U path
 
-## TETRIS!
-autoload -U tetris
-zle -N tetris
-bindkey ^T tetris
-
-# extended globbing (adds ^ and other symbols as wildcards)
+## extended globbing (adds ^ and other symbols as wildcards)
 setopt extended_glob
 # correct behaviour when specifying commit parent (commit^)
 alias git='noglob git'
 # prevent adding files as key strokes when using bindkey
 alias bindkey='noglob bindkey'
+
+## TETRIS!
+autoload -U tetris
+zle -N tetris
+bindkey ^T tetris
