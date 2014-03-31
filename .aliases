@@ -44,10 +44,12 @@ alias sudoas='sudo -E -s'
 alias o='xdg-open'
 alias o.='xdg-open .'
 # checks if argument exists in path
-alias exists='command -v >/dev/null 2>&1'
+alias exists='command -v &>/dev/null'
 # stdin to clipboard
 alias xclip='xclip -selection c'
-
+# git pretty log
+alias gl='git logc'
+alias gla='git logc --all'
 
 # fib
 alias fib-on='sudo /etc/init.d/fibvpn-start'
