@@ -106,8 +106,19 @@ alias zshconfig="subl ~/.zshrc"
 # bin folders
 if [ -d ~/bin ]; then
   path+=~/bin
-  for i in ~/bin/*/; do path+="${i%/}" done > /dev/null 2>&1
-  unset i
+  for dir in ~/bin/*(/); do path+="$dir" done > /dev/null 2>&1
+  unset dir
+fi
+
+# local folder
+if [ -d ~/local ]; then
+    [ -d ~/local/bin ] && path+=~/local/bin
+fi
+
+# opt folder
+if [ -d ~/opt ]; then
+    for dir in ~/opt/*(/); do path+="$dir/bin"; done
+    unset dir
 fi
 
 # android
