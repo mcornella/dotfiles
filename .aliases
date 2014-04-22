@@ -52,6 +52,8 @@ alias gl='git logc'
 alias gla='git logc --all'
 # enable advanced calculation in bc by default
 alias bc='bc -l'
+# does that ring a bell?
+alias bell="echo -n $'\x7'"
 
 # fib
 alias fib-on='sudo /etc/init.d/fibvpn-start'
