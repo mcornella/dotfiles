@@ -51,8 +51,11 @@ function swap() {
   # Create a temporary file
   tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
 
-  mv "$1" "$tmpfile" && mv "$2" "$1" && mv "$tmpfile" "$2"
-  return $?
+  $(command mv "$1" "$tmpfile" && command mv "$2" "$1" && command mv "$tmpfile" "$2")
+  local ret=$?
+
+  [ $ret -eq 0 ] && echo "$1 <-> $2"
+  return $ret
 }
 
 # opens zshall man page and looks for specified argument
