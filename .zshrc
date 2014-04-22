@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git batcharge z dict npm ragekill zsh_reload gitignore omz-bootstrap)
+plugins=(git git-extras batcharge z dict npm ragekill zsh_reload gitignore omz-bootstrap)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -74,7 +74,7 @@ zstyle ':completion:*' select-prompt ''
 
 # Example aliases
 alias ohmyzsh="subl ~/.oh-my-zsh"
-alias zshconfig="subl ~/.zshrc"
+alias zshrc="subl ~/.zshrc"
 
 
 ## User configuration
