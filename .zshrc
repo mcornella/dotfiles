@@ -97,8 +97,8 @@ alias zshrc="subl ~/.zshrc"
 
 # DISCUSSION:
 # 1) path settings should all go to .profile?
-# 2) how to prevent duplicates
-# 3) which syntax to use to be portable (related: 2)
+# 2) how to prevent duplicates -> `typeset -U path` to remove duplicates
+# 3) which syntax to use to be portable (related [2], only in zsh?)
 
 # source path modifications
 # [[ -f ~/.paths ]] && . ~/.paths
@@ -117,13 +117,15 @@ fi
 
 # opt folder
 if [ -d ~/opt ]; then
-    for dir in ~/opt/*(/); do path+="$dir/bin"; done
+    for dir in ~/opt/*(/); do
+        [ -d "$dir/bin" ] && path+="$dir/bin"
+    done
     unset dir
 fi
 
 # android
-if [ -d ~/dev/android ]; then
-  path+=(~/dev/android/{platform-,}tools)
+if [ -d ~/opt/android ]; then
+  path+=(~/opt/android/{platform-,}tools)
 fi
 
 # current directory at the end
