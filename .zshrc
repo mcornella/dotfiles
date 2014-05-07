@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras batcharge z dict npm ragekill zsh_reload gitignore omz-bootstrap)
+plugins=(git git-extras batcharge z dict npm ragekill zsh_reload gitignore omz-bootstrap sudo)
 
 source "$ZSH/oh-my-zsh.sh"
 
@@ -126,6 +126,11 @@ fi
 # android
 if [ -d ~/opt/android ]; then
   path+=(~/opt/android/{platform-,}tools)
+fi
+
+# ruby gems
+if which ruby &>/dev/null && which gem &>/dev/null; then
+    path+="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 fi
 
 # current directory at the end
