@@ -12,6 +12,7 @@ dotfiles+=.dircolors
 dotfiles+=.functions
 dotfiles+=.gitconfig
 dotfiles+=.toprc
+dotfiles+=.vimrc
 dotfiles+=.zshrc
 
 local error
