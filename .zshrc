@@ -24,10 +24,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to enable command autocorrection
-ENABLE_CORRECTION="true"
-
-# Uncomment following line if you want to disable command arguments autocorrection
-DISABLE_CORRECTION_ARGS="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -48,6 +45,9 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git git-extras batcharge z dict npm ragekill zsh_reload gitignore omz-bootstrap sudo gem)
 
 source "$ZSH/oh-my-zsh.sh"
+
+# correction of commands
+setopt correct
 
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
@@ -83,7 +83,7 @@ alias zshrc="subl ~/.zshrc"
 [[ -f /etc/zsh_command_not_found ]] && . /etc/zsh_command_not_found
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 ## Sourcing extern files
 
