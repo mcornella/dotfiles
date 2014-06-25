@@ -41,8 +41,9 @@ alias sudoas='sudo -E -s'
 ## utilities
 
 # open with system default application
-alias o='xdg-open'
-alias o.='xdg-open .'
+alias o='xdg-open &>/dev/null'
+alias o.='o .'
+
 # checks if argument exists in path
 alias exists='command -v &>/dev/null'
 # stdin to clipboard
