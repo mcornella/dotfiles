@@ -15,11 +15,6 @@ if [ -d ~/bin ]; then
   unset dir
 fi
 
-# local folder
-if [ -d ~/local ]; then
-  [ -d ~/local/bin ] && path+=~/local/bin
-fi
-
 # opt folder
 if [ -d ~/opt ]; then
   for dir in ~/opt/*(/); do
