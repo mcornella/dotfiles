@@ -15,10 +15,10 @@ alias la='l -A'
 alias lla='ll -A'
 alias lac='LC_COLLATE=C la' # order: symbols, UPPERCASE, lowercase
 
-# verbose copy, move and delete
-alias cp='cp -v'
-alias rm='rm -v'
-alias mv='mv -v'
+# # verbose copy, move and delete
+# alias cp='cp -v'
+# alias rm='rm -v'
+# alias mv='mv -v'
 
 # directories
 alias mkdir >/dev/null 2>&1 && unalias mkdir # remove nocorrect (oh-my-zsh)
