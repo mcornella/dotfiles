@@ -64,6 +64,6 @@ alias fib-off='sudo /etc/init.d/fibvpn-stop'
 exists logcat-color.py && alias logcat='noglob logcat-color.py'
 
 # PHP
-alias composer='php ~/dev/bin/composer.phar'
+alias composer='composer.phar'
 alias phpserve='php -S localhost:8888'
 
