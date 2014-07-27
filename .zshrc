@@ -10,27 +10,27 @@
 
 # bin folders
 if [ -d ~/bin ]; then
-  path+=~/bin
-  for dir in ~/bin/*(/); do path+="$dir" done > /dev/null 2>&1
-  unset dir
+	path+=~/bin
+	for dir in ~/bin/*(/); do path+="$dir" done > /dev/null 2>&1
+	unset dir
 fi
 
 # opt folder
 if [ -d ~/opt ]; then
-  for dir in ~/opt/*(/); do
-    [ -d "$dir/bin" ] && path+="$dir/bin"
-  done
-  unset dir
+	for dir in ~/opt/*(/); do
+		[ -d "$dir/bin" ] && path+="$dir/bin"
+	done
+	unset dir
 fi
 
 # android
 if [ -d ~/opt/android ]; then
-  path+=(~/opt/android/{platform-,}tools)
+	path+=(~/opt/android/{platform-,}tools)
 fi
 
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
-  path+="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+	path+="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 fi
 
 # add current directory last
@@ -96,6 +96,8 @@ plugins=(
 	omz-bootstrap
 	sudo
 	gem
+	vagrant
+	composer
 )
 
 source "$ZSH/oh-my-zsh.sh"
@@ -108,15 +110,15 @@ ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
 
-  # ls completion dir_colors
-  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+	# ls completion dir_colors
+	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 # complete . and .. directories
