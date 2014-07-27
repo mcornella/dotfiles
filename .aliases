@@ -65,5 +65,6 @@ exists logcat-color.py && alias logcat='noglob logcat-color.py'
 
 # PHP
 alias composer='composer.phar'
+alias laravel='laravel.phar'
 alias phpserve='php -S localhost:8888'
 
