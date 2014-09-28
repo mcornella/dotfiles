@@ -17,3 +17,12 @@
 
 [help]
 	autocorrect = 1
+
+[sendemail]
+	from = Marc Cornellà <marc.cornella@live.com>
+	smtpserver = smtp.gmail.com
+	smtpuser = spencer282@gmail.com
+	smtppass = brjwredgoaxgiyhk
+	smtpencryption = tls
+	chainreplyto = false
+	smtpserverport = 587
