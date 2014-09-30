@@ -30,7 +30,9 @@ fi
 
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
-	path+="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+  dir="$(ruby -rubygems -e 'puts Gem.user_dir')"
+  [ -d "$dir/bin" ] && path+="$dir/bin"
+  unset dir
 fi
 
 # add current directory last
