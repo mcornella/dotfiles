@@ -157,6 +157,9 @@ alias zshrc="subl ~/.zshrc"
 
 ## extended globbing (adds ^ and other symbols as wildcards)
 setopt extended_glob
+## allow pasting comments in interactive shell
+setopt interactivecomments
+
 # correct behaviour when specifying commit parent (commit^)
 alias git='noglob git'
 # prevent adding files as key strokes when using bindkey
