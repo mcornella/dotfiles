@@ -14,6 +14,7 @@ alias ll='l -l'
 alias la='l -A'
 alias lla='ll -A'
 alias lac='LC_COLLATE=C la' # order: symbols, UPPERCASE, lowercase
+alias lf='ls --group-directories-first' # folders first
 
 # # verbose copy, move and delete
 # alias cp='cp -v'
