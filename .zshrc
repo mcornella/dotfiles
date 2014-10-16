@@ -88,13 +88,13 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
 	git
 	git-extras
+	gitignore
 	batcharge
 	z
 	dict
 	npm
 	ragekill
 	zsh_reload
-	gitignore
 	omz-bootstrap
 	sudo
 	gem
