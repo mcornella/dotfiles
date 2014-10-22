@@ -104,8 +104,8 @@ plugins=(
 
 source "$ZSH/oh-my-zsh.sh"
 
-# correction of commands
-setopt correct
+
+## User configuration
 
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
@@ -134,17 +134,26 @@ zstyle ':completion:*' select-prompt ''
 alias ohmyzsh="subl ~/.oh-my-zsh"
 alias zshrc="subl ~/.zshrc"
 
+# correct behaviour when specifying commit parent (commit^)
+alias git='noglob git'
+# prevent adding files as key strokes when using bindkey
+alias bindkey='noglob bindkey'
 
-## User configuration
+## More zsh options
 
-# Package suggestions on command not found
-[[ -f /etc/zsh_command_not_found ]] && . /etc/zsh_command_not_found
+# correction of commands
+setopt correct
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+# extended globbing (adds ^ and other symbols as wildcards)
+setopt extended_glob
+# allow pasting comments in interactive shell
+setopt interactivecomments
 
-# Open new tab in current directory
-[[ -f /etc/profile.d/vte.sh ]] && . /etc/profile.d/vte.sh
+## TETRIS!
+autoload -U tetris
+zle -N tetris
+bindkey ^T tetris
+
 
 ## Sourcing extern files
 
@@ -155,17 +164,11 @@ alias zshrc="subl ~/.zshrc"
 [[ -f ~/.functions ]] && . ~/.functions
 
 
-## extended globbing (adds ^ and other symbols as wildcards)
-setopt extended_glob
-## allow pasting comments in interactive shell
-setopt interactivecomments
+# Package suggestions on command not found
+[[ -f /etc/zsh_command_not_found ]] && . /etc/zsh_command_not_found
 
-# correct behaviour when specifying commit parent (commit^)
-alias git='noglob git'
-# prevent adding files as key strokes when using bindkey
-alias bindkey='noglob bindkey'
+# make less more friendly for non-text input files, see lesspipe(1)
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
-## TETRIS!
-autoload -U tetris
-zle -N tetris
-bindkey ^T tetris
+# Open new tab in current directory
+[[ -f /etc/profile.d/vte.sh ]] && . /etc/profile.d/vte.sh
