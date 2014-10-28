@@ -42,3 +42,5 @@ unset DIR
 
 # export PATH for other sessions
 export PATH
+
+export EDITOR=nano
