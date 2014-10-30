@@ -1,8 +1,6 @@
-syntax "tex" "\.(tex|cls|ltx|sty|dtx|ins|bbl)$"
-
-color brightyellow   "\\[A-Za-z]+"
-color brightmagenta "\\section"
-color cyan "%.*"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is a short example for TeX files.
+##
+syntax "tex" "\.tex$"
+icolor green "\\.|\\[A-Z]*"
+color magenta "[{}]"
+color blue "(^|[^\])%.*"

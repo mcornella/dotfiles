@@ -1,10 +1,9 @@
+## Here is an example for manpages.
+##
 syntax "man" "\.[1-9]x?$"
-
-color brightmagenta "\.(S|T)H.*$"
-color brightblack "\.(BR?|I[PR]?).*$"
-color brightyellow   "\.(S|T)H|\.TP|\.(BR?|I[PR]?|PP)|\\f[BIPR]"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color yellow  "\.(br|DS|RS|RE|PD)"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+color green "\.(S|T)H.*$"
+color brightgreen "\.(S|T)H" "\.TP"
+color brightred "\.(BR?|I[PR]?).*$"
+color brightblue "\.(BR?|I[PR]?|PP)"
+color brightwhite "\\f[BIPR]"
+color yellow "\.(br|DS|RS|RE|PD)"

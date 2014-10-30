@@ -1,12 +1,9 @@
-syntax "xml" "\.([jrs]html?|sgml?|xml|opml|xslt?|plist)$"
-
-color brightmagenta  start="<" end=">"
-color brightblack  " [a-z_-]+="
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color brightwhite,red  "&"
-color magenta   "&(#[0-9]+|#x[0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"
-color cyan  start="<!--" end="-->"
-color cyan  start="<!DOCTYPE" end=">"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is an example for xml files.
+##
+syntax "xml" "\.([jrs]html?|sgml?|xml|xslt?)$"
+color green  start="<" end=">"
+color cyan   "<[^> ]+"
+color cyan   ">"
+color yellow start="<!DOCTYPE" end="[/]?>"
+color yellow start="<!--" end="-->"
+color red    "&[^;]*;"

@@ -1,65 +1,107 @@
+## Here is an example for assembler.
+##
+syntax "asm" "\.(S|s|asm)$"
+color red "\<[A-Z_]{2,}\>"
+color brightgreen "\.(data|subsection|text)"
+color green "\.(align|file|globl|global|hidden|section|size|type|weak)"
+color brightyellow "\.(ascii|asciz|byte|double|float|hword|int|long|short|single|struct|word)"
+icolor brightred "^[[:space:]]*[.0-9A-Z_]*:"
+color brightcyan "^[[:space:]]*#[[:space:]]*(define|undef|include|ifn?def|endif|elif|else|if|warning|error)"
+## Highlight strings (note: VERY resource intensive)
+color brightyellow "<[^= 	]*>" ""(\\.|[^"])*""
+color brightyellow start=""(\\.|[^"])*\\[[:space:]]*$" end="^(\\.|[^"])*""
+## Highlight comments
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+## Highlight trailing whitespace
+color ,green "[[:space:]]+$"
+## Here is an example for awk.
+##
 syntax "awk" "\.awk$"
+## records
+icolor brightred "\$[0-9A-Z_!@#$*?-]+"
+## awk-set variables
+color red "\<(ARGC|ARGIND|ARGV|BINMODE|CONVFMT|ENVIRON|ERRNO|FIELDWIDTHS)\>"
+color red "\<(FILENAME|FNR|FS|IGNORECASE|LINT|NF|NR|OFMT|OFS|ORS)\>"
+color red "\<(PROCINFO|RS|RT|RSTART|RLENGTH|SUBSEP|TEXTDOMAIN)\>"
+## function declarations and special patterns
+color brightgreen "\<(function|extension|BEGIN|END)\>"
+## operators
+color green "(\{|\}|\(|\)|\;|\]|\[|\\|<|>|!|=|&|\+|-|\*|%|/|\?:|\^|\|)"
+## flow control
+color brightyellow "\<(for|if|while|do|else|in|delete|exit)\>"
+color brightyellow "\<(break|continue|return)\>"
+## I/O statements
+color brightgreen "\<(close|getline|next|nextfile|print|printf)\>"
+color brightgreen "\<(system|fflush)\>"
+## standard functions
+color magenta "\<(atan2|cos|exp|int|log|rand|sin|sqrt|srand)\>"
+color magenta "\<(asort|asorti|gensub|gsub|index|length|match)\>"
+color magenta "\<(split|sprintf|strtonum|sub|substr|tolower|toupper)\>"
+color magenta "\<(mktime|strftime|systime)\>"
+color magenta "\<(and|compl|lshift|or|rshift|xor)\>"
+color magenta "\<(bindtextdomain|dcgettext|dcngettext)\>"
 
-color brightyellow "\$[A-Za-z0-9_!@#$*?-]+"
-color brightyellow "\<(ARGC|ARGIND|ARGV|BINMODE|CONVFMT|ENVIRON|ERRNO|FIELDWIDTHS)\>"
-color brightyellow "\<(FILENAME|FNR|FS|IGNORECASE|LINT|NF|NR|OFMT|OFS|ORS)\>"
-color brightyellow "\<(PROCINFO|RS|RT|RSTART|RLENGTH|SUBSEP|TEXTDOMAIN)\>"
-color brightblue "\<(function|extension|BEGIN|END)\>"
-color red "[-+*/%^|!=&<>?;:]|\\|\[|\]"
-color brightblack  "\<(for|if|while|do|else|in|delete|exit)\>"
-color brightblack  "\<(break|continue|return)\>"
-color brightblue "\<(close|getline|next|nextfile|print|printf|system|fflush)\>"
-color brightblue "\<(atan2|cos|exp|int|log|rand|sin|sqrt|srand)\>"
-color brightblue "\<(asort|asorti|gensub|gsub|index|length|match)\>"
-color brightblue "\<(split|sprintf|strtonum|sub|substr|tolower|toupper)\>"
-color brightblue "\<(mktime|strftime|systime)\>"
-color brightblue "\<(and|compl|lshift|or|rshift|xor)\>"
-color brightblue "\<(bindtextdomain|dcgettext|dcngettext)\>"
-color magenta   "/.*[^\]/"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color magenta   "\\."
-color cyan "(^|[[:space:]])#([^{].*)?$"
-color brightwhite,cyan "TODO:?"
+##
+## String highlighting.  You will in general want your comments and
+## strings to come last, because syntax highlighting rules will be
+## applied in the order they are read in.
+color brightyellow "<[^= 	]*>" ""(\\.|[^"])*""
+
+## Comment highlighting
+color brightblue "(^|[[:space:]])#.*$"
+
+## Trailing whitespace
 color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## CMake syntax highlighter for GNU Nano
+##
+syntax "cmake" "(CMakeLists\.txt|\.cmake)$"
+
+icolor green "^[[:space:]]*[A-Z0-9_]+"
+icolor brightyellow "^[[:space:]]*(include|include_directories|include_external_msproject)\>"
+
+icolor brightgreen "^[[:space:]]*\<((else|end)?if|else|(end)?while|(end)?foreach|break)\>"
+color brightgreen "\<(NOT|COMMAND|POLICY|TARGET|EXISTS|IS_(DIRECTORY|ABSOLUTE)|DEFINED)\>[[:space:]]"
+color brightgreen "[[:space:]]\<(OR|AND|IS_NEWER_THAN|MATCHES|(STR|VERSION_)?(LESS|GREATER|EQUAL))\>[[:space:]]"
+
+icolor brightred "^[[:space:]]*\<((end)?(function|macro)|return)"
+
+icolor cyan start="\$(\{|ENV\{)" end="\}"
+color magenta "\<(APPLE|UNIX|WIN32|CYGWIN|BORLAND|MINGW|MSVC(_IDE|60|71|80|90)?)\>"
+
+icolor brightblue "^([[:space:]]*)?#.*"
+icolor brightblue "[[:space:]]#.*"
+color ,green "[[:space:]]+$"
+## Here is an example for C/C++.
+##
 syntax "c" "\.(c(c|pp|xx)?|C)$" "\.(h(h|pp|xx)?|H)$" "\.ii?$"
+color brightred "\<[A-Z_][0-9A-Z_]+\>" 
+color green "\<(float|double|bool|char|int|short|long|sizeof|enum|void|auto|static|const|struct|union|typedef|extern|(un)?signed|inline)\>"
+color green "\<((s?size)|((u_?)?int(8|16|32|64|ptr)))_t\>"
+color green "\<(class|namespace|template|public|protected|private|typename|this|friend|virtual|using|mutable|volatile|register|explicit)\>"
+color brightyellow "\<(for|if|while|do|else|case|default|switch)\>"
+color brightyellow "\<(try|throw|catch|operator|new|delete)\>"
+color magenta "\<(goto|continue|break|return)\>"
+color brightcyan "^[[:space:]]*#[[:space:]]*(define|include(_next)?|(un|ifn?)def|endif|el(if|se)|if|warning|error|pragma)"
+color brightmagenta "'([^'\]|(\\["'abfnrtv\\]))'" "'\\(([0-3]?[0-7]{1,2}))'" "'\\x[0-9A-Fa-f]{1,2}'"
+##
+## GCC builtins
+color cyan "__attribute__[[:space:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
+##
+## String highlighting.  You will in general want your comments and
+## strings to come last, because syntax highlighting rules will be
+## applied in the order they are read in.
+color brightyellow "<[^= 	]*>" ""(\\.|[^"])*""
+##
+## This string is VERY resource intensive!
+color brightyellow start=""(\\.|[^"])*\\[[:space:]]*$" end="^(\\.|[^"])*""
 
-color brightblue "[A-Za-z_][A-Za-z0-9_]*[[:space:]]*[(]"
-color black    "[(]"
-color brightyellow     "\<[A-Z_][0-9A-Z_]+\>"
-color green      "\<(float|double|bool|char|int|short|long|void|(un)?signed)\>"
-color green      "\<[a-z0-9_]+_t\>"
-color brightblack   "\<(struct|enum|static|const|union|typedef|extern)\>"
-color brightblack   "\<(for|if|while|do|else|case|default|switch)\>"
-color brightblack   "\<(return|inline|sizeof|auto|register|volatile|restrict)\>"
-color brightblack   "\<(try|throw|catch|operator|new|delete)\>"
-color brightred      "\<(goto|break|continue)\>"
-color brightcyan "\<(true|false)\>"
-color red  "[-+/*=<>?:!~%&|^]"
-color blue    "\<([0-9]+|0x[0-9a-fA-F]*)\>|'.'"
-color brightyellow     "^[[:space:]]*#[[:space:]]*(define|include(_next)?|(un|ifn?)def|endif|el(if|se)|if|warning|error|pragma)"
-color magenta "__attribute__[[:space:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
-color yellow    ""(\\.|[^"])*"|<[A-Za-z_./-]+>"
-color magenta    "\\([\"'abfnrtv\\]|[0-3]?[0-7]{1,2}|x[A-Fa-f0-9]{1,2}|$)"
-color cyan "(^|[[:space:]])//.*"
-color cyan start="/\*" end="\*/"
-color brightwhite,cyan "TODO:?"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
-syntax "cmake" "CMakeLists\.txt$|\.cmake$"
+## Comment highlighting
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
 
-color brightblue "[A-Za-z_][A-Za-z0-9_]*[[:space:]]*[(]"
-color black    "[(]"
-color brightcyan  "\<(ON|OFF|TRUE|FALSE|YES|NO)\>"
-color brightyellow "\$\{[A-Za-z0-9_!@#$*?-]+\}"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color magenta   "\\([()#$^]|\\|\")"
-color cyan "(^|[[:space:]])#([^{].*)?$"
+## Trailing whitespace
 color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
 syntax "coffeescript" "\.coffee$"
 
 color red "[!&|=/*+-<>]|\<(and|or|is|isnt|not)\>"
@@ -121,40 +163,15 @@ color brightwhite,cyan "TODO:?"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "css" "\.s?css$"
-
-# Selectors
-color green     "\<(a|abbr|address|area|article|aside|audio|b|base|bdo|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|div|dl|dt|em|embed|eventsource|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|keygen|label|legend|li|link|mark|map|menu|meta|meter|nav|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|ruby|rp|rt|samp|script|section|select|small|source|span|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|ul|var|video|wbr)\>"
-color red "[>+~*]"
-color brightyellow "[.#][A-Za-z_][A-Za-z0-9_-]*"
-color red ":(active|focus|hover|link|visited|first-child|lang|valid|invalid|not|selection)\>"
-color red ":(after|before|first-line|first-letter|root|target)\>"
-color yellow   "\[[^\[]*\]"
-color black    start="\{" end="\}"
-
-# Sass
-color brightmagenta  "(^|[[:space:]])@(include|mixin)\>"
-color brightyellow "\$[A-Za-z0-9_-]+"
-
-color brightmagenta  "(^|[[:space:]])@(charset|font-face|media|page|import)\>"
-color red "[*]"
-color brightcyan  "\<(above|absolute|always|armenian|auto|avoid|baseline|behind|below|bidi-override|blink|block|bolder|bold|bottom|capitalize|center-left|center-right|center|circle|cjk-ideographic|close-quote|collapse|compact|condensed|continuous|crop|crosshair|cross|cue-after|cue-before|cursive|dashed|decimal|decimal-leading-zero|default|digits|disc|dotted|double|embed|e-resize|expanded|extra-condensed|extra-expanded|fantasy|far-left|far-right|faster|fast|fixed|fixed|georgian|groove|hebrew|help|hide|higher|high|hiragana-iroha|hiragana|inherit|inline|inline-block|inline-table|inset|inside|invert|italic|justify|katakana-iroha|katakana|landscape|large|larger|left|left-side|leftwards|level|lighter|line-through|list-item|loud|lower-alpha|lowercase|lower-greek|lower-latin|lower-roman|lower|low|ltr|marker|medium|medium|middle|mix|monospace|move|narrower|ne-resize|no-close-quote|none|no-open-quote|no-repeat|normal|nowrap|n-resize|nw-resize|oblique|once|open-quote|outset|outside|overline|pointer|portait|relative|repeat-x|repeat-y|repeat|ridge|right-side|right|rightwards|rlt|run-in|sans-serif|scroll|scroll|semi-condensed|semi-expanded|separate|se-resize|serif|show|silent|slower|slow|small-caps|smaller|small|soft|solid|spell-out|square|s-resize|static|sub|super|sw-resize|table-caption|table-cell|table-column-group|table-column|table-footer-group|table-header-group|table-row-group|table-row|text-bottom|text|text-top|thick|thin|top|top|transparent|ultra-condensed|ultra-expanded|underline|upper-alpha|uppercase|upper-latin|upper-roman|visible|wait|wider|w-resize|x-fast|x-high|x-large|x-loud|x-low|x-slow|x-small|x-soft|xx-large|xx-small|pre-wrap|break-word)([[:space:];,]|$)"
-color brightyellow ":[[:space:]]*(code|hidden|table|pre)\>"
-color brightblack  "\<(background-attachment|background-clip|background-color|background-image|background-position|background-repeat|background|border-bottom-color|border-bottom-style|border-bottom-width|border-bottom|border-collapse|border-color|border-left-color|border-left-style|border-left-width|border-left|border-radius|border-right-color|border-right-style|border-right-width|border-right|border-spacing|border-style|border-top-color|border-top-style|border-top-width|border-top|border-width|border|bottom|box-shadow|box-sizing|caption-side|clear|clip|color|content|counter-increment|counter-reset|cue-after|cue-before|cue|cursor|direction|display|elevation|empty-cells|float|font-family|font-size-adjust|font-size|font-style|font-variant|font-weight|font|height|left|letter-spacing|line-height|list-style-image|list-style-position|list-style-type|list-style|margin-bottom|margin-left|margin-right|margin-top|margin|marker-offset|marks|max-height|max-width|min-height|min-width|opacity|orphans|outline-color|outline-style|outline-width|outline|overflow|overflow-x|overflow-y|padding-bottom|padding-left|padding-right|padding-top|padding|page-break-after|page-break-before|page-break-inside|page|pause-after|pause-before|pause|pitch-range|pitch|play-during|position|quotes|richness|right|size|speak-header|speak-numerical|speak-punctuation|speak|speech-rate|stress|table-layout|text-align|text-decoration|text-indent|text-shadow|text-transform|top|transition|unicode-bidi|vertical-align|visibility|voice-family|volume|white-space|widows|width|word-spacing|word-wrap|z-index)[[:space:]]*:"
-color brightwhite,red  "-(ms|moz|apple|khtml|wap|webkit|o|xv)-[a-z][a-z-]+"
-color black    "[:;,]"
-color blue   "\<(0|[\+-]?[1-9][0-9]*)"
-color blue   "[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)"
-color blue   "#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})\>"
-color red "\!important\>"
-color brightblue "[a-z-]*(-[a-z]+)?\(" "\(|\)"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color cyan "(^|[[:space:]])//.*"
-color cyan start="/\*" end="\*/"
-color brightwhite,cyan "TODO:?"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is an example for css files.
+##
+syntax "css" "\.css$"
+color brightred     "."
+color brightyellow  start="\{" end="\}"
+color brightwhite   start=":" end="([;^\{]|$)"
+color brightblue    ":active|:focus|:hover|:link|:visited|:link|:after|:before|$"
+color brightblue    start="\/\*" end="\\*/"
+color green         ";|:|\{|\}"
 syntax "cython" "\.(pyx|pxd|pyi)$"
 
 color brightblue "[A-Za-z_][A-Za-z0-9_]*[[:space:]]*[(]"
@@ -183,6 +200,27 @@ color brightwhite,cyan "TODO:?"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an exmaple for apt's sources.list
+## Adapted from http://milianw.de/blog/Syntax-Highlighting-in-Nano
+## (mail@milianw.de).
+##
+syntax "apt/sources.list" "sources\.list(\.old|~)?$" "apt/sources\.list\.d/.*\.list"
+# component
+color brightmagenta "^deb(-src)?\s+((http(s)?|file|ftp|tor|spacewalk):/\S+|cdrom:\[[^\]]+\]/|cdrom:\[[-a-zA-Z0-9\._\(\) ]+\]/)\s+\S+\s+.+$"
+# distribution
+color brightred "^deb(-src)?\s+((http(s)?|file|ftp|tor|spacewalk):/\S+|cdrom:\[[^\]]+\]/|cdrom:\[[-a-zA-Z0-9\._\(\) ]+\]/)\s+\S+"
+# URI
+color brightgreen "(http(s)?|file|ftp|tor|spacewalk)://\S+"
+# cdroms
+# [^\]] does not work...
+color brightgreen "cdrom:\[[-a-zA-Z0-9\._\(\) ]+\]/"
+# deb / deb-src
+color yellow "^deb(-src)?"
+# comments
+color brightblue "#.*"
+
+## Trailing whitespace
+color ,green "[[:space:]]+$"
 syntax "default"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
@@ -200,6 +238,102 @@ syntax "email"
 color magenta "^>([^>].*|$)"
 color blue "^>>([^>].*|$)"
 color green "^>>>.*"
+## Here is an example for Fortran 90/95
+
+syntax "fortran" "\.(f|f90|f95)$" 
+
+#color red "\<[A-Z_]a[0-9A-Z_]+\>" 
+color red "\<[0-9]+\>" 
+
+icolor green "\<(action|advance|all|allocatable|allocated|any|apostrophe)\>"
+icolor green "\<(append|asis|assign|assignment|associated|character|common)\>"
+icolor green "\<(complex|data|default|delim|dimension|double precision)\>"
+icolor green "\<(elemental|epsilon|external|file|fmt|form|format|huge)\>"
+icolor green "\<(implicit|include|index|inquire|integer|intent|interface)\>"
+icolor green "\<(intrinsic|iostat|kind|logical|module|none|null|only)>"
+icolor green "\<(operator|optional|pack|parameter|pointer|position|private)\>"
+icolor green "\<(program|public|real|recl|recursive|selected_int_kind)\>"
+icolor green "\<(selected_real_kind|subroutine|status)\>"
+
+icolor cyan "\<(abs|achar|adjustl|adjustr|allocate|bit_size|call|char)\>" 
+icolor cyan "\<(close|contains|count|cpu_time|cshift|date_and_time)\>" 
+icolor cyan "\<(deallocate|digits|dot_product|eor|eoshift|function|iachar)\>" 
+icolor cyan "\<(iand|ibclr|ibits|ibset|ichar|ieor|iolength|ior|ishft|ishftc)\>" 
+icolor cyan "\<(lbound|len|len_trim|matmul|maxexponent|maxloc|maxval|merge)\>" 
+icolor cyan "\<(minexponent|minloc|minval|mvbits|namelist|nearest|nullify)\>" 
+icolor cyan "\<(open|pad|present|print|product|pure|quote|radix)\>" 
+icolor cyan "\<(random_number|random_seed|range|read|readwrite|replace)\>" 
+icolor cyan "\<(reshape|rewind|save|scan|sequence|shape|sign|size|spacing)\>" 
+icolor cyan "\<(spread|sum|system_clock|target|transfer|transpose|trim)\>" 
+icolor cyan "\<(ubound|unpack|verify|write|tiny|type|use|yes)\>"
+
+icolor yellow "\<(.and.|case|do|else|else?if|else?where|end|end?do|end?if)\>"
+icolor yellow "\<(end?select|.eqv.|forall|if|lge|lgt|lle|llt|.neqv.|.not.)\>"
+icolor yellow "\<(.or.|repeat|select case|then|where|while)\>"
+
+icolor magenta "\<(continue|cycle|exit|go?to|result|return)\>"
+
+## String highlighting.  
+icolor yellow "<[^= 	]*>" ""(\\.|[^"])*""
+
+## Comment highlighting
+icolor blue "!.*"
+
+## Here is an example for Gentoo ebuilds/eclasses
+##
+syntax "ebuild" "\.e(build|class)$"
+## All the standard portage functions
+color brightgreen "^src_(unpack|prepare|configure|compile|install|test)" "^pkg_(config|nofetch|setup|(pre|post)(inst|rm))"
+## Highlight bash related syntax
+color green "\<(case|do|done|elif|else|esac|exit|fi|for|function|if|in|local|read|return|select|shift|then|time|until|while|continue|break)\>"
+color green "\<(declare|eval|exec|let)\>"
+color green "(\{|\}|\(|\)|\;|\]|\[|`|\\|\$|<|>|!|=|&|\|)"
+color green "-[edfgruwxL]\>"
+color green "-(eq|ne|gt|lt|ge|le|s|n|z)\>"
+## Highlight variables ... official portage ones in red, all others in bright red
+color brightred "\$\{?[a-zA-Z_0-9]+\}?"
+color red "\<(EAPI|ARCH|HOMEPAGE|DESCRIPTION|IUSE|SRC_URI|LICENSE|SLOT|KEYWORDS|(P|R)?DEPEND|PROVIDE|PROPERTIES|RESTRICT|USERLAND)\>"
+color red "\<(S|D|T|PV|PF|P|PN|PR|PVR|A|CATEGORY|DISTDIR|FILESDIR|ROOT|WORKDIR)\>" "\<(AS|C(PP|XX)?|LD)FLAGS\>" "\<C(HOST|TARGET|BUILD)\>"
+color red "\<QA_((TEXTRELS|EXECSTACK|WX_LOAD)(_[a-zA-Z_0-9]+)?|DT_HASH|PRESTRIPPED)\>" "\<WANT_AUTO(CONF|MAKE)\>" "\<AT_M4DIR\>"
+## Highlight portage commands
+color magenta "\<use(_(with|enable))?\> [!a-zA-Z0-9_+ -]*" "inherit.*"
+color brightblue "\<e(begin|end|conf|install|make|qmake[34]|ant|(qa)?warn|infon?|error|log|patch|new(group|user))\>"
+color brightblue "\<e(pause|beep|mktemp|(cvs|svn)_clean|punt_cxx)\>" "\<e(aclocal|auto(reconf|header|conf|make))\>"
+color brightblue "\<built_with_use\>" "\<make_desktop_entry\>" "\<unpack(_(makeself|pdv))?\>"
+color brightblue "\<die\>" "\<use(_(with|enable))?\>" "\<inherit\>" "\<has\>" "\<(has|best)_version\>"
+color brightblue "\<(do|new)(ins|(games)?s?bin|doc|lib(\.so|\.a)?|man|info|exe|initd|confd|envd|pam|menu|icon)\>"
+color brightblue "\<do(python|sed|dir|hard|sym|html|jar|mo)\>" "\<keepdir\>"
+color brightblue "prepall(docs|info|man|strip)?" "prep(info|lib|lib\.(so|a)|man|strip|gamesdirs)"
+color brightblue "\<(doc|ins|exe)?into\>" "\<(f|games)(owners|perms)\>" "\<(exe|ins|dir)opts\>"
+## Highlight common commands used in ebuilds
+color blue "\<make\>" "\<(awk|cat|cd|chmod|chown|cp|echo|env|export|find|e?grep|ln|mkdir|mv|rm|sed|set|tar|touch|unset|xargs)\>"
+## Highlight comments (doesnt work that well)
+color yellow "(^|[[:space:]])#.*$"
+## Highlight strings (doesnt work that well)
+color brightyellow ""(\\.|[^\"])*"" "'(\\.|[^'])*'"
+## Trailing space is bad!
+color ,green "[[:space:]]+$"
+
+## Here is an example for Portage control files
+##
+syntax "/etc/portage" "\.(keywords|mask|unmask|use)(/.+)?$"
+## Base text:
+color green "^.+$"
+## Use flags:
+color brightred "[[:space:]]+\+?[a-zA-Z0-9_-]+"
+color brightblue "[[:space:]]+-[a-zA-Z0-9_-]+"
+## Likely version and slot numbers:
+color magenta "-[[:digit:]].*([[:space:]]|$)"
+color magenta ":[^[:space:]]+([[:space:]]|$)"
+## Accepted arches:
+color white "[~-]?\<(alpha|amd64|arm|hppa|ia64|mips|ppc|ppc64|s390|sh|sparc(-fbsd)?|x86(-fbsd)?)\>"
+color white "[[:space:]][*~-]?\*"
+## Categories:
+color cyan "^[[:space:]]*.*/"
+## Masking regulators:
+color brightmagenta "^[[:space:]]*(=|~|<|<=|=<|>|>=|=>)"
+## Comments:
+color yellow "#.*$"
 syntax "gitconfig" "git(config|modules)$|\.git/config$"
 
 color brightcyan "\<(true|false)\>"
@@ -262,29 +396,35 @@ color brightwhite,cyan "TODO:?"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "html" "\.html?$"
-
-color magenta "\<(accept|accept-charset|accesskey|action|alt|async|autocomplete|autofocus|autoplay|border|challenge|charset|checked|cite|class|cols|colspan|content|contenteditable|contextmenu|controls|coords|crossorigin|data-[a-z-]+|datetime|default|defer|dir|dirname|disabled|draggable|dropzone|enctype|for|form|formaction|formenctype|formmethod|formnovalidate|formtarget|headers|height|hidden|high|href|hreflang|http-equiv|icon|id|ismap|keytype|kind|label|lang|list|loop|low|manifest|max|maxlength|media|mediagroup|method|min|multiple|muted|name|novalidate|open|optimum|pattern|placeholder|poster|preload|pubdate|radiogroup|readonly|rel|required|reversed|rows|rowspan|sandbox|spellcheck|scope|scoped|seamless|selected|shape|size|sizes|span|src|srcdoc|srclang|start|step|style|tabindex|target|title|type|typemustmatch|usemap|value|width|wrap)\>"
-color brightwhite,red   "</?[A-Za-z0-9_]+[ >]"
-color brightmagenta       "</?(a|abbr|address|area|article|aside|audio|b|base|bdo|blockquote|body|br|button|canvas|caption|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|div|dl|dt|em|embed|eventsource|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|kbd|keygen|label|legend|li|link|mark|map|menu|meta|meter|nav|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|ruby|rp|rt|samp|script|section|select|small|source|span|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|ul|var|video|wbr)[ >]"
-color yellow    "=([A-Za-z0-9!$%*\^(){}#|:;_~@+,.?/\\-]|\[|\])+"
-color red  "="
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color black     start=">" end="<"
-color brightmagenta       "[<>]"
-
-# Embedded template languages
-color brightyellow  "\{\{[^}]*\}\}|<%=.*%>"
-color brightblue  start="<\?" end="\?>"
-color brightblue  start="<%[^=]" end="%>"
-color brightblue  start="\{%" end="%\}"
-
-color magenta    "&(#[0-9]+|#x[0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"
-color cyan   start="<!--" end="-->"
-color cyan   "<!(doctype|DOCTYPE)[^>]*>"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is an example for groff.
+##
+syntax "groff" "\.m[ems]$" "\.rof" "\.tmac$" "^tmac."
+## The argument of .ds or .nr
+color cyan "^\.(ds|nr) [^[[:space:]]]*"
+## Single character escapes
+color brightmagenta "\\."
+## Highlight the argument of \f or \s in the same color
+color brightmagenta "\\f." "\\f\(.." "\\s(\+|\-)?[0-9]"
+## Newlines
+color cyan "(\\|\\\\)n(.|\(..)"
+color cyan start="(\\|\\\\)n\[" end="]"
+## Requests
+color brightgreen "^\.[[:space:]]*[^[[:space:]]]*"
+## Comments
+color yellow "^\.\\".*$"
+## Strings
+color green "(\\|\\\\)\*(.|\(..)"
+color green start="(\\|\\\\)\*\[" end="]"
+## Characters
+color brightred "\\\(.."
+color brightred start="\\\[" end="]"
+## Macro arguments
+color brightcyan "\\\\\$[1-9]"
+## Here is a short example for HTML.
+##
+syntax "html" "\.html$"
+color blue start="<" end=">"
+color red "&[^;[[:space:]]]*;"
 syntax "ini" "\.(ini|desktop|lfl|override)$" "(mimeapps\.list|pinforc|setup\.cfg)$" "weechat/.+\.conf$"
 
 color brightcyan "\<(true|false)\>"
@@ -307,35 +447,18 @@ color cyan "(^|[[:space:]])#([^{].*)?$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an example for Java.
+##
 syntax "java" "\.java$"
-
-# Class
-color brightmagenta  "class +[A-Za-z0-9]+ *((implements|extends) +[A-Za-z0-9.]+)?"
-
-# Annotation
-color magenta   "@[A-Za-z]+"
-
-color brightblue "[A-Za-z_][A-Za-z0-9_]*[[:space:]]*[(]"
-color black    "[(]"
-color green     "\<(boolean|byte|char|double|float|int|long|short|String|void)\>"
-color brightblack  "\<(case|catch|default|do|else|finally|for|if)\>"
-color brightblack  "\<(new|return|switch|this|throw|transient|try|while)\>"
-color brightblack  "\<(abstract|class|extends|final|implements|import|instanceof)\>"
-color brightblack  "\<(interface|native|package|private|protected|public|static)\>"
-color brightblack  "\<(strictfp|super|synchronized|throws|volatile|null)\>"
-color brightred     "\<(break|continue)\>"
-color brightcyan "\<(true|false)\>"
-color red "[-+/*=<>?:!~%&|]"
-color blue   "\<([0-9._]+|0x[A-Fa-f0-9_]+|0b[0-1_]+)[FL]?\>"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color magenta   "\\([btnfr]|'|\"|\\)"
-color magenta   "\\u[A-Fa-f0-9]{4}"
-color cyan "(^|[[:space:]])//.*"
-color cyan start="/\*" end="\*/"
-color brightwhite,cyan "TODO:?"
+color green "\<(boolean|byte|char|double|float|int|long|new|short|this|transient|void)\>"
+color red "\<(break|case|catch|continue|default|do|else|finally|for|if|return|switch|throw|try|while)\>"
+color cyan "\<(abstract|class|extends|final|implements|import|instanceof|interface|native|package|private|protected|public|static|strictfp|super|synchronized|throws|volatile)\>"
+color red ""[^"]*""
+color yellow "\<(true|false|null)\>"
+color blue "//.*"
+color blue start="/\*" end="\*/"
+color brightblue start="/\*\*" end="\*/"
 color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
 syntax "JavaScript" "\.js$"
 
 color blue   "\<[-+]?([1-9][0-9]*|0[0-7]*|0x[0-9a-fA-F]+)([uU][lL]?|[lL][uU]?)?\>"
@@ -445,37 +568,23 @@ color brightwhite,cyan "TODO:?"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "makefile" "([Mm]akefile|\.ma?k)$"
+# unattributed syntax highlighting example from wiki.linuxhelp.net/
 
-color brightblack  "\<(ifeq|ifdef|ifneq|ifndef|else|endif)\>"
-color brightblack  "^(export|include|override)\>"
-color brightmagenta  "^[^:=	]+:"
-color red "[=,%]" "\+=|\?=|:=|&&|\|\|"
-color brightblue "\$\((abspath|addprefix|addsuffix|and|basename|call|dir)[[:space:]]"
-color brightblue "\$\((error|eval|filter|filter-out|findstring|firstword)[[:space:]]"
-color brightblue "\$\((flavor|foreach|if|info|join|lastword|notdir|or)[[:space:]]"
-color brightblue "\$\((origin|patsubst|realpath|shell|sort|strip|suffix)[[:space:]]"
-color brightblue "\$\((value|warning|wildcard|word|wordlist|words)[[:space:]]"
-color black    "[()$]"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color brightyellow "\$+(\{[^} ]+\}|\([^) ]+\))"
-color brightyellow "\$[@^<*?%|+]|\$\([@^<*?%+-][DF]\)"
-color magenta   "\$\$|\\.?"
-color cyan "(^|[[:space:]])#([^{].*)?$"
-color cyan  "^	@#.*"
-
-# Show trailing whitespace
-color ,green "[[:space:]]+$"
+syntax "makefile" "Makefile[^/]*$"
+color red "[:=]"
+color magenta "\<(if|ifeq|else|endif)\>"
+color blue "\$+[{(][a-zA-Z0-9_-]+[})]"
+color brightblue "^[^ 	]+:"
+color green "#.*$"
+## Here is an example for manpages.
+##
 syntax "man" "\.[1-9]x?$"
-
-color brightmagenta "\.(S|T)H.*$"
-color brightblack "\.(BR?|I[PR]?).*$"
-color brightyellow   "\.(S|T)H|\.TP|\.(BR?|I[PR]?|PP)|\\f[BIPR]"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color yellow  "\.(br|DS|RS|RE|PD)"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+color green "\.(S|T)H.*$"
+color brightgreen "\.(S|T)H" "\.TP"
+color brightred "\.(BR?|I[PR]?).*$"
+color brightblue "\.(BR?|I[PR]?|PP)"
+color brightwhite "\\f[BIPR]"
+color yellow "\.(br|DS|RS|RE|PD)"
 syntax "markdown" "\.(md|mkd|mkdn|markdown)$"
 
 # Emphasis
@@ -495,6 +604,14 @@ color cyan  "^>.*"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an example for Magicpoint presentations
+##
+syntax "mgp" "\.mgp$"
+header "^%include.*"
+icolor green "^%[a-z].*$"
+color cyan "(^|[[:space:]])#.*$"
+color cyan "(^|[[:space:]])%%.*$"
+color ,green "[[:space:]]+$"
 syntax "mpdconf" "mpd\.conf$"
 
 color brightblack "\<(user|group|bind_to_address|host|port|plugin|name|type)\>"
@@ -505,6 +622,26 @@ color cyan "(^|[[:space:]])#([^{].*)?$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an example for quoted emails (under e.g. mutt).
+##
+syntax "mutt"
+color green "^>.*"
+## Here is an example for nanorc files.
+##
+syntax "nanorc" "\.?nanorc$"
+## Possible errors and parameters
+icolor brightwhite "^[[:space:]]*((un)?set|include|syntax|i?color).*$"
+## Keywords
+icolor brightgreen "^[[:space:]]*(set|unset)[[:space:]]+(allow_insecure_backup|autoindent|backup|backupdir|backwards|boldtext|brackets|casesensitive|const|cut|fill|historylog|matchbrackets|morespace|mouse|multibuffer|noconvert|nofollow|nohelp|nonewlines|nowrap|operatingdir|preserve|punct)\>" "^[[:space:]]*(set|unset)[[:space:]]+(quickblank|quotestr|rebinddelete|rebindkeypad|regexp|smarthome|smooth|softwrap|speller|suspend|suspendenable|tabsize|tabstospaces|tempfile|undo|view|whitespace|wordbounds)\>"
+icolor green "^[[:space:]]*(set|unset|include|syntax|header)\>"
+## Colors
+icolor yellow "^[[:space:]]*i?color[[:space:]]*(bright)?(white|black|red|blue|green|yellow|magenta|cyan)?(,(white|black|red|blue|green|yellow|magenta|cyan))?\>"
+icolor magenta "^[[:space:]]*i?color\>" "\<(start|end)="
+## Strings
+icolor white ""(\\.|[^"])*""
+## Comments
+icolor brightblue "^[[:space:]]*#.*$"
+icolor cyan "^[[:space:]]*##.*$"
 syntax "nginx" "nginx.*\.conf$" "\.nginx$"
 
 color brightmagenta  "\<(events|server|http|location|upstream)[[:space:]]*\{"
@@ -519,15 +656,84 @@ color cyan "(^|[[:space:]])#([^{].*)?$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "patch" "\.(patch|diff)$"
+## Here is an example for C/C++/Obj-C.
+##
+syntax "m" "\.m$"
 
+
+## Stuffs
+color brightwhite "\<[A-Z_][0-9A-Z_]+\>" 
+color green "\<(float|double|BOOL|bool|char|int|short|long|id|sizeof|enum|void|static|const|struct|union|typedef|extern|(un)?signed|inline)\>"
+color green "\<[[:alpha:]_][[:alnum:]_]*_t\>"
+color green "\<(class|namespace|template|public|protected|private|typename|this|friend|virtual|using|mutable|volatile|register|explicit)\>"
+color brightgreen "\<(for|if|while|do|else|case|default|switch)\>"
+color brightgreen "\<(try|throw|catch|operator|new|delete)\>"
+color brightgreen "\<(goto|continue|break|return)\>"
+color brightgreen "@\<(en(code|d)|i(mplementation|nterface)|selector)\>"
+##
+## GCC builtins
+color cyan "__attribute__[[:space:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
+
+## Selector/method
+color brightmagenta "(^|[[:space:]])\[.*[[:space:]].*\]"
+color white ":[[:alnum:]]*"
+color magenta "[[:alnum:]]*:"
+color white "\[[^][:space:]]*\]"
+
+##
+## String highlighting.  You will in general want your comments and
+## strings to come last, because syntax highlighting rules will be
+## applied in the order they are read in.
+color brightblack "'([^'\]|(\\["'abfnrtv\\]))'" "'\\(([0-3]?[0-7]{1,2}))'" "'\\x[0-9A-Fa-f]{1,2}'"
+color brightblack "<[^= 	]*>" ""(\\.|[^"])*""
+color brightblue "@"(\\.|[^"])*""
+##
+## This string is VERY resource intensive!
+## color brightyellow start=""(\\.|[^"])*\\[[:space:]]*$" end="^(\\.|[^"])*""
+
+color brightblue "^[[:space:]]*#[[:space:]]*(define|include|import|(un|ifn?)def|endif|el(if|se)|if|warning|error)"
+
+## Comment highlighting
+color yellow "//.*"
+color yellow start="/\*" end="\*/"
+
+# OCaml sample nanorc
+#
+syntax "ocaml" "\.mli?$"
+#uid
+color red "\<[A-Z][0-9a-z_]{2,}\>"
+#declarations
+color green "\<(let|val|method|in|and|rec|private|virtual|constraint)\>"
+#structure items
+color red "\<(type|open|class|module|exception|external)\>"
+#patterns
+color blue "\<(fun|function|functor|match|try|with)\>"
+#patterns-modifiers
+color yellow "\<(as|when|of)\>" 
+#conditions
+color cyan "\<(if|then|else)\>"
+#blocs
+color magenta "\<(begin|end|object|struct|sig|for|while|do|done|to|downto)\>"
+#constantes
+color green "\<(true|false)\>"
+#modules/classes
+color green "\<(include|inherit|initializer)\>"
+#expr modifiers
+color yellow "\<(new|ref|mutable|lazy|assert|raise)\>"
+#comments
+color white start="\(\*" end="\*\)"
+#strings (no multiline handling yet)
+color brightblack ""[^\"]*""
+## Here is an example for patch files.
+##
+syntax "patch" "\.(patch|diff)$"
 color brightgreen "^\+.*"
 color green "^\+\+\+.*"
+color brightblue "^ .*"
 color brightred "^-.*"
 color red "^---.*"
-color blue "^@@.*"
+color brightyellow "^@@.*"
 color magenta "^diff.*"
-
 syntax "peg" "\.l?peg$"
 
 color brightblack  "^[[:space:]]*[A-Za-z][A-Za-z0-9_]*[[:space:]]*<-"
@@ -541,25 +747,48 @@ color brightwhite,cyan "TODO:?"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an example for Perl.
+##
+syntax "perl" "\.p[lm]$"
+header "^#!.*/perl[-0-9._]*"
+color red "\<(accept|alarm|atan2|bin(d|mode)|c(aller|h(dir|mod|op|own|root)|lose(dir)?|onnect|os|rypt)|d(bm(close|open)|efined|elete|ie|o|ump)|e(ach|of|val|x(ec|ists|it|p))|f(cntl|ileno|lock|ork))\>" "\<(get(c|login|peername|pgrp|ppid|priority|pwnam|(host|net|proto|serv)byname|pwuid|grgid|(host|net)byaddr|protobynumber|servbyport)|([gs]et|end)(pw|gr|host|net|proto|serv)ent|getsock(name|opt)|gmtime|goto|grep|hex|index|int|ioctl|join)\>" "\<(keys|kill|last|length|link|listen|local(time)?|log|lstat|m|mkdir|msg(ctl|get|snd|rcv)|next|oct|open(dir)?|ord|pack|pipe|pop|printf?|push|q|qq|qx|rand|re(ad(dir|link)?|cv|do|name|quire|set|turn|verse|winddir)|rindex|rmdir|s|scalar|seek(dir)?)\>" "\<(se(lect|mctl|mget|mop|nd|tpgrp|tpriority|tsockopt)|shift|shm(ctl|get|read|write)|shutdown|sin|sleep|socket(pair)?|sort|spli(ce|t)|sprintf|sqrt|srand|stat|study|substr|symlink|sys(call|read|tem|write)|tell(dir)?|time|tr(y)?|truncate|umask)\>" "\<(un(def|link|pack|shift)|utime|values|vec|wait(pid)?|wantarray|warn|write)\>"
+color magenta "\<(continue|else|elsif|do|for|foreach|if|unless|until|while|eq|ne|lt|gt|le|ge|cmp|x|my|sub|use|package|can|isa)\>"
+icolor cyan start="[$@%]" end="( |[^0-9A-Z_]|-)"
+color yellow "".*"|qq\|.*\|"
+color white "[sm]/.*/"
+color white start="(^use| = new)" end=";"
+color green "#.*"
+color yellow start="<< 'STOP'" end="STOP"
+## Here is an example for PHP
+##
 syntax "php" "\.php[2345s~]?$"
 
-color red "[-+/*=<>?:!~%&|]"
-color brightmagenta  "(<\?(php)?|\?>)"
-color brightblue "[A-Za-z_][A-Za-z0-9_]*[[:space:]]*[(]"
-color black    "[(]"
-color green     "\<(float|global|double|bool|char|int|enum|const)\>"
-color brightblack  "\<(class|new|private|public|function|for|foreach|if|while|do|var)\>"
-color brightblack  "\<(return|else|elseif|case|default|switch)\>"
-color brightred     "\<(goto|break|continue)\>"
-color brightcyan "\<(true|false)\>"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color brightyellow "\$[A-Za-z_][A-Za-z0-9_]*"
-color cyan "(^|[[:space:]])//.*"
-color cyan start="/\*" end="\*/"
-color brightwhite,cyan "TODO:?"
+## php markings
+color brightgreen "(<\?(php)?|\?>)"
+
+## functions
+color white "\<[a-z_]*\("
+
+## types
+color green "\<(var|float|global|double|bool|char|int|enum|const)\>"
+
+## structure
+color brightyellow "\<(class|new|private|public|function|for|foreach|if|while|do|else|elseif|case|default|switch)\>"
+
+## control flow
+color magenta "\<(goto|continue|break|return)\>"
+
+## strings
+color brightyellow "<[^=       ]*>" ""(\.|[^"])*""
+
+## comments
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+#color blue start="<" end=">"
+#color red "&[^;[[:space:]]]*;"
+
+## Trailing whitespace
 color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
 syntax "pkgbuild" "PKGBUILD$" "\.install$"
 
 color brightblue "^[A-Za-z0-9_+-]+[[:space:]]*\(\)"
@@ -601,6 +830,21 @@ color cyan "(^|[[:space:]])#([^{].*)?$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an example for POV-Ray.
+##
+syntax "pov" "\.(pov|POV|povray|POVRAY)$"
+color brightcyan "^[[:space:]]*#[[:space:]]*(declare)"
+color brightyellow "\<(sphere|cylinder|translate|matrix|rotate|scale)\>"
+color brightyellow "\<(orthographic|location|up|right|direction|clipped_by)\>"
+color brightyellow "\<(fog_type|fog_offset|fog_alt|rgb|distance|transform)\>"
+color brightred "^\<(texture)\>"
+color brightred "\<(light_source|background)\>"
+color brightred "\<(fog|object|camera)\>"
+color green "(\{|\}|\(|\)|\;|\]|\[|`|\\|\$|<|>|!|=|&|\|)"
+color brightmagenta "\<(union|group|subgroup)\>"
+## Comment highlighting
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
 syntax "privoxy-config" "privoxy/config$"
 
 color brightblack "(accept-intercepted-requests|actionsfile|admin-address|allow-cgi-request-crunching|buffer-limit|compression-level|confdir|connection-sharing|debug|default-server-timeout|deny-access|enable-compression|enable-edit-actions|enable-remote-http-toggle|enable-remote-toggle|enforce-blocks|filterfile|forward|forwarded-connect-retries|forward-socks4|forward-socks4a|forward-socks5|handle-as-empty-doc-returns-ok|hostname|keep-alive-timeout|listen-address|logdir|logfile|max-client-connections|permit-access|proxy-info-url|single-threaded|socket-timeout|split-large-forms|templdir|toggle|tolerate-pipelining|trustfile|trust-info-url|user-manual)[[:space:]]"
@@ -643,28 +887,16 @@ color cyan  "^[[:space:]]*[#!].*$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "python" "\.py$" "jhbuildrc$"
-
-color brightblack  "\<(as|assert|break|class|continue|def|del|elif|else|except)\>"
-color brightblack  "\<(exec|finally|for|from|global|if|import|lambda)\>"
-color brightblack  "\<(pass|print|raise|return|try|while|with|yield|None)\>"
-color brightblue "[A-Za-z_][A-Za-z0-9_]*[[:space:]]*[(]"
-color black    "[(]"
-color red "[-+*/|=%<>&~^]|\<(and|not|or|is|in)\>"
-color brightyellow    "@[A-Za-z0-9_]+"
-color brightmagenta  "__[A-Za-z0-9_]+__"
-color brightcyan  "\<(True|False)\>"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color yellow   "['][^']*[^\\][']" "[']{3}.*[^\\][']{3}"
-color yellow   "["][^"]*[^\\]["]" "["]{3}.*[^\\]["]{3}"
-color yellow   start=""""[^"]" end="""""
-color yellow   start="'''[^']" end="'''"
-color magenta   "\\.?"
-color cyan "(^|[[:space:]])#([^{].*)?$"
-color brightwhite,cyan "TODO:?"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is an example for Python.
+##
+syntax "python" "\.py$"
+header "^#!.*/python[-0-9._]*"
+icolor brightblue "def [0-9A-Z_]+"
+color brightcyan "\<(and|as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|not|or|pass|print|raise|return|try|while|with|yield)\>"
+color brightgreen "['][^']*[^\\][']" "[']{3}.*[^\\][']{3}"
+color brightgreen "["][^"]*[^\\]["]" "["]{3}.*[^\\]["]{3}"
+color brightgreen start=""""[^"]" end=""""" start="'''[^']" end="'''"
+color brightred "#.*$"
 syntax "rpmspec" "\.spec$" "\.rpmspec$"
 
 color brightblack  "\<(Icon|ExclusiveOs|ExcludeOs):"
@@ -693,18 +925,37 @@ color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
 color brightwhite,cyan "TODO:?"
-syntax "ruby" "\.rb$|Rakefile$"
-
-color brightblack "\<(BEGIN|END|alias|and|begin|break|case|class|def|defined\?|do|else|elsif|end|ensure|false|for|if|in|module|next|nil|not|or|redo|rescue|retry|return|self|super|then|true|undef|unless|until|when|while|yield)\>"
-color yellow  "(^|[[:space:]]):[A-Za-z0-9_]+\>"
-color magenta  "/([^/]|(\\/))*/[iomx]*" "%r\{([^}]|(\\}))*\}[iomx]*"
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color cyan "(^|[[:space:]])#([^{].*)?$"
-color cyan start="^=begin$" end="^=end$"
-color brightwhite,cyan "TODO:?"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is an example for Ruby.
+##
+syntax "ruby" "\.rb$"
+header "^#!.*/ruby[-0-9._]*"
+## Asciibetical list of reserved words
+color yellow "\<(BEGIN|END|alias|and|begin|break|case|class|def|defined\?|do|else|elsif|end|ensure|false|for|if|in|module|next|nil|not|or|redo|rescue|retry|return|self|super|then|true|undef|unless|until|when|while|yield)\>"
+## Constants
+color brightblue "(\$|@|@@)?\<[A-Z]+[0-9A-Z_a-z]*"
+## Ruby "symbols"
+icolor magenta "([ 	]|^):[0-9A-Z_]+\>"
+## Some unique things we want to stand out
+color brightyellow "\<(__FILE__|__LINE__)\>"
+## Regular expressions
+color brightmagenta "/([^/]|(\\/))*/[iomx]*" "%r\{([^}]|(\\}))*\}[iomx]*"
+## Shell command expansion is in `backticks` or like %x{this}.  These are
+## "double-quotish" (to use a perlism).
+color brightblue "`[^`]*`" "%x\{[^}]*\}"
+## Strings, double-quoted
+color green ""([^"]|(\\"))*"" "%[QW]?\{[^}]*\}" "%[QW]?\([^)]*\)" "%[QW]?<[^>]*>" "%[QW]?\[[^]]*\]" "%[QW]?\$[^$]*\$" "%[QW]?\^[^^]*\^" "%[QW]?![^!]*!"
+## Expression substitution.  These go inside double-quoted strings,
+## "like #{this}".
+color brightgreen "#\{[^}]*\}"
+## Strings, single-quoted
+color green "'([^']|(\\'))*'" "%[qw]\{[^}]*\}" "%[qw]\([^)]*\)" "%[qw]<[^>]*>" "%[qw]\[[^]]*\]" "%[qw]\$[^$]*\$" "%[qw]\^[^^]*\^" "%[qw]![^!]*!"
+## Comments
+color cyan "#[^{].*$" "#$"
+color brightcyan "##[^{].*$" "##$"
+## "Here" docs
+color green start="<<-?'?EOT'?" end="^EOT"
+## Some common markers
+color brightcyan "(XXX|TODO|FIXME|\?\?\?)"
 syntax "sed" "\.sed$"
 
 color red "[|^$.*+]"
@@ -731,6 +982,20 @@ color brightwhite,cyan "TODO:?"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
+## Here is an example for Bourne shell scripts.
+##
+syntax "sh" "\.sh$"
+header "^#!.*/(ba|k|pdk)?sh[-0-9_]*"
+icolor brightgreen "^[0-9A-Z_]+\(\)"
+color green "\<(case|do|done|elif|else|esac|exit|fi|for|function|if|in|local|read|return|select|shift|then|time|until|while)\>"
+color green "(\{|\}|\(|\)|\;|\]|\[|`|\\|\$|<|>|!|=|&|\|)"
+color green "-[Ldefgruwx]\>"
+color green "-(eq|ne|gt|lt|ge|le|s|n|z)\>"
+color brightblue "\<(cat|cd|chmod|chown|cp|echo|env|export|grep|install|let|ln|make|mkdir|mv|rm|sed|set|tar|touch|umask|unset)\>"
+icolor brightred "\$\{?[0-9A-Z_!@#$*?-]+\}?"
+color cyan "(^|[[:space:]])#.*$"
+color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+color ,green "[[:space:]]+$"
 syntax "sql" "\.sql$" "sqliterc$"
 
 icolor brightblack "\<(ALL|ASC|AS|ALTER|AND|ADD|AUTO_INCREMENT)\>"
@@ -778,14 +1043,28 @@ color cyan "(^|[[:space:]])#([^{].*)?$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "tex" "\.(tex|cls|ltx|sty|dtx|ins|bbl)$"
+syntax "tcl" "\.tcl$"
 
-color brightyellow   "\\[A-Za-z]+"
-color brightmagenta "\\section"
-color cyan "%.*"
+## Standard Tcl [info commands]
+color green "\<(after|append|array|auto_execok|auto_import|auto_load|auto_load_index|auto_qualify|binary|break|case|catch|cd|clock|close|concat|continue|encoding|eof|error|eval|exec|exit|expr|fblocked|fconfigure|fcopy|file|fileevent|flush|for|foreach|format|gets|glob|global|history|if|incr|info|interp|join|lappend|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|namespace|open|package|pid|puts|pwd|read|regexp|regsub|rename|return|scan|seek|set|socket|source|split|string|subst|switch|tclLog|tell|time|trace|unknown|unset|update|uplevel|upvar|variable|vwait|while)\>"
+## Basic Tcl sub commands.
+color green "\<(array anymore|array donesearch|array exists|array get|array names|array nextelement|array set|array size|array startsearch|array statistics|array unset)\>"
+color green "\<(string bytelength|string compare|string equal|string first|string index|string is|string last|string length|string map|string match|string range|string repeat|string replace|string to|string tolower|string totitle|string toupper|string trim|string trimleft|string trimright|string will|string wordend|string wordstart)\>"
+## Extended TclX [info commands]
+color green "\<(alarm|auto_load_pkg|bsearch|catclose|catgets|catopen|ccollate|cconcat|cequal|chgrp|chmod|chown|chroot|cindex|clength|cmdtrace|commandloop|crange|csubstr|ctoken|ctype|dup|echo|execl|fcntl|flock|fork|fstat|ftruncate|funlock|host_info|id|infox|keyldel|keylget|keylkeys|keylset|kill|lassign|lcontain|lempty|lgets|link|lmatch|loadlibindex|loop|lvarcat|lvarpop|lvarpush|max|min|nice|pipe|profile|random|readdir|replicate|scancontext|scanfile|scanmatch|select|server_accept|server_create|signal|sleep|sync|system|tclx_findinit|tclx_fork|tclx_load_tndxs|tclx_sleep|tclx_system|tclx_wait|times|translit|try_eval|umask|wait)\>"
+## Syntax.
+color brightblue "proc[[:space:]]" "(\{|\})"
+color green "(\(|\)|\;|`|\\|\$|<|>|!|=|&|\|)"
+color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+icolor brightred "\$\{?[0-9A-Z_!@#$*?-]+\}?"
 color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+color ,magenta "^[[:space:]]*#.*"
+## Here is a short example for TeX files.
+##
+syntax "tex" "\.tex$"
+icolor green "\\.|\\[A-Z]*"
+color magenta "[{}]"
+color blue "(^|[^\])%.*"
 syntax "vala" "\.vala$"
 
 color green     "\<(float|double|bool|char|int|uint|short|long|void|(un)?signed)\>"
@@ -818,18 +1097,15 @@ color cyan  "(^|[[:space:]])\"[^"]*$"
 color ,green "[[:space:]]+$"
 color ,red "	+ +| +	+"
 # +EXTRALINT
-syntax "xml" "\.([jrs]html?|sgml?|xml|opml|xslt?|plist)$"
-
-color brightmagenta  start="<" end=">"
-color brightblack  " [a-z_-]+="
-color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
-color brightwhite,red  "&"
-color magenta   "&(#[0-9]+|#x[0-9a-fA-F]+|[A-Za-z][A-Za-z0-9]*);"
-color cyan  start="<!--" end="-->"
-color cyan  start="<!DOCTYPE" end=">"
-color ,green "[[:space:]]+$"
-color ,red "	+ +| +	+"
-# +EXTRALINT
+## Here is an example for xml files.
+##
+syntax "xml" "\.([jrs]html?|sgml?|xml|xslt?)$"
+color green  start="<" end=">"
+color cyan   "<[^> ]+"
+color cyan   ">"
+color yellow start="<!DOCTYPE" end="[/]?>"
+color yellow start="<!--" end="-->"
+color red    "&[^;]*;"
 syntax "xresources" "X(defaults|resources)$"
 
 color green     "^[[:alnum:]]+\*"
