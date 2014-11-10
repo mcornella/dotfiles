@@ -37,6 +37,7 @@ exists highlight && {
   function cless() {
     ccat "$@" | less -FX
   }
+  alias less=cless
 }
 
 # swaps two files
