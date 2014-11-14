@@ -13,8 +13,10 @@ alias l='ls --color=always -hF --dereference-command-line-symlink-to-dir'
 alias ll='l -l'
 alias la='l -A'
 alias lla='ll -A'
-alias lac='LC_COLLATE=C la' # order: symbols, UPPERCASE, lowercase
-alias lf='ls --group-directories-first' # folders first
+# order of output: symbols, UPPERCASE, lowercase
+alias lac='LC_COLLATE=C la'
+alias lf='LC_COLLATE=C ls --group-directories-first' # folders first
+alias lfa='lf -A'
 
 # # verbose copy, move and delete
 # alias cp='cp -v'
@@ -22,7 +24,7 @@ alias lf='ls --group-directories-first' # folders first
 # alias mv='mv -v'
 
 # directories
-alias mkdir >/dev/null 2>&1 && unalias mkdir # remove nocorrect (oh-my-zsh)
+alias mkdir &>/dev/null && unalias mkdir # remove nocorrect (oh-my-zsh)
 alias md='mkdir -p'
 alias rd='rmdir'
 [[ -d /C ]] && alias sistema='cd /C'
@@ -68,4 +70,3 @@ exists logcat-color.py && alias logcat='noglob logcat-color.py'
 alias composer='composer.phar'
 alias laravel='laravel.phar'
 alias phpserve='php -S localhost:8888'
-
