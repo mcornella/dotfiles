@@ -35,11 +35,11 @@ if which ruby &>/dev/null && which gem &>/dev/null; then
   unset dir
 fi
 
-# add current directory last
-path+=.
-
 # remove duplicate entries from PATH
 typeset -U path
+
+# export PATH for other sessions
+export PATH="$PATH"
 
 
 # Path to your oh-my-zsh configuration.
@@ -160,13 +160,6 @@ bindkey ^T tetris
 
 ## Sourcing extern files
 
-# aliases
-[[ -f ~/.aliases ]] && . ~/.aliases
-
-# functions
-[[ -f ~/.functions ]] && . ~/.functions
-
-
 # Package suggestions on command not found
 [[ -f /etc/zsh_command_not_found ]] && . /etc/zsh_command_not_found
 
@@ -175,3 +168,13 @@ bindkey ^T tetris
 
 # Open new tab in current directory
 [[ -f /etc/profile.d/vte.sh ]] && . /etc/profile.d/vte.sh
+
+
+# custom aliases
+[[ -f ~/.aliases ]] && . ~/.aliases
+
+# custom functions
+[[ -f ~/.functions ]] && . ~/.functions
+
+# add current directory to the end of PATH
+path+=.
