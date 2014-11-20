@@ -24,8 +24,8 @@ if [ -d ~/opt ]; then
 fi
 
 # android
-if [ -d ~/opt/android ]; then
-	path+=(~/opt/android/{platform-,}tools)
+if [ -d /opt/android ]; then
+	path+=(/opt/android/{platform-,}tools)
 fi
 
 # ruby gems
