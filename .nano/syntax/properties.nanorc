@@ -1,6 +1,5 @@
 syntax "properties" "\.properties$"
 
-color brightblack  "^[[:space:]]*[^#!]([^:= ]|\\[:= ])*[:= ]"
 color red "[:=]"
 color magenta   "\\([#!=: ]|$)"
 color magenta   "\\u[[:xdigit:]]{4}"
