@@ -3,7 +3,6 @@
 	email = marc.cornella@live.com
 
 [alias]
-	logc = log --oneline --graph --decorate --color
 	remotes = remote -v
 
 [color]

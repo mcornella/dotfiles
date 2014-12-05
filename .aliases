@@ -34,11 +34,14 @@ alias rd='rmdir'
 alias df='df -h'
 alias du='du -h'
 
-
 # enable alias expansion after sudo (trailing space)
 alias sudo='sudo '
 # preserve environment (-E option) when login as root
 alias sudoas='sudo -E -s'
+
+# git pretty log
+alias gl='git log --oneline --graph --decorate --color'
+alias gla='gl --all'
 
 
 ## utilities
@@ -49,13 +52,13 @@ alias o.='o .'
 
 # checks if argument exists in path
 alias exists='command -v &>/dev/null'
+
 # stdin to clipboard
 alias xclip='xclip -selection c'
-# git pretty log
-alias gl='git logc'
-alias gla='git logc --all'
+
 # enable advanced calculation in bc by default
 alias bc='bc -l'
+
 # does that ring a bell?
 alias bell="echo -n $'\x7'"
 
