@@ -100,7 +100,7 @@ plugins=(
 	zsh_reload
 	omz-bootstrap
 	sudo
-	gem
+#	gem
 	vagrant
 	composer
 )
