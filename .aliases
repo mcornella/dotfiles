@@ -39,6 +39,10 @@ alias sudo='sudo '
 # preserve environment (-E option) when login as root
 alias sudoas='sudo -E -s'
 
+## git
+
+alias ga.='git add .'
+
 # git pretty log
 alias gl='git log --oneline --graph --decorate --color'
 alias gla='gl --all'
