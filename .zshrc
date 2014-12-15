@@ -92,17 +92,16 @@ plugins=(
 	git
 	git-extras
 	gitignore
-	batcharge
-	z
-	dict
-	npm
-	ragekill
-	zsh_reload
-	omz-bootstrap
 	sudo
-#	gem
+	zsh_reload
 	vagrant
 	composer
+	npm
+#	gem
+	z
+	dict
+	batcharge
+	ragekill
 )
 
 source "$ZSH/oh-my-zsh.sh"
