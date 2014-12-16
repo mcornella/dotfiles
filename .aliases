@@ -33,6 +33,8 @@ alias rd='rmdir'
 # hdd
 alias df='df -h'
 alias du='du -h'
+alias dus='du -s *'
+alias duss='dus | sort -h'
 
 # enable alias expansion after sudo (trailing space)
 alias sudo='sudo '
