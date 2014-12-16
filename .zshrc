@@ -137,6 +137,7 @@ alias git='noglob git'
 # prevent adding files as key strokes when using bindkey
 alias bindkey='noglob bindkey'
 
+
 ## More zsh options
 
 # correction of commands
@@ -151,6 +152,10 @@ setopt interactivecomments
 autoload -U tetris
 zle -N tetris
 bindkey ^T tetris
+
+# zmv
+autoload zmv
+alias zmv='noglob zmv -W'
 
 
 ## Sourcing extern files
