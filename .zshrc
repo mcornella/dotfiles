@@ -111,6 +111,9 @@ source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
 
+# Disable showing prompt context (user@host)
+prompt_context(){}
+
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
 
