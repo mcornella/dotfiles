@@ -15,6 +15,7 @@ dotfiles+=.nanorc
 dotfiles+=.nano
 dotfiles+=.toprc
 dotfiles+=.vimrc
+dotfiles+=.zprofile
 dotfiles+=.zshrc
 
 local error
