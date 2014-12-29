@@ -98,7 +98,7 @@ plugins=(
 	vagrant
 	composer
 	npm
-#	gem
+	# gem
 	z
 	dict
 	batcharge
