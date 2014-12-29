@@ -10,15 +10,15 @@
 
 # bin folders
 if [ -d ~/bin ]; then
-	path+=~/bin
-	for dir in ~/bin/*(/); do path+="$dir" done > /dev/null 2>&1
+	path+=(~/bin)
+	for dir in ~/bin/*(/); do path+=("$dir"); done > /dev/null 2>&1
 	unset dir
 fi
 
 # opt folder
 if [ -d ~/opt ]; then
 	for dir in ~/opt/*(/); do
-		[ -d "$dir/bin" ] && path+="$dir/bin"
+		[ -d "$dir/bin" ] && path+=("$dir/bin")
 	done
 	unset dir
 fi
@@ -31,7 +31,7 @@ fi
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
   dir="$(ruby -rubygems -e 'puts Gem.user_dir')"
-  [ -d "$dir/bin" ] && path+="$dir/bin"
+  [ -d "$dir/bin" ] && path+=("$dir/bin")
   unset dir
 fi
 
