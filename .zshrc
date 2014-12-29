@@ -93,6 +93,7 @@ plugins=(
 	git-extras
 	gitignore
 	dircycle
+	web-search
 	sudo
 	zsh_reload
 	vagrant
