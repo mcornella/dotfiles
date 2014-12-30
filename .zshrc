@@ -57,7 +57,6 @@ plugins=(
 	npm
 	# gem
 	z
-	dict
 	batcharge
 	ragekill
 )
