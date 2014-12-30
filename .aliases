@@ -46,8 +46,17 @@ alias sudoas='sudo -E -s'
 alias ga.='git add .'
 alias grup='git remote update --prune'
 
+# git fetch
 alias gf='git fetch --prune'
 alias gfa='gf --all'
+
+# git push
+alias gp='git push'
+alias gpa='git push --all'
+alias gpf='git push --force'
+alias gpfa='git push --force --all'
+# prune remote branches
+alias gpp='git push --prune --all'
 
 # git pretty log
 alias gl='git log --oneline --graph --decorate --color'
