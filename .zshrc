@@ -100,6 +100,11 @@ alias bindkey='noglob bindkey'
 
 ## More zsh options
 
+# automatic rehashing of commands...
+zstyle ':completion:*' rehash true
+# ...and checking if they're actually executable before adding them
+setopt hashexecutablesonly
+
 # correction of commands
 setopt correct
 
