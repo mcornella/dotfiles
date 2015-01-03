@@ -85,9 +85,6 @@ alias bell="echo -n $'\x7'"
 alias fib-on='sudo /etc/init.d/fibvpn-start'
 alias fib-off='sudo /etc/init.d/fibvpn-stop'
 
-# android
-exists logcat-color.py && alias logcat='noglob logcat-color.py'
-
 # PHP
 alias composer='composer.phar'
 alias laravel='laravel.phar'

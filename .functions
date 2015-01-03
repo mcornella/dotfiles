@@ -38,6 +38,7 @@ exists highlight && {
     ccat "$@" | less -FX
   }
   alias less=cless
+  alias le='cless -S sh'
 }
 
 # swaps two files
