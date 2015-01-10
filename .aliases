@@ -9,10 +9,10 @@
 
 
 # ls output
-alias l='ls --color=always -hF --dereference-command-line-symlink-to-dir'
-alias ll='l -l'
+alias l='ls --color=always -h --dereference-command-line-symlink-to-dir'
+alias ll='l -lF'
 alias la='l -A'
-alias lla='ll -A'
+alias lla='ll -AF'
 # order of output: symbols, UPPERCASE, lowercase
 alias lac='LC_COLLATE=C la'
 alias lf='LC_COLLATE=C ls --group-directories-first' # folders first
