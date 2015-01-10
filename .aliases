@@ -20,8 +20,12 @@ alias lfa='lf -A'
 
 # # verbose copy, move and delete
 # alias cp='cp -v'
-# alias rm='rm -v'
 # alias mv='mv -v'
+# alias rm='rm -v'
+# safe copy, move and delete
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'
 
 # directories
 alias mkdir &>/dev/null && unalias mkdir # remove nocorrect (oh-my-zsh)
