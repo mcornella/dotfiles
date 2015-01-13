@@ -3,7 +3,9 @@
 	email = marc.cornella@live.com
 
 [alias]
+	bigbang = checkout --orphan
 	remotes = remote -v
+	unchange = update-index --assume-unchanged
 
 [color]
 	ui = true
