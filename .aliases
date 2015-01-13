@@ -18,10 +18,6 @@ alias lac='LC_COLLATE=C la'
 alias lf='LC_COLLATE=C ls --group-directories-first' # folders first
 alias lfa='lf -A'
 
-# # verbose copy, move and delete
-# alias cp='cp -v'
-# alias mv='mv -v'
-# alias rm='rm -v'
 # safe copy, move and delete
 alias cp='cp -i'
 alias mv='mv -i'
@@ -48,7 +44,6 @@ alias sudoas='sudo -E -s'
 ## git
 
 alias ga.='git add .'
-alias grup='git remote update --prune'
 
 # git fetch
 alias gf='git fetch --prune'
