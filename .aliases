@@ -46,6 +46,7 @@ alias sudoas='sudo -E -s'
 ## git
 
 alias ga.='git add .'
+alias gap='git add -p'
 
 # git fetch
 alias gf='git fetch --prune'
