@@ -7,6 +7,8 @@
 #   Avoid syntax and commands not portable to other different setups,
 #   check out http://hyperpolyglot.org/unix-shells for more information
 
+# checks if argument exists in path
+alias exists='command -v &>/dev/null'
 
 # ls output
 alias l='ls --color=always -h --dereference-command-line-symlink-to-dir'
@@ -67,9 +69,6 @@ alias gla='gl --all'
 # open with system default application
 alias o='xdg-open &>/dev/null'
 alias o.='o .'
-
-# checks if argument exists in path
-alias exists='command -v &>/dev/null'
 
 # stdin to clipboard
 alias xclip='xclip -selection c'

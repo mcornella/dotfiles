@@ -8,7 +8,7 @@
 #   check out http://hyperpolyglot.org/unix-shells for more information.
 
 # required to check if a command exists
-command -v exists >/dev/null 2>&1 || alias exists='command -v >/dev/null 2>&1'
+command -v exists &>/dev/null || alias exists='command -v &>/dev/null'
 
 
 # run command in the background
