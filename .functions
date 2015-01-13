@@ -34,6 +34,8 @@ exists highlight && {
     # --quiet           suppress "unknown source file extension" error
     highlight --validate-input -t 2 -I -O ansi --failsafe --quiet "$@"
   }
+  alias cat=ccat
+
   function cless() {
     ccat "$@" | less -FX
   }
