@@ -20,9 +20,12 @@ plugins=(
 	sudo
 	zsh_reload
 	vagrant
+	virtualenv
+	virtualenvwrapper
 	composer
 	npm
 	# gem
+	# custom plugins go here
 	z
 	batcharge
 	ragekill
