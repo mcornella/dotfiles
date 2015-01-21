@@ -38,8 +38,6 @@ alias du='du -h'
 alias dus='du -s *'
 alias duss='dus | sort -h'
 
-# enable alias expansion after sudo (trailing space)
-alias sudo='sudo '
 # preserve environment (-E option) when login as root
 alias sudoas='sudo -E -s'
 
