@@ -15,6 +15,7 @@
 
 [core]
 	pager = less -FX
+	whitespace = blank-at-eol,space-before-tab
 
 [help]
 	autocorrect = 1
