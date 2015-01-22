@@ -84,5 +84,4 @@ alias fib-off='sudo /etc/init.d/fibvpn-stop'
 
 # PHP
 alias composer='composer.phar'
-alias laravel='laravel.phar'
 alias phpserve='php -S localhost:8888'

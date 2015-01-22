@@ -28,6 +28,11 @@ if [ -d /opt/android ]; then
 	path+=(/opt/android/{platform-,}tools)
 fi
 
+# composer binaries
+if [ -d ~/.composer/vendor/bin ]; then
+	path+=(~/.composer/vendor/bin)
+fi
+
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
   dir="$(ruby -rubygems -e 'puts Gem.user_dir')"
