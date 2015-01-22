@@ -19,6 +19,7 @@ plugins=(
 	web-search
 	sudo
 	zsh_reload
+	docker
 	vagrant
 	virtualenv
 	virtualenvwrapper
