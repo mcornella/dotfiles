@@ -25,6 +25,7 @@ plugins=(
 	virtualenvwrapper
 	composer
 	npm
+	rsync
 	# gem
 	# custom plugins go here
 	z
