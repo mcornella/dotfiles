@@ -78,10 +78,6 @@ alias bc='bc -l'
 # does that ring a bell?
 alias bell="echo -n $'\x7'"
 
-# fib
-alias fib-on='sudo /etc/init.d/fibvpn-start'
-alias fib-off='sudo /etc/init.d/fibvpn-stop'
-
 # PHP
 alias composer='composer.phar'
 alias phpserve='php -S localhost:8888'
