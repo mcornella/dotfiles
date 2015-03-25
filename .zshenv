@@ -9,39 +9,36 @@
 # [[ -f ~/.paths ]] && . ~/.paths
 
 # bin folders
-if [ -d ~/bin ]; then
-	path+=(~/bin)
-	for dir in ~/bin/*(/); do path+=("$dir"); done > /dev/null 2>&1
-	unset dir
+if [ -d "$HOME"/bin ]; then
+  PATH="$PATH:$HOME/bin"
+  for DIR in "$HOME"/bin/*; do
+    test -d "$DIR" && PATH="$PATH:$DIR"
+  done > /dev/null 2>&1
 fi
 
 # opt folder
-if [ -d ~/opt ]; then
-	for dir in ~/opt/*(/); do
-		[ -d "$dir/bin" ] && path+=("$dir/bin")
-	done
-	unset dir
+if [ -d "$HOME"/opt ]; then
+  for DIR in "$HOME"/opt/*/bin; do
+    test -d "$DIR" && PATH="$PATH:$DIR"
+  done > /dev/null 2>&1
 fi
 
 # android
-if [ -d /opt/android ]; then
-	path+=(/opt/android/{platform-,}tools)
-fi
+test -d /opt/android && PATH="$PATH:/opt/android/platform-tools:/opt/android/tools"
 
 # composer binaries
-if [ -d ~/.composer/vendor/bin ]; then
-	path+=(~/.composer/vendor/bin)
-fi
+test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
-  dir="$(ruby -rubygems -e 'puts Gem.user_dir')"
-  [ -d "$dir/bin" ] && path+=("$dir/bin")
-  unset dir
+  DIR="$(ruby -rubygems -e 'puts Gem.user_dir' 2>/dev/null)"
+  test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
 fi
 
+unset DIR
+
 # remove duplicate entries from PATH
-typeset -U path
+[ -n "$ZSH_VERSION" ] && typeset -U path
 
 # export PATH for other sessions
-export PATH="$PATH"
+export PATH
