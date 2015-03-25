@@ -81,5 +81,4 @@ alias bc='bc -l'
 alias bell="echo -n $'\x7'"
 
 # PHP
-alias composer='composer.phar'
 alias phpserve='php -S localhost:8888'
