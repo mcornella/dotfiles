@@ -81,4 +81,5 @@ alias bc='bc -l'
 alias bell="echo -n $'\x7'"
 
 # PHP
-alias phpserve='php -S localhost:8888'
+alias pyserve='xdg-open http://localhost:8000 && python -m SimpleHTTPServer'
+alias phserve='xdg-open http://localhost:8888 && php -S localhost:8888'
