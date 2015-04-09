@@ -24,6 +24,7 @@ plugins=(
 	virtualenv
 	virtualenvwrapper
 	composer
+	laravel5
 	rsync
 	# gem
 	# custom plugins go here
