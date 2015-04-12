@@ -10,17 +10,17 @@
 # checks if argument exists in path
 alias exists='command -v &>/dev/null'
 
-# ls output
-alias l='ls --color=always -h --dereference-command-line-symlink-to-dir'
-alias ll='l -lF'
-alias la='l -A'
-alias lla='ll -AF'
-# order of output: symbols, UPPERCASE, lowercase
-alias lac='LC_COLLATE=C la'
-alias lf='LC_COLLATE=C l --group-directories-first' # folders first
+# ls
+# order of output:
+# symbols, UPPERCASE, lowercase (folders first)
+alias lf='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
+alias l='lf'
 alias llf='lf -lF'
+alias ll='llf'
 alias lfa='lf -A'
-alias llfa='lfa -lF'
+alias la='lfa'
+alias llfa='llf -AF'
+alias lla='llfa'
 
 # safe copy, move and delete
 alias cp='cp -i'
