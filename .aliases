@@ -48,6 +48,8 @@ alias sudoas='sudo -E -s'
 alias ga.='git add .'
 alias gap='git add -p'
 
+alias gcob='git checkout -b'
+
 # git fetch
 alias gf='git fetch --prune'
 alias gfa='gf --all'
