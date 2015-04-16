@@ -69,3 +69,15 @@ function swap() {
 function zman() {
   PAGER="less -g -s '+/^       "$1"'" man zshall
 }
+
+function pyserve() {
+  local port=${1:-8888}
+  xdg-open "http://localhost:$port"
+  python -m SimpleHTTPServer $port
+}
+
+function phserve() {
+  local port=${1:-8000}
+  xdg-open "http://localhost:$port"
+  php -S "localhost:$port"
+}
