@@ -45,7 +45,7 @@ alias sudoas='sudo -E -s'
 
 ## git
 
-alias ga.='git add .'
+alias gau='git add -u'
 alias gap='git add -p'
 
 alias gcob='git checkout -b'
