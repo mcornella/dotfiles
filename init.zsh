@@ -6,17 +6,18 @@
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 # Files to be symlinked to home directory
-dotfiles=()
-dotfiles+=aliases
-dotfiles+=dircolors
-dotfiles+=functions
-dotfiles+=gitconfig
-dotfiles+=nanorc
-dotfiles+=nano
-dotfiles+=toprc
-dotfiles+=vimrc
-dotfiles+=zshenv
-dotfiles+=zshrc
+dotfiles=(
+	aliases
+	dircolors
+	functions
+	gitconfig
+	nanorc
+	nano
+	toprc
+	vimrc
+	zshenv
+	zshrc
+)
 
 local error
 local symlink
