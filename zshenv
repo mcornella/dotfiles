@@ -1,12 +1,15 @@
-## PATH settings
+#!/bin/sh
+#
+# File: .zshenv
+# Description:
+#   Dynamically sets the PATH at each shell startup.
+#   To enable these modifications at logon, source this file from .profile:
+#
+#     . ~/.zshenv
+#
+#   For that reason, avoid syntax and commands not portable to other platforms
+#   and shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
-# DISCUSSION:
-# 1) path settings should all go to .profile?
-# 2) how to prevent duplicates -> `typeset -U path` to remove duplicates
-# 3) which syntax to use to be portable (related [2], or only in zsh?)
-
-# source path modifications
-# [[ -f ~/.paths ]] && . ~/.paths
 
 # bin folders
 if [ -d "$HOME"/bin ]; then
