@@ -22,37 +22,35 @@ local error
 local symlink
 
 for file in $dotfiles; do
-    echo -n "symlinking $file... "
+	echo -n "symlinking $file... "
 
-    destfile=$HOME/.$file
+	destfile=$HOME/.$file
 
-    if error="$(ln -s $DIR/$file $destfile 2>&1)"
-    then
-        echo "[OK]"
-    elif [[ -h $HOME/$file ]]
-    then
-        symlink="$(readlink $destfile)"
+	if error="$(ln -s $DIR/$file $destfile 2>&1)"
+	then
+		echo "[OK]"
+	elif [[ -h $HOME/$file ]]
+	then
+		symlink="$(readlink $destfile)"
 
-        if [[ "$symlink" == "$DIR/$file" ]]; then
-            echo "[SKIP: file already symlinked]"
-        else
-            echo "[ERROR: destination already exists ( -> $symlink)]"
-        fi
-    elif [[ -f $destfile ]]
-    then
-        echo "[ERROR: destination already exists (file)]"
-    elif [[ -d $destfile ]]
-    then
-        echo "[ERROR: destination already exists (dir)]"
-    elif [[ -e $destfile ]]
-    then
-        echo "[ERROR: destination already exists (other)]"
-    else
-        echo "[ERROR: $error]"
-    fi
+		if [[ "$symlink" == "$DIR/$file" ]]; then
+			echo "[SKIP: file already symlinked]"
+		else
+			echo "[ERROR: destination already exists ( -> $symlink)]"
+		fi
+	elif [[ -f $destfile ]]
+	then
+		echo "[ERROR: destination already exists (file)]"
+	elif [[ -d $destfile ]]
+	then
+		echo "[ERROR: destination already exists (dir)]"
+	elif [[ -e $destfile ]]
+	then
+		echo "[ERROR: destination already exists (other)]"
+	else
+		echo "[ERROR: $error]"
+	fi
 done
 
 # TODO: add repositories as needed (i.e. oh-my-zsh)
-# TODO: further development and testing
 # TODO: add colored output (green OK, yellow SKIP, red ERROR)
-

@@ -13,71 +13,71 @@ command -v exists &>/dev/null || alias exists='command -v &>/dev/null'
 
 # run command in the background
 function background() {
-  [[ -z "$@" ]] && return 1
-  "$@" &
+	[[ -z "$@" ]] && return 1
+	"$@" &
 }
 
 # show command help with less (if it's more than one page)
 function help() {
-  [[ -z "$@" ]] && return 1
-  "$@" --help >/dev/null 2>&1 && "$@" --help | less -FX
+	[[ -z "$@" ]] && return 1
+	"$@" --help >/dev/null 2>&1 && "$@" --help | less -FX
 }
 
 # syntax-highlighted cat
 exists highlight && {
-  function ccat() {
-    # --validate-input  remove BOM, don't parse binary files
-    # --t 2             replace tabs with 2 spaces
-    # -I                include css style in output file
-    # -O ansi           output to std output by default
-    # --failsafe        if no syntax definition, copy input to output (cat-like)
-    # --quiet           suppress "unknown source file extension" error
-    highlight --validate-input -t 2 -I -O ansi --failsafe --quiet "$@"
-  }
-  alias cat=ccat
+	function ccat() {
+		# --validate-input  remove BOM, don't parse binary files
+		# --t 2             replace tabs with 2 spaces
+		# -I                include css style in output file
+		# -O ansi           output to std output by default
+		# --failsafe        if no syntax definition, copy input to output (cat-like)
+		# --quiet           suppress "unknown source file extension" error
+		highlight --validate-input -t 2 -I -O ansi --failsafe --quiet "$@"
+	}
+	alias cat=ccat
 
-  function cless() {
-    ccat "$@" | less -FX
-  }
-  alias less=cless
-  alias le='cless -S sh'
+	function cless() {
+		ccat "$@" | less -FX
+	}
+	alias less=cless
+	alias le='cless -S sh'
 }
 
 # swaps two files
 function swap() {
-  # Check if specified 2 files
-  [[ $# != 2 ]] && echo "Syntax: $0 <file1> <file2> ($# files provided)" && return 1
+	# Check if specified 2 files
+	[[ $# != 2 ]] && echo "Syntax: $0 <file1> <file2> ($# files provided)" && return 1
 
-  # Check if files specified are different
-  [[ "$1" == "$2" ]] && echo "Error: files must be different" && return 1
+	# Check if files specified are different
+	[[ "$1" == "$2" ]] && echo "Error: files must be different" && return 1
 
-  # Check if files specified exist and are files
-  [[ -f "$1" ]] || { echo "Error: '$1' does not exist or is not a valid file" && return 1 }
-  [[ -f "$2" ]] || { echo "Error: '$2' does not exist or is not a valid file" && return 1 }
+	# Check if files specified exist and are files
+	[[ -f "$1" ]] || { echo "Error: '$1' does not exist or is not a valid file" && return 1 }
+	[[ -f "$2" ]] || { echo "Error: '$2' does not exist or is not a valid file" && return 1 }
 
-  # Create a temporary file
-  tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
+	# Create a temporary file
+	tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
 
-  $(command mv "$1" "$tmpfile" && command mv "$2" "$1" && command mv "$tmpfile" "$2")
-  local ret=$?
+	$(command mv "$1" "$tmpfile" && command mv "$2" "$1" && command mv "$tmpfile" "$2")
+	local ret=$?
 
-  [ $ret -eq 0 ] && echo "$1 <-> $2"
-  return $ret
+	[ $ret -eq 0 ] && echo "$1 <-> $2"
+	return $ret
 }
 
 # opens zshall man page and looks for specified argument
 function zman() {
-  PAGER="less -g -s '+/^       "$1"'" man zshall
+	PAGER="less -g -s '+/^       "$1"'" man zshall
 }
 
 function pyserve() {
-  local port=${1:-8888}
-  xdg-open "http://localhost:$port"
-  python -m SimpleHTTPServer $port
+	local port=${1:-8888}
+	xdg-open "http://localhost:$port"
+	python -m SimpleHTTPServer $port
 }
 
 function phserve() {
-  local port=${1:-8000}
-  xdg-open "http://localhost:$port"
-  php -S "0.0.0.0:$port"
+	local port=${1:-8000}
+	xdg-open "http://localhost:$port"
+	php -S "0.0.0.0:$port"
 }

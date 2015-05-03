@@ -10,17 +10,17 @@
 
 # bin folders
 if [ -d "$HOME"/bin ]; then
-  PATH="$PATH:$HOME/bin"
-  for DIR in "$HOME"/bin/*; do
-    test -d "$DIR" && PATH="$PATH:$DIR"
-  done > /dev/null 2>&1
+	PATH="$PATH:$HOME/bin"
+	for DIR in "$HOME"/bin/*; do
+		test -d "$DIR" && PATH="$PATH:$DIR"
+	done > /dev/null 2>&1
 fi
 
 # opt folder
 if [ -d "$HOME"/opt ]; then
-  for DIR in "$HOME"/opt/*/bin; do
-    test -d "$DIR" && PATH="$PATH:$DIR"
-  done > /dev/null 2>&1
+	for DIR in "$HOME"/opt/*/bin; do
+		test -d "$DIR" && PATH="$PATH:$DIR"
+	done > /dev/null 2>&1
 fi
 
 # android
@@ -31,8 +31,8 @@ test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
-  DIR="$(ruby -rubygems -e 'puts Gem.user_dir' 2>/dev/null)"
-  test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
+	DIR="$(ruby -rubygems -e 'puts Gem.user_dir' 2>/dev/null)"
+	test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
 fi
 
 unset DIR
