@@ -47,3 +47,4 @@ unset DIR
 export PATH
 
 export EDITOR=nano
+export GOPATH=~/opt/gocode
