@@ -10,7 +10,6 @@
 # required to check if a command exists
 command -v exists &>/dev/null || alias exists='command -v &>/dev/null'
 
-
 # run command in the background
 function background() {
 	[[ -z "$@" ]] && return 1
@@ -25,7 +24,7 @@ function help() {
 
 # syntax-highlighted cat
 exists highlight && {
-	function ccat() {
+	exists ccat || function ccat() {
 		# --validate-input  remove BOM, don't parse binary files
 		# --t 2             replace tabs with 2 spaces
 		# -I                include css style in output file
@@ -34,13 +33,11 @@ exists highlight && {
 		# --quiet           suppress "unknown source file extension" error
 		highlight --validate-input -t 2 -I -O ansi --failsafe --quiet "$@"
 	}
-	alias cat=ccat
 
 	function cless() {
 		ccat "$@" | less -FX
 	}
-	alias less=cless
-	alias le='cless -S sh'
+	alias lesh='cless -S sh'
 }
 
 # swaps two files
