@@ -1,4 +1,4 @@
-include ~/.nano/syntax/ALL.nanorc
+#include ~/.nano/syntax/ALL.nanorc
 
 set autoindent
 set const
