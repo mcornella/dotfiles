@@ -68,6 +68,8 @@ alias gpp='git push --prune --all'
 alias gl='git log --oneline --graph --decorate --color'
 alias gla='git log --oneline --graph --decorate --color --all'
 
+# show staged changes
+alias gdc='git diff --cached'
 
 ## utilities
 
