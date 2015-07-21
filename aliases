@@ -67,6 +67,8 @@ alias gpp='git push --prune --all'
 # git pretty log
 alias gl='git log --oneline --graph --decorate --color'
 alias gla='git log --oneline --graph --decorate --color --all'
+alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative'
+alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 
 # show staged changes
 alias gdc='git diff --cached'
