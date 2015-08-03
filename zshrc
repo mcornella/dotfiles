@@ -29,7 +29,6 @@ plugins=(
 	# gem
 	# custom plugins go here
 	z
-	batcharge
 	ragekill
 )
 
