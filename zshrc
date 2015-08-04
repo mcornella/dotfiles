@@ -15,20 +15,17 @@ plugins=(
 	git
 	git-extras
 	gitignore
+	z
 	dircycle
 	web-search
 	sudo
 	zsh_reload
 	docker
 	vagrant
-	virtualenv
-	virtualenvwrapper
 	composer
 	laravel5
 	rsync
-	# gem
 	# custom plugins go here
-	z
 	ragekill
 )
 
