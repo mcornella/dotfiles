@@ -76,7 +76,7 @@ alias gdc='git diff --cached'
 ## utilities
 
 # open with system default application
-alias o='xdg-open &>/dev/null'
+alias o='open_command'
 alias o.='o .'
 
 # stdin to clipboard
