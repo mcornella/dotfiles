@@ -40,7 +40,7 @@ alias du='du -h'
 
 alias dus='du -s *'
 alias duss='du -s * | sort -h'
-alias dusss='LC_ALL=C du -s /{boot,lib*,opt,sbin,usr,var}/* /{bin,etc,root} 2>/dev/null | grep -vE '\''^(0|[0-9.]+K)'\'' | LC_ALL=C sort -h'
+alias dusss='LC_ALL=C du -s /{boot,lib*,opt,sbin,tmp,usr,var}/* /{bin,etc,root} 2>/dev/null | grep -vE '\''^(0|[0-9.]+K)'\'' | LC_ALL=C sort -h'
 
 # preserve environment (-E option) when login as root
 alias sudoas='sudo -E -s'
