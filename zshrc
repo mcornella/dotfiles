@@ -56,8 +56,14 @@ zstyle ':completion:*' list-prompt   ''
 zstyle ':completion:*' select-prompt ''
 
 # Example aliases
-alias ohmyzsh="subl ~/.oh-my-zsh"
-alias zshrc="subl ~/.zshrc"
+if [[ $OSTYPE = cygwin ]]
+then
+	alias ohmyzsh='subl $(cygpath -w "$ZSH")'
+	alias zshrc='subl $(cygpath -w ~/.zshrc)'
+else
+	alias ohmyzsh='subl "$ZSH"'
+	alias zshrc='subl ~/.zshrc'
+fi
 
 # correct behaviour when specifying commit parent (commit^)
 alias git='noglob git'
