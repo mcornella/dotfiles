@@ -10,6 +10,7 @@ dotfiles=(
 	aliases
 	dircolors
 	functions
+	gdbinit
 	gitconfig
 	nanorc
 	nano
