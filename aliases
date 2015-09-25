@@ -72,8 +72,11 @@ alias gla='git log --oneline --graph --decorate --color --all'
 alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative'
 alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 
-# show staged changes
+# git diff
+alias gd='git diff'
 alias gdc='git diff --cached'
+alias gdw='git diff --word-diff'
+alias gdcw='git diff --cached --word-diff'
 
 ## utilities
 
