@@ -42,6 +42,8 @@ alias dus='du -s *'
 alias duss='du -s * | sort -h'
 alias dusss="LANG=C du -s /{{boot,lib*,opt,sbin,tmp,usr,var}/*,{bin,etc,root}} 2>/dev/null | grep -vE '^(0|[0-9.]+K)' | LANG=C sort -h"
 
+# expand aliases after sudo
+alias sudo='sudo '
 # preserve environment (-E option) when login as root
 alias sudoas='sudo -E -s'
 
