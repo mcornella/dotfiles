@@ -14,7 +14,7 @@
 	default = simple
 
 [core]
-	pager = less -FX
+	pager = less -FX -x1,5
 	whitespace = blank-at-eol,space-before-tab
 
 [help]
