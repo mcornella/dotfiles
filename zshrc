@@ -14,6 +14,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
 	git
 	git-extras
+	github
 	gitignore
 	z
 	dircycle
@@ -27,6 +28,7 @@ plugins=(
 	rsync
 	# custom plugins go here
 	ragekill
+	hub
 )
 
 source "$ZSH/oh-my-zsh.sh"
