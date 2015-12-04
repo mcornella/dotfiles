@@ -29,6 +29,9 @@ fi
 # android
 test -d /opt/android && PATH="$PATH:/opt/android/platform-tools:/opt/android/tools"
 
+# npm binaries
+test -d "$HOME/.npm/bin" && PATH="$PATH:$HOME/.npm/bin"
+
 # composer binaries
 test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
 
