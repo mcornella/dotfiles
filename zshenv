@@ -2,13 +2,14 @@
 #
 # File: .zshenv
 # Description:
-#   Dynamically sets the PATH at each shell startup.
+#   Dynamically sets the PATH at each shell startup, as well as other
+#   environment variables.
 #   To enable these modifications at logon, source this file from .profile:
 #
 #     . ~/.zshenv
 #
-#   For that reason, avoid syntax and commands not portable to other platforms
-#   and shells. Check out http://hyperpolyglot.org/unix-shells for more information.
+#   NOTE: avoid syntax and commands that aren't portable to other platforms and
+#   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
 
 # bin folders
@@ -49,5 +50,7 @@ unset DIR
 # export PATH for other sessions
 export PATH
 
-export EDITOR=nano
+# use nano if it exists; otherwise use vim
+command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
+
 export GOPATH=~/opt/gocode
