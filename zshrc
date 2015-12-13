@@ -26,6 +26,7 @@ plugins=(
 	composer
 	laravel5
 	rsync
+	extract
 	# custom plugins go here
 	ragekill
 	hub
