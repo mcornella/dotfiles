@@ -30,6 +30,7 @@ plugins=(
 	laravel5
 	rsync
 	extract
+	history-substring-search
 	# custom plugins go here
 	ragekill
 	hub
