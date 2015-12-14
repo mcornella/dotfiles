@@ -10,6 +10,9 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+# Don't resolve symbolic links in z
+_Z_NO_RESOLVE_SYMLINKS="true"
+
 # Which plugins would you like to load?
 plugins=(
 	git
