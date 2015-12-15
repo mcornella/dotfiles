@@ -33,7 +33,6 @@ plugins=(
 	history-substring-search
 	# custom plugins go here
 	ragekill
-	hub
 )
 
 source "$ZSH/oh-my-zsh.sh"
@@ -73,7 +72,7 @@ else
 fi
 
 # correct behaviour when specifying commit parent (commit^)
-alias git='noglob git'
+alias git='noglob hub'
 # prevent adding files as key strokes when using bindkey
 alias bindkey='noglob bindkey'
 
