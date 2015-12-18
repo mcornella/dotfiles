@@ -60,3 +60,4 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 export LESS=-FXR
 
 export GOPATH=~/opt/gocode
+export NPM_CONFIG_PREFIX=~/.npm
