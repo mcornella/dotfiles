@@ -53,4 +53,10 @@ export PATH
 # use nano if it exists; otherwise use vim
 command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 
+# set less options by default:
+# -F: quit if output is less than one screen
+# -X: don't clear the screen after quitting
+# -R: keep color control chars
+export LESS=-FXR
+
 export GOPATH=~/opt/gocode
