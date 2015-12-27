@@ -14,6 +14,7 @@ dotfiles=(
 	gitconfig
 	nanorc
 	nano
+	oh-my-zsh
 	toprc
 	vimrc
 	zshenv
