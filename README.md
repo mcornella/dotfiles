@@ -13,15 +13,15 @@
 1. Download or clone repository:
 
   ```sh
-  git clone git@github.com:mcornella/dotfiles
+    git clone git@github.com:mcornella/dotfiles
   ```
 
 2. Update git submodules:
 
   ```sh
-  cd dotfiles
-  git submodule init
-  git submodule update
+    cd dotfiles
+    git submodule init
+    git submodule update
   ```
 
 3. Run init script: `./init.zsh`
