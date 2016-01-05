@@ -17,7 +17,7 @@ for file in $dotfiles; do
 
 	destfile=$HOME/.$file
 
-	if error="$(ln -s $DIR/$file $destfile 2>&1)"
+	if error="$(ln -ns $DIR/$file $destfile 2>&1)"
 	then
 		echo "[OK]"
 	elif [[ -h $HOME/$file ]]
