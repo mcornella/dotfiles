@@ -3,7 +3,7 @@
 # Symlinks files in this directory into $HOME directory
 
 # Base dir
-DIR="$( cd "$( dirname "$0" )" && pwd )"
+DIR="${0:a}"
 
 # Files to be symlinked to home directory
 dotfiles=(
