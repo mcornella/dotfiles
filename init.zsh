@@ -6,20 +6,8 @@
 DIR=${0#~/}
 
 # Files to be symlinked to home directory
-dotfiles=(
-	aliases
-	dircolors
-	functions
-	gdbinit
-	gitconfig
-	nanorc
-	nano
-	oh-my-zsh
-	toprc
-	vimrc
-	zshenv
-	zshrc
-)
+setopt extended_glob
+dotfiles=(^(LICENSE.txt|README.md)(N^*))
 
 local error
 local symlink
