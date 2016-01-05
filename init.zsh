@@ -2,8 +2,8 @@
 #
 # Symlinks files in this directory into $HOME directory
 
-# Base dir
-DIR="${0:a}"
+# Base dir as path relative to $HOME directory
+DIR=${0#~/}
 
 # Files to be symlinked to home directory
 dotfiles=(
