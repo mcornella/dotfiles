@@ -2,24 +2,12 @@
 #
 # Symlinks files in this directory into $HOME directory
 
-# Base dir
-DIR="$( cd "$( dirname "$0" )" && pwd )"
+# Base dir as path relative to $HOME directory
+DIR=${0#~/}
 
 # Files to be symlinked to home directory
-dotfiles=(
-	aliases
-	dircolors
-	functions
-	gdbinit
-	gitconfig
-	nanorc
-	nano
-	oh-my-zsh
-	toprc
-	vimrc
-	zshenv
-	zshrc
-)
+setopt extended_glob
+dotfiles=(^(LICENSE.txt|README.md)(N^*))
 
 local error
 local symlink
@@ -29,7 +17,7 @@ for file in $dotfiles; do
 
 	destfile=$HOME/.$file
 
-	if error="$(ln -s $DIR/$file $destfile 2>&1)"
+	if error="$(ln -ns $DIR/$file $destfile 2>&1)"
 	then
 		echo "[OK]"
 	elif [[ -h $HOME/$file ]]
