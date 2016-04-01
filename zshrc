@@ -100,6 +100,8 @@ setopt hashexecutablesonly
 autoload zmv
 alias mmv='noglob zmv -W'
 
+# ALT + DEL deletes whole forward-word
+bindkey '^[[3;3~' kill-word
 
 ## Sourcing extern files
 
