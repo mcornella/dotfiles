@@ -1,6 +1,6 @@
 #include ~/.nano/syntax/ALL.nanorc
 
-set autoindent
+#set autoindent
 set const
 set smarthome
 set smooth
