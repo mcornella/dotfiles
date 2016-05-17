@@ -95,9 +95,6 @@ setopt correct
 # extended globbing (adds ^ and other symbols as wildcards)
 setopt extended_glob
 
-# allow pasting comments in interactive shell
-setopt interactivecomments
-
 # automatic rehashing of commands...
 zstyle ':completion:*' rehash true
 # ...and checking if they're actually executable before adding them
