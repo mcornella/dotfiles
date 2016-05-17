@@ -76,6 +76,16 @@ alias git='noglob hub'
 # prevent adding files as key strokes when using bindkey
 alias bindkey='noglob bindkey'
 
+## Key bindings
+
+# ALT + DEL deletes whole forward-word
+bindkey '^[[3;3~' kill-word
+# CTRL + DEL deletes whole forward-word
+bindkey '^[[3;5~' kill-word
+# CTRL + BACKSPACE deletes whole backward-word
+bindkey '^H' backward-kill-word
+# lowercase word
+bindkey '^[l' down-case-word
 
 ## More zsh options
 
@@ -97,17 +107,6 @@ setopt hashexecutablesonly
 autoload zmv
 alias mmv='noglob zmv -W'
 
-## Key bindings
-
-# ALT + DEL deletes whole forward-word
-bindkey '^[[3;3~' kill-word
-# CTRL + DEL deletes whole forward-word
-bindkey '^[[3;5~' kill-word
-# CTRL + BACKSPACE deletes whole backward-word
-bindkey '^H' backward-kill-word
-# lowercase word
-bindkey '^[l' down-case-word
-
 ## Sourcing extern files
 
 # Package suggestions on command not found
@@ -118,7 +117,6 @@ bindkey '^[l' down-case-word
 
 # Open new tab in current directory
 [[ -f /etc/profile.d/vte.sh ]] && . /etc/profile.d/vte.sh
-
 
 # custom aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
