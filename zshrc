@@ -97,12 +97,16 @@ setopt hashexecutablesonly
 autoload zmv
 alias mmv='noglob zmv -W'
 
+## Key bindings
+
 # ALT + DEL deletes whole forward-word
 bindkey '^[[3;3~' kill-word
 # CTRL + DEL deletes whole forward-word
 bindkey '^[[3;5~' kill-word
 # CTRL + BACKSPACE deletes whole backward-word
 bindkey '^H' backward-kill-word
+# lowercase word
+bindkey '^[l' down-case-word
 
 ## Sourcing extern files
 
