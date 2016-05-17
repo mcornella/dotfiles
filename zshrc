@@ -102,6 +102,10 @@ alias mmv='noglob zmv -W'
 
 # ALT + DEL deletes whole forward-word
 bindkey '^[[3;3~' kill-word
+# CTRL + DEL deletes whole forward-word
+bindkey '^[[3;5~' kill-word
+# CTRL + BACKSPACE deletes whole backward-word
+bindkey '^H' backward-kill-word
 
 ## Sourcing extern files
 
