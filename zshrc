@@ -88,9 +88,6 @@ setopt extended_glob
 # allow pasting comments in interactive shell
 setopt interactivecomments
 
-# disable cdablevars
-unsetopt cdablevars
-
 # automatic rehashing of commands...
 zstyle ':completion:*' rehash true
 # ...and checking if they're actually executable before adding them
