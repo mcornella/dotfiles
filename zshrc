@@ -78,6 +78,12 @@ alias bindkey='noglob bindkey'
 
 ## Key bindings
 
+# CTRL + K deletes whole line
+bindkey '^K' kill-buffer
+# Reassign Up/Down arrow to history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # ALT + DEL deletes whole forward-word
 bindkey '^[[3;3~' kill-word
 # CTRL + DEL deletes whole forward-word
