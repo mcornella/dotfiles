@@ -24,7 +24,6 @@ plugins=(
 	web-search
 	sudo
 	zsh_reload
-	docker
 	vagrant
 	composer
 	laravel5
