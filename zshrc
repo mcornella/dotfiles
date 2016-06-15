@@ -77,20 +77,20 @@ alias bindkey='noglob bindkey'
 
 ## Key bindings
 
-# CTRL + K deletes whole line
-bindkey '^K' kill-buffer
-# Reassign Up/Down arrow to history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# CTRL + SHIFT + LEFT/RIGHT cycles between recently visited directories
+omz_bindkey -c shift-ctrl left insert-cycledleft
+omz_bindkey -c shift-ctrl right insert-cycledright
 
+# CTRL + K deletes whole line
+omz_bindkey '^K' kill-buffer
 # ALT + DEL deletes whole forward-word
-bindkey '^[[3;3~' kill-word
+omz_bindkey '^[[3;3~' kill-word
 # CTRL + DEL deletes whole forward-word
-bindkey '^[[3;5~' kill-word
+omz_bindkey '^[[3;5~' kill-word
 # CTRL + BACKSPACE deletes whole backward-word
-bindkey '^H' backward-kill-word
-# lowercase word
-bindkey '^[l' down-case-word
+omz_bindkey '^H' backward-kill-word
+# ALT + L lowercases word
+omz_bindkey '^[l' down-case-word
 
 ## More zsh options
 
