@@ -77,10 +77,6 @@ alias bindkey='noglob bindkey'
 
 ## Key bindings
 
-# CTRL + SHIFT + LEFT/RIGHT cycles between recently visited directories
-omz_bindkey -c shift-ctrl left insert-cycledleft
-omz_bindkey -c shift-ctrl right insert-cycledright
-
 # CTRL + K deletes whole line
 omz_bindkey '^K' kill-buffer
 # ALT + DEL deletes whole forward-word
