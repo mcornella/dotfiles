@@ -31,7 +31,7 @@ plugins=(
 	extract
 	history-substring-search
 	# custom plugins go here
-	ragekill
+	ragequit
 )
 
 source "$ZSH/oh-my-zsh.sh"
