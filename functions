@@ -67,14 +67,20 @@ function zman() {
 	PAGER="less -g -s '+/^       "$1"'" man zshall
 }
 
-function pyserve() {
-	local port=${1:-8888}
-	xdg-open "http://localhost:$port"
-	python -m SimpleHTTPServer $port
-}
-
-function phserve() {
+function serve() {
+	# serve [port] [directory]
 	local port=${1:-8000}
+	local dir=$2
+
 	xdg-open "http://localhost:$port"
-	php -S "0.0.0.0:$port"
+
+	[[ -n "$dir" ]] && pushd -q $dir
+
+	if (( $+commands[python] )); then
+		python -m SimpleHTTPServer $port
+	else
+		php -S "0.0.0.0:$port"
+	fi
+
+	[[ -n "$dir" ]] && popd -q
 }
