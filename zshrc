@@ -30,6 +30,8 @@ plugins=(
 	rsync
 	extract
 	history-substring-search
+	ssh-agent
+	npm
 	# custom plugins go here
 	ragequit
 )
