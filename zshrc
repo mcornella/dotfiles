@@ -80,15 +80,15 @@ alias bindkey='noglob bindkey'
 ## Key bindings
 
 # CTRL + K deletes whole line
-omz_bindkey '^K' kill-buffer
+bindkey '^K' kill-buffer
 # ALT + DEL deletes whole forward-word
-omz_bindkey '^[[3;3~' kill-word
+bindkey '^[[3;3~' kill-word
 # CTRL + DEL deletes whole forward-word
-omz_bindkey '^[[3;5~' kill-word
+bindkey '^[[3;5~' kill-word
 # CTRL + BACKSPACE deletes whole backward-word
-omz_bindkey '^H' backward-kill-word
+bindkey '^H' backward-kill-word
 # ALT + L lowercases word
-omz_bindkey '^[l' down-case-word
+bindkey '^[l' down-case-word
 
 ## More zsh options
 
