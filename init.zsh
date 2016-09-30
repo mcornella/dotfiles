@@ -3,7 +3,7 @@
 # Symlinks files in this directory into $HOME directory
 
 # Base dir as path relative to $HOME directory
-DIR=${0#~/}
+DIR="${${0:a:h}#~/}"
 
 # Files to be symlinked to home directory
 setopt extended_glob
