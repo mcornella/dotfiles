@@ -92,3 +92,5 @@ alias xclip='xclip -selection c'
 # enable advanced calculation in bc by default
 alias bc='bc -l'
 
+# default parameters for youtube-dl
+alias ytdl="youtube-dl -o '%(title)s.%(ext)s'"
