@@ -28,7 +28,7 @@ alias mv='mv -i'
 alias rm='rm -I'
 
 # directories
-alias mkdir &>/dev/null && unalias mkdir # remove nocorrect (oh-my-zsh)
+(( $+aliases[mkdir] )) && unalias mkdir
 alias md='mkdir -p'
 alias rd='rmdir'
 [[ -d /C ]] && alias sistema='cd /C'
@@ -93,4 +93,4 @@ alias xclip='xclip -selection c'
 alias bc='bc -l'
 
 # default parameters for youtube-dl
-alias ytdl="youtube-dl --prefer-ffmpeg -o '%(title)s.%(ext)s'"
+alias ytdl='youtube-dl --prefer-ffmpeg -o "%(title)s.%(ext)s"'
