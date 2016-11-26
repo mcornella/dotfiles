@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 export ZSH="$HOME/.ohmyzsh"
+ZSH_CUSTOM="$HOME/.ohmyzsh-custom"
 
 # Set name of the theme to load.
 [[ -z "$ZSH_THEME" ]] && ZSH_THEME="agnoster"
