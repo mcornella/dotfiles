@@ -43,5 +43,4 @@ for file in $dotfiles; do
 	fi
 done
 
-# TODO: add repositories as needed (i.e. oh-my-zsh)
 # TODO: add colored output (green OK, yellow SKIP, red ERROR)
