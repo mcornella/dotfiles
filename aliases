@@ -94,3 +94,12 @@ alias bc='bc -l'
 
 # default parameters for youtube-dl
 alias ytdl='youtube-dl --prefer-ffmpeg -o "%(title)s.%(ext)s"'
+
+alias -g :L='| less'
+alias -g :H='| head'
+alias -g :T='| tail'
+alias -g :G='| grep'
+alias -g :LL="2>&1 | less"
+alias -g :NE="2>/dev/null"
+alias -g :NO="1>/dev/null"
+alias -g :NUL='&>/dev/null'
