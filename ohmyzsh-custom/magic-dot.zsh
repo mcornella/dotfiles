@@ -1,3 +1,6 @@
+# refined code, based on
+# http://stackoverflow.com/questions/23456873/multi-dot-paths-in-zsh-like-cd/23471915#23471915
+
 magic-dot() {
   emulate -L zsh
 
