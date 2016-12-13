@@ -4,7 +4,7 @@ fuck() {
 	local process="$2"
 
 	# Force kill if 'fuck off'
-	local -a flags=()
+	local -a flags
 	case $action in
 		off) flags+=("-9") ;;
 		you) : ;;
@@ -21,7 +21,7 @@ fuck() {
 		"Q" "b"    "R" "ɹ"    "S" "s"    "T" "ʇ"    "U" "n"    "V" "ʌ"    "W" "ʍ"
 		"X" "x"    "Y" "ʎ"    "Z" "z"    "," "'"    "'" ","    '"' ","    ";" "؛"
 		"." "˙"    "(" ")"    "{" "}"    "[" "]"    "⁅" "⁆"    "<" ">"    "‿" "⁀"
-		"_" "‾"    "?" "¿"    "!" "¡"    "∴" "∵"    "\r" "\n"  " " " "
+		"_" "‾"    "?" "¿"    '!' "¡"    "∴" "∵"    "\r" "\n"  " " " "
 	)
 
 	local reversed_process flipped_process char
@@ -29,9 +29,7 @@ fuck() {
 	reversed_process=(${(s::Oa)process})
 	# replace each character with its flipped version, unless there isn't one
 	for char ($reversed_process); do
-		(( $+{flipped_table[$char]} )) \
-			&& flipped_process+=${flip_table[$char]} \
-			|| flipped_process+=$char
+		flipped_process+=${flip_table[$char]:-$char}
 	done
 
 	# Kill the process and print the pertinent message
