@@ -25,13 +25,11 @@ plugins=(
 	web-search
 	sudo
 	zsh_reload
-	vagrant
-	composer
-	laravel5
-	rsync
 	extract
 	history-substring-search
 	npm
+	ssh-agent
+	github
 	# custom plugins go here
 	ragequit
 )
@@ -73,7 +71,8 @@ else
 fi
 
 # correct behaviour when specifying commit parent (commit^)
-alias git='noglob hub'
+alias git='noglob git'
+
 # prevent adding files as key strokes when using bindkey
 alias bindkey='noglob bindkey'
 
