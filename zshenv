@@ -61,3 +61,5 @@ export LESS=-FXR
 
 export GOPATH=~/opt/gocode
 export NPM_CONFIG_PREFIX=~/.npm
+
+[[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
