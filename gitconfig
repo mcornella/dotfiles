@@ -5,6 +5,7 @@
 [alias]
 	bigbang = checkout --orphan
 	remotes = remote -v
+	set-to-remote = "!f() { git fetch && git reset --hard FETCH_HEAD; }; f"
 	unchange = update-index --assume-unchanged
 
 [color]
