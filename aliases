@@ -49,19 +49,14 @@ alias usersu='sudo -E -s'
 
 ## git
 
-alias gau='git add -u'
 alias gap='git add -p'
-
-alias gst='git status -sb'
-
-alias gcob='git checkout -b'
+alias gds='git diff --staged'
 
 # git fetch
 alias gf='git fetch --prune'
 alias gfa='gf --all'
 
 # git push
-alias gp='git push'
 alias gpa='git push --all'
 alias gpf='git push --force'
 alias gpfa='git push --force --all'
@@ -73,12 +68,6 @@ alias gl='git log --oneline --graph --decorate --color'
 alias gla='git log --oneline --graph --decorate --color --all'
 alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative'
 alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
-
-# git diff
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gdw='git diff --word-diff'
-alias gdcw='git diff --cached --word-diff'
 
 ## utilities
 
