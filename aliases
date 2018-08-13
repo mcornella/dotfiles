@@ -58,8 +58,8 @@ alias gfa='gf --all'
 
 # git push
 alias gpa='git push --all'
-alias gpf='git push --force'
-alias gpfa='git push --force --all'
+alias gpf='git push --force-with-lease'
+alias gpfa='git push --force-with-lease --all'
 # prune remote branches
 alias gpp='git push --prune --all'
 
