@@ -7,6 +7,7 @@
 	remotes = remote -v
 	set-to-remote = "!f() { git fetch && git reset --hard FETCH_HEAD; }; f"
 	unchange = update-index --assume-unchanged
+	shallow = "!f() { printf 'Enter to continue '; read _; git pull --depth 1; git gc --prune=all; }; f"
 
 [color]
 	ui = true
