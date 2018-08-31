@@ -84,3 +84,9 @@ function serve() {
 
 	[[ -n "$dir" ]] && popd -q
 }
+
+# Use:
+# apt install $(apt-depends <package> [<package> ...])
+function apt-depends() {
+	LANG= apt-cache depends "$@" | sed -n 's/.*Depends: //p'
+}
