@@ -14,6 +14,8 @@ COMPLETION_WAITING_DOTS="true"
 # Don't resolve symbolic links in z
 _Z_NO_RESOLVE_SYMLINKS="true"
 
+zstyle :omz:plugins:ssh-agent identities id_rsa id_github id_bitbucket
+
 # Which plugins would you like to load?
 plugins=(
 	git
@@ -28,13 +30,16 @@ plugins=(
 	extract
 	history-substring-search
 	npm
+	yarn
 	ssh-agent
 	github
+	docker-compose
 	# custom plugins go here
 	ragequit
 )
 
-source "$ZSH/oh-my-zsh.sh"
+# Don't load Oh My Zsh on TTYs
+[[ $TTY = /dev/tty* ]] || source "$ZSH/oh-my-zsh.sh"
 
 
 ## User configuration
@@ -108,10 +113,7 @@ setopt hashexecutablesonly
 autoload zmv
 alias mmv='noglob zmv -W'
 
-## Sourcing extern files
-
-# Package suggestions on command not found
-[[ -f /etc/zsh_command_not_found ]] && . /etc/zsh_command_not_found
+## Sourcing external files
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
