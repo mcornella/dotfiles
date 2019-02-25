@@ -1,7 +1,4 @@
-#include ~/.nano/syntax/ALL.nanorc
-
-#set autoindent
-set const
+set constantshow
 set smarthome
 set smooth
 unset historylog
