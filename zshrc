@@ -14,8 +14,6 @@ COMPLETION_WAITING_DOTS="true"
 # Don't resolve symbolic links in z
 _Z_NO_RESOLVE_SYMLINKS="true"
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_github id_bitbucket
-
 # Which plugins would you like to load?
 plugins=(
 	git
@@ -31,7 +29,6 @@ plugins=(
 	history-substring-search
 	npm
 	yarn
-	ssh-agent
 	github
 	docker-compose
 	# custom plugins go here
