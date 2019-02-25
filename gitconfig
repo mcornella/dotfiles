@@ -16,8 +16,11 @@
 	default = simple
 
 [core]
-	pager = less -FRX -x1,5
+	pager = less -FRX -S -x1,5
 	whitespace = blank-at-eol,space-before-tab
 
 [help]
 	autocorrect = 1
+
+[blame]
+	coloring = repeatedLines
