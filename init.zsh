@@ -7,7 +7,7 @@ DIR="${${0:a:h}#~/}"
 
 # Files to be symlinked to home directory
 setopt extended_glob
-dotfiles=(^(LICENSE.txt|README.md)(N^*))
+dotfiles=($DIR/^(LICENSE.txt|README.md)(N^*:t))
 
 local error
 local symlink
