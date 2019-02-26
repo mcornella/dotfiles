@@ -36,7 +36,7 @@ plugins=(
 )
 
 # Don't load Oh My Zsh on TTYs
-[[ $TTY = /dev/tty* ]] || source "$ZSH/oh-my-zsh.sh"
+[[ $TTY != /dev/tty* || "$(uname -r)" =~ "Microsoft" ]] && source "$ZSH/oh-my-zsh.sh"
 
 
 ## User configuration
@@ -46,6 +46,10 @@ prompt_context(){}
 
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
+
+if [[ $OSTYPE = linux* && "$(uname -r)" =~ "Microsoft" ]]; then
+	ZSH_THEME_TERM_TAB_TITLE_IDLE="%n@%m: %~"
+fi
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
