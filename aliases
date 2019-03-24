@@ -31,8 +31,8 @@ alias rm='rm -I'
 (( $+aliases[mkdir] )) && unalias mkdir
 alias md='mkdir -p'
 alias rd='rmdir'
-[[ -d /C ]] && alias sistema='cd /C'
-[[ -d /D ]] && alias dades='cd /D'
+alias po='popd'
+alias pu='pushd'
 
 # hdd
 alias df='df -h'
