@@ -114,6 +114,10 @@ setopt hashexecutablesonly
 autoload zmv
 alias mmv='noglob zmv -W'
 
+# Docker completion option stacking
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
 ## Sourcing external files
 
 # make less more friendly for non-text input files, see lesspipe(1)
