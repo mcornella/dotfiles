@@ -5,12 +5,22 @@
 # Base dir as path relative to $HOME directory
 DIR="${${0:a:h}#~/}"
 
+function msg() {
+	case "$1":
+		ERROR) print -Pn '%F{red}' ;;
+		SKIP) print -Pn '%F{yellow}' ;;
+		OK) print -Pn '%F{green}' ;;
+	esac
+
+	[[ -n $2 ]] && print -n "[$1: $2]" || print -n "[$1]"
+	print -P %f
+}
+
 # Files to be symlinked to home directory
 setopt extended_glob
 dotfiles=($DIR/^(LICENSE.txt|README.md)(N^*:t))
 
-local error
-local symlink
+local error symlink
 
 for file in $dotfiles; do
 	echo -n "symlinking $file... "
@@ -19,28 +29,26 @@ for file in $dotfiles; do
 
 	if error="$(ln -ns $DIR/$file $destfile 2>&1)"
 	then
-		echo "[OK]"
+		msg OK
 	elif [[ -h $HOME/$file ]]
 	then
 		symlink="$(readlink $destfile)"
 
 		if [[ "$symlink" == "$DIR/$file" ]]; then
-			echo "[SKIP: file already symlinked]"
+			msg SKIP "file already symlinked"
 		else
-			echo "[ERROR: destination already exists ( -> $symlink)]"
+			msg ERROR "destination already exists ( -> $symlink)"
 		fi
 	elif [[ -f $destfile ]]
 	then
-		echo "[ERROR: destination already exists (file)]"
+		msg ERROR "destination already exists (file)"
 	elif [[ -d $destfile ]]
 	then
-		echo "[ERROR: destination already exists (dir)]"
+		msg ERROR "destination already exists (dir)"
 	elif [[ -e $destfile ]]
 	then
-		echo "[ERROR: destination already exists (other)]"
+		msg ERROR "destination already exists (other)"
 	else
-		echo "[ERROR: $error]"
+		msg ERROR "$error"
 	fi
 done
-
-# TODO: add colored output (green OK, yellow SKIP, red ERROR)
