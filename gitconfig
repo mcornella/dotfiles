@@ -24,3 +24,11 @@
 
 [blame]
 	coloring = repeatedLines
+
+[pager]
+	diff = diff-highlight | less -FRX -x1,5
+	show = diff-highlight | less -FRX -x1,5
+	log = diff-highlight | less -FRX -x1,5
+
+[interactive]
+	difffilter = diff-highlight
