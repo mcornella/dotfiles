@@ -71,3 +71,5 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 export LESS=-FXR
 
 [[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
+
+skip_global_compinit=1
