@@ -123,9 +123,6 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Open new tab in current directory
-[[ -f /etc/profile.d/vte.sh ]] && . /etc/profile.d/vte.sh
-
 # custom aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
 
