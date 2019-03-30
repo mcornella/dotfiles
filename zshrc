@@ -31,6 +31,7 @@ plugins=(
 	yarn
 	github
 	docker-compose
+	sublime
 	# custom plugins go here
 	ragequit
 )
