@@ -1,3 +1,6 @@
 [submodule "oh-my-zsh"]
 	path = ohmyzsh
 	url = git@github.com:mcornella/oh-my-zsh.git
+[submodule "ohmyzsh-custom/plugins/k"]
+	path = ohmyzsh-custom/plugins/k
+	url = git@github.com:supercrabtree/k

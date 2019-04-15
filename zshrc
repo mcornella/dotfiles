@@ -34,6 +34,7 @@ plugins=(
 	sublime
 	# custom plugins go here
 	ragequit
+	k
 )
 
 # Don't load Oh My Zsh on TTYs
