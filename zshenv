@@ -70,6 +70,11 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 # -R: keep color control chars
 export LESS=-FXR
 
+# Docker Desktop for Windows
+[[ $(uname -r) = *Microsoft ]] && {
+	export DOCKER_HOST=tcp://localhost:2375
+}
+
 [[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
 
 skip_global_compinit=1
