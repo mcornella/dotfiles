@@ -32,6 +32,7 @@ plugins=(
 	github
 	docker-compose
 	sublime
+	git-prompt
 	# custom plugins go here
 	ragequit
 	k
