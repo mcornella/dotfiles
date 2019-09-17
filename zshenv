@@ -20,6 +20,10 @@ if [ -d "$HOME"/bin ]; then
 	done > /dev/null 2>&1
 fi
 
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$PATH:$HOME/.local/bin"
+fi
+
 # opt folder
 if [ -d "$HOME"/opt ]; then
 	for DIR in "$HOME"/opt/*/bin; do

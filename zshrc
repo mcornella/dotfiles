@@ -38,8 +38,7 @@ plugins=(
 )
 
 # Don't load Oh My Zsh on TTYs
-[[ $TTY != /dev/tty* || "$(uname -r)" =~ "Microsoft" ]] && source "$ZSH/oh-my-zsh.sh"
-
+[[ $TTY != /dev/tty* ]] || (( $+WSLENV )) && source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
 
@@ -68,9 +67,7 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-prompt   ''
 zstyle ':completion:*' select-prompt ''
 
-# Example aliases
-if [[ $OSTYPE == cygwin ]]
-then
+if [[ $OSTYPE == cygwin ]]; then
 	alias ohmyzsh='subl $(cygpath -w "$ZSH")'
 	alias zshrc='subl $(cygpath -w ~/.zshrc)'
 else
