@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh configuration.
-export ZSH="$HOME/.ohmyzsh"
-ZSH_CUSTOM="$HOME/.ohmyzsh-custom"
+export ZSH="$HOME/.zsh/ohmyzsh"
+ZSH_CUSTOM="$HOME/.zsh/ohmyzsh-custom"
 
 # Set name of the theme to load.
 [[ -z "$ZSH_THEME" ]] && ZSH_THEME="agnoster"
@@ -55,7 +55,7 @@ fi
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	test -r ~/.zsh/dircolors && eval "$(dircolors -b ~/.zsh/dircolors)" || eval "$(dircolors -b)"
 
 	# ls completion dir_colors
 	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -124,10 +124,10 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # custom aliases
-[[ -f ~/.aliases ]] && . ~/.aliases
+[[ -f ~/.zsh/aliases ]] && . ~/.zsh/aliases
 
 # custom functions
-[[ -f ~/.functions ]] && . ~/.functions
+[[ -f ~/.zsh/functions ]] && . ~/.zsh/functions
 
 # add current directory to the end of PATH
 path+=.
