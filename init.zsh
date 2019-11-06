@@ -31,6 +31,7 @@ dotfiles=(
 	npmrc            ".npmrc"
 	ohmyzsh          ".zsh/ohmyzsh"
 	ohmyzsh-custom   ".zsh/ohmyzsh-custom"
+	tigrc            ".config/tig/config"
 	tmux.conf        ".tmux.conf"
 	toprc            ".config/procps/toprc"
 	vimrc            ".vimrc"
