@@ -2,9 +2,6 @@
 export ZSH="$HOME/.zsh/ohmyzsh"
 ZSH_CUSTOM="$HOME/.zsh/ohmyzsh-custom"
 
-# Set name of the theme to load.
-[[ -z "$ZSH_THEME" ]] && ZSH_THEME="agnoster"
-
 # Uncomment this to disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 
@@ -28,7 +25,6 @@ plugins=(
 	extract
 	history-substring-search
 	npm
-	yarn
 	github
 	docker-compose
 	sublime
@@ -39,9 +35,11 @@ plugins=(
 )
 
 # Don't load Oh My Zsh on TTYs
-[[ $TTY != /dev/tty* ]] || (( $+WSLENV )) && source "$ZSH/oh-my-zsh.sh"
+[[ $TTY != /dev/tty* ]] && source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
+
+[[ -n "$ZSH_THEME" ]] || source "$ZSH_CUSTOM/plugins/git-prompt/examples/default.zsh"
 
 # Disable showing prompt context (user@host) in agnoster theme
 prompt_context(){}
@@ -49,7 +47,7 @@ prompt_context(){}
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
 
-if [[ $OSTYPE = linux* && "$(uname -r)" =~ "Microsoft" ]]; then
+if [[ "$(uname -r)" = *icrosoft* ]]; then
 	ZSH_THEME_TERM_TAB_TITLE_IDLE="%n@%m: %~"
 fi
 
