@@ -73,11 +73,7 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 # -X: don't clear the screen after quitting
 # -R: keep color control chars
 export LESS=-FXR
-
-# Docker Desktop for Windows
-[[ $(uname -r) = *Microsoft ]] && {
-	export DOCKER_HOST=tcp://localhost:2375
-}
+export LESSHISTFILE=-
 
 [[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
 
