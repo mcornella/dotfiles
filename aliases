@@ -34,9 +34,11 @@ alias pu='pushd'
 alias df='df -h'
 alias du='du -h'
 
+# summary of disk used by child items sorted and unsorted
 alias dus='du -s *'
 alias duss='du -s * | sort -h'
-alias dusss="LANG=C du -s /{{boot,lib*,opt,sbin,tmp,usr,var}/*,{bin,etc,root}} 2>/dev/null | grep -vE '^(0|[0-9.]+K)' | LANG=C sort -h"
+# disk space used by system folders
+alias dusss="LANG=C du -s /{{boot,lib*,opt,sbin,tmp,usr,var}/*(N),{bin,etc,root}} 2>/dev/null | grep -vE '^(0|[0-9.]+K)' | LANG=C sort -h"
 
 # expand aliases after sudo
 alias sudo='sudo '
@@ -64,6 +66,7 @@ alias gpp='git push --prune --all'
 # git pretty log
 alias gl='git log --oneline --graph --decorate --color'
 alias gla='git log --oneline --graph --decorate --color --all'
+# Adds author and relative commit date
 alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative'
 alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 
