@@ -68,3 +68,14 @@ for file (${(ko)dotfiles}); do
 		msg ERROR "$error"
 	fi
 done
+
+# Add sourcing of .zshenv to .profile
+grep -q "source \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile || {
+	cat >> ~/.profile <<-EOF
+
+		# load posix-compatible .zshenv
+		if [ -r "\$HOME/${dotfiles[zshenv]}" ]; then
+		    source "\$HOME/${dotfiles[zshenv]}"
+		fi
+	EOF
+}
