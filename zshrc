@@ -37,9 +37,8 @@ plugins=(
 # Don't load Oh My Zsh on TTYs
 [[ $TTY != /dev/tty* ]] && source "$ZSH/oh-my-zsh.sh"
 
-## User configuration
 
-[[ -n "$ZSH_THEME" ]] || source "$ZSH_CUSTOM/plugins/git-prompt/examples/default.zsh"
+## User configuration
 
 # Disable showing prompt context (user@host) in agnoster theme
 prompt_context(){}
