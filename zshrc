@@ -102,11 +102,6 @@ setopt correct
 # extended globbing (adds ^ and other symbols as wildcards)
 setopt extended_glob
 
-# automatic rehashing of commands...
-zstyle ':completion:*' rehash true
-# ...and checking if they're actually executable before adding them
-setopt hashexecutablesonly
-
 # zmv
 autoload zmv
 alias mmv='noglob zmv -W'
