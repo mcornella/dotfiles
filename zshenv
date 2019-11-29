@@ -43,7 +43,7 @@ test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # ruby gems
 if which ruby &>/dev/null && which gem &>/dev/null; then
-	DIR="$(ruby -rubygems -e 'puts Gem.user_dir' 2>/dev/null)"
+	DIR="$(gem environment gempath 2>/dev/null | cut -d: -f1)"
 	test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
 fi
 
