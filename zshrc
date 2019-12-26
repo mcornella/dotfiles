@@ -11,6 +11,10 @@ COMPLETION_WAITING_DOTS="true"
 # Don't resolve symbolic links in z
 _Z_NO_RESOLVE_SYMLINKS="true"
 
+# Colorize settings
+ZSH_COLORIZE_TOOL=chroma
+ZSH_COLORIZE_STYLE=github
+
 # Which plugins would you like to load?
 plugins=(
 	git
@@ -28,8 +32,10 @@ plugins=(
 	github
 	docker-compose
 	sublime
-	git-prompt
+	colorize
+	colored-man-pages
 	# custom plugins go here
+	git-prompt
 	ragequit
 	k
 )
