@@ -49,6 +49,12 @@ plugins=(
 # Disable showing prompt context (user@host) in agnoster theme
 prompt_context(){}
 
+expand-or-complete-with-dots () {
+	print -Pn "%{%F{red}…%f%}"
+	zle expand-or-complete
+	zle redisplay
+}
+
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
 
