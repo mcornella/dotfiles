@@ -129,3 +129,6 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # add current directory to the end of PATH
 path+=.
+
+# Change to home directory if on Windows profile
+[[ $PWD != /c/Users/marcc ]] || { cd; dirstack=() }
