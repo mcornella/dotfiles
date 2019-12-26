@@ -42,19 +42,19 @@ export NPM_CONFIG_PREFIX=~/.npm
 test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # ruby gems
-if which ruby &>/dev/null && which gem &>/dev/null; then
+if command -v ruby >/dev/null 2>&1 && command -v gem >/dev/null 2>&1; then
 	DIR="$(gem environment gempath 2>/dev/null | cut -d: -f1)"
 	test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
 fi
 
 # rust cargo
-test -f "$HOME/.cargo/env" && source "$HOME/.cargo/env"
+test -f "$HOME/.cargo/env" && . "$HOME/.cargo/env"
 
 # go binaries and workspace
 test -d /usr/local/go && PATH="$PATH:/usr/local/go/bin"
-test -d "$HOME/code/gosrc" && {
-	export GOPATH=~/code/gosrc
-	PATH="$PATH:$HOME/code/gosrc/bin"
+test -d "$HOME/code/go" && {
+	export GOPATH="$HOME/code/go"
+	PATH="$PATH:$HOME/code/go/bin"
 }
 
 unset DIR
@@ -75,6 +75,6 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 export LESS=-FR
 export LESSHISTFILE=-
 
-[[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
+[ "$USER" = root ] && ZSH_DISABLE_COMPFIX=true
 
 skip_global_compinit=1
