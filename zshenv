@@ -70,9 +70,9 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 
 # set less options by default:
 # -F: quit if output is less than one screen
-# -X: don't clear the screen after quitting
 # -R: keep color control chars
-export LESS=-FXR
+# -X: not needed after less v530
+export LESS=-FR
 export LESSHISTFILE=-
 
 [[ $UID = 0 ]] && ZSH_DISABLE_COMPFIX=true
