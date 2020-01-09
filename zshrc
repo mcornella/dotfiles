@@ -13,7 +13,8 @@ _Z_NO_RESOLVE_SYMLINKS="true"
 
 # Colorize settings
 ZSH_COLORIZE_TOOL=chroma
-ZSH_COLORIZE_STYLE=github
+# Nice ones: arduino friendly paraiso-dark solarized-dark solarized-dark256 vim
+ZSH_COLORIZE_STYLE=vim
 
 # Which plugins would you like to load?
 plugins=(
