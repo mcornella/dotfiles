@@ -100,3 +100,5 @@ alias ipb='ip --color --brief'
 
 # Visual Studio Code
 alias vsc='code-insiders'
+
+alias '?'='echo $?'
