@@ -79,11 +79,11 @@ zstyle ':completion:*' list-prompt   ''
 zstyle ':completion:*' select-prompt ''
 
 if [[ $OSTYPE == cygwin ]]; then
-	alias ohmyzsh='subl $(cygpath -w "$ZSH")'
-	alias zshrc='subl $(cygpath -w ~/.zshrc)'
+	alias ohmyzsh='vsc $(cygpath -w "$ZSH")'
+	alias zshrc='vsc $(cygpath -w ~/.zshrc)'
 else
-	alias ohmyzsh='subl "$ZSH"'
-	alias zshrc='subl ~/.zshrc'
+	alias ohmyzsh='vsc "$ZSH"'
+	alias zshrc='vsc ~/.zshrc'
 fi
 
 # correct behaviour when specifying commit parent (commit^)
