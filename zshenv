@@ -34,9 +34,10 @@ fi
 # android
 test -d /opt/android && PATH="$PATH:/opt/android/platform-tools:/opt/android/tools"
 
-# npm binaries and settings
+# node, npm binaries and settings
 test -d "$HOME/.npm/bin" && PATH="$HOME/.npm/bin:$PATH"
 export NPM_CONFIG_PREFIX=~/.npm
+export NODE_REPL_HISTORY=
 
 # composer binaries
 test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
