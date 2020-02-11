@@ -70,7 +70,7 @@ for file (${(ko)dotfiles}); do
 done
 
 # Add sourcing of .zshenv to .profile
-grep -q ". \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile || {
+grep -q "\. \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile || {
 	cat >> ~/.profile <<-EOF
 
 		# load posix-compatible .zshenv
