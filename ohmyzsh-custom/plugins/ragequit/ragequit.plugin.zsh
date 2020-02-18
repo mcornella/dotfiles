@@ -56,13 +56,7 @@ _fuck() {
 	_arguments -C ':who:(you off)' '*:process:->process'
 
 	case $state in
-	process)
-		COMPREPLY=( $(\ps axc --no-headers | \grep -Ev ' ps$| grep$' \
-			| \awk '{ print $5 }' | \sort -u | \grep -v "^[\-\(]" \
-			| \grep -i "^$cur")
-		)
-		_values -s ' ' 'apps' $COMPREPLY
-		;;
+	process) _process_names ;;
 	esac
 }
 
