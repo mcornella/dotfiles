@@ -47,8 +47,6 @@ plugins=(
 
 ## User configuration
 
-[[ -z "$ZSH_THEME" ]] && PROMPT='%B%40<..<%~ %b$(gitprompt)%(?.%F{blue}❯%f%F{cyan}❯%f%(!.%F{red}.%F{green})❯%f.%F{red}❯❯❯%f) '
-
 # Disable showing prompt context (user@host) in agnoster theme
 prompt_context(){}
 
