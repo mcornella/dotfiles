@@ -1,2 +1,1 @@
 prefix = ${HOME}/.npm
-prefer-offline = true
