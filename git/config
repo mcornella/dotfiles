@@ -12,6 +12,9 @@
 [color]
 	ui = true
 
+[init]
+	templateDir = ~/.config/git/template/
+
 [push]
 	default = simple
 

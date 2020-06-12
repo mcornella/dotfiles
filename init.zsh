@@ -25,7 +25,7 @@ dotfiles=(
 	aliases          ".zsh/aliases"
 	dircolors        ".zsh/dircolors"
 	functions        ".zsh/functions"
-	gitconfig        ".config/git/config"
+	git              ".config/git"
 	nanorc           ".config/nano/nanorc"
 	npmrc            ".npmrc"
 	ohmyzsh          ".zsh/ohmyzsh"
