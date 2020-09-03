@@ -32,6 +32,7 @@
 	diff = diff-highlight | less -FR -x1,5
 	show = diff-highlight | less -FR -x1,5
 	log = diff-highlight | less -FR -x1,5
+	branch = false
 
 [interactive]
 	difffilter = diff-highlight
