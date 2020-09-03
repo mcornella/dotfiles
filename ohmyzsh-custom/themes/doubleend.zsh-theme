@@ -2,21 +2,21 @@
 # http://net.tutsplus.com/tutorials/tools-and-tips/how-to-customize-your-command-prompt/
 
 # displays the user prompt
-function omz_doubleend_prompt() {
+function prompt_doubleend() {
   emulate -L zsh
   zmodload zsh/mathfunc
 
   function _de_battery() {
-    BAT0=/sys/class/power_supply/BAT0
+    local BAT=/sys/class/power_supply/BAT0
+    [[ ! -d $BAT ]] && BAT=/sys/class/power_supply/BAT1
 
     # is battery present?
-    [[ -r $BAT0/present ]] || return
-    command grep -q 1 $BAT0/present || return
+    command grep -q 1 $BAT/present 2>/dev/null || return
 
     # battery status
-    b_status=""
-    command grep -q Discharging $BAT0/status   || b_status="charging"
-    command grep -E -q '^0$' $BAT0/current_now || b_status="discharging"
+    local b_status
+    command grep -q Discharging $BAT/status   2>/dev/null || b_status="charging"
+    command grep -E -q '^0$' $BAT/current_now 2>/dev/null || b_status="discharging"
 
     case "$b_status" in
       discharging)
@@ -34,10 +34,9 @@ function omz_doubleend_prompt() {
     esac
 
     # current charge?
-    [[ -r $BAT0/charge_full ]] || return
-    f_max="$(command cat $BAT0/charge_full)"
-    [[ -r $BAT0/charge_now ]] || return
-    f_cur="$(command cat $BAT0/charge_now)"
+    [[ -r $BAT/charge_full && -r $BAT/charge_now ]] || return
+    local f_max="$(< $BAT/charge_full)"
+    local f_cur="$(< $BAT/charge_now)"
 
     i_charge=0
     if (( f_max > 0 )); then i_charge=$(( int(ceil(float(f_cur) / f_max * 10.0) ) )); fi
@@ -47,64 +46,65 @@ function omz_doubleend_prompt() {
     void=$([[ $i_discharge -ne 0 ]] && printf "$glyph_void%.0s" {1..$i_discharge})
 
     if [[ $i_charge -gt 6 ]]; then
-      color='%{%F{green}%}'
+      color='%F{green}'
     elif [[ $i_charge -gt 2 ]]; then
-      color='%{%F{yellow}%}'
+      color='%F{yellow}'
     else
-      color='%{%F{red}%}'
+      color='%F{red}'
     fi
 
-    echo -n "$(printf '%s%s%s%s' $color $full $void "%{%f%}")"
-  }
-
-  function _de_spacing() {
-    local host="$(print -Pn $(_de_host))"
-    host=${#host} && [[ $host -gt 0 ]] && host=$(( $host - 10 )) # substract color escaping
-
-    local dir="$(print -Pn $(_de_dir))"
-    dir=${#dir} && [[ $dir -gt 0 ]] && dir=$(( $dir - 10 )) # substract color escaping
-
-    local git="$(print -Pn $(_de_git))"
-    git=${#git} && [[ $git -gt 0 ]] && git=$(( $git - 10 )) # substract color escaping
-
-    local bat="$(print -Pn $(_de_battery))"
-    bat=${#bat} && [[ $bat -gt 0 ]] && bat=$(( $bat - 10 )) # substract color escaping
-
-    # terminal width available
-    local termwidth=$(( $COLUMNS - $host - $dir - $git - $bat - 2 )) # 2 for prompt spaces
-    [[ $termwidth -lt 0 ]] && termwidth=$(( $termwidth + $COLUMNS * int(ceil(- float($termwidth) / $COLUMNS )) ))
-
-    printf ' %.0s' {1..$termwidth}
+    echo "$(printf '%s%s%s%s' $color $full $void "%f")"
   }
 
   function _de_git() {
     local ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
-    local ZSH_THEME_GIT_PROMPT_SUFFIX="]%{%f%}"
-    local ZSH_THEME_GIT_PROMPT_DIRTY="%{%F{red}%}+"
-    local ZSH_THEME_GIT_PROMPT_CLEAN="%{%F{green}%}"
+    local ZSH_THEME_GIT_PROMPT_SUFFIX="]%f"
+    local ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}+"
+    local ZSH_THEME_GIT_PROMPT_CLEAN="%F{green}"
 
     if [[ "$(command git config --get oh-my-zsh.hide-status)" != "1" ]]; then
       ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
       ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-      echo -n "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+      echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
     fi
   }
 
   function _de_host() {
-    echo -n "%{%F{cyan}%}%m:%{%f%}"
+    echo "%F{cyan}%m:%f"
   }
 
   function _de_dir() {
-    echo -n "%{%F{yellow}%}%~%{%f%}"
+    echo "%F{yellow}%~%f"
   }
 
   function _de_user() {
-    echo -n "%(!.%{%F{red}%}.%{%f%})→%{%f%} "
+    echo "%(!.%F{red}.)→%f "
   }
 
+  # run prompt functions
+  local host dir git battery user
+  host="$(print -P "$(_de_host)")"
+  dir="$(print -P "$(_de_dir)")"
+  git="$(print -P "$(_de_git)")"
+  battery="$(print -P "$(_de_battery)")"
+  user="$(print -P "$(_de_user)")"
+
+  # compute spacing
+  local _i_host=${#host} && [[ $_i_host -gt 0 ]] && _i_host=$(( $_i_host - 10 )) # substract color escaping
+  local _i_dir=${#dir} && [[ $_i_dir -gt 0 ]] && _i_dir=$(( $_i_dir - 10 )) # substract color escaping
+  local _i_git=${#git} && [[ $_i_git -gt 0 ]] && _i_git=$(( $_i_git - 10 )) # substract color escaping
+  local _i_battery=${#battery} && [[ $_i_battery -gt 0 ]] && _i_battery=$(( $_i_battery - 10 )) # substract color escaping
+
+  # terminal width available
+  local _i_spacing=$(( COLUMNS - _i_host - _i_dir - _i_git - _i_battery - 2 )) # 2 for prompt spaces
+  [[ $_i_spacing -lt 0 ]] && _i_spacing=$(( _i_spacing + COLUMNS * int(ceil(- float(_i_spacing) / COLUMNS )) ))
+
+  local spacing
+  spacing=$(printf ' %.0s' {1..$_i_spacing})
+
   # display the prompt
-  echo -n "$(_de_host) $(_de_dir)$(_de_spacing)$(_de_git) $(_de_battery)$(_de_user)"
+  echo -n "${host} ${dir}${spacing}${git} ${battery}${user}"
 }
 
 PROMPT='
-$(omz_doubleend_prompt)'
+$(prompt_doubleend)'
