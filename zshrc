@@ -35,6 +35,8 @@ plugins=(
 	sublime
 	colorize
 	colored-man-pages
+	copybuffer
+	dotenv
 	# custom plugins go here
 	git-prompt
 	ragequit
@@ -49,12 +51,6 @@ plugins=(
 
 # Disable showing prompt context (user@host) in agnoster theme
 prompt_context(){}
-
-expand-or-complete-with-dots () {
-	print -Pn "%{%F{red}…%f%}"
-	zle expand-or-complete
-	zle redisplay
-}
 
 # Idle title
 ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
@@ -100,8 +96,6 @@ bindkey '^U' undo
 bindkey '^K' kill-buffer
 # ALT + DEL deletes whole forward-word
 bindkey '^[[3;3~' kill-word
-# CTRL + DEL deletes whole forward-word
-bindkey '^[[3;5~' kill-word
 # CTRL + BACKSPACE deletes whole backward-word
 bindkey '^H' backward-kill-word
 # ALT + L lowercases word
@@ -136,4 +130,3 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # add current directory to the end of PATH
 path+=.
-
