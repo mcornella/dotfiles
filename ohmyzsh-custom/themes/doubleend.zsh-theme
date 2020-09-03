@@ -13,37 +13,28 @@ function prompt_doubleend() {
     # is battery present?
     command grep -q 1 $BAT/present 2>/dev/null || return
 
+    local ACPI
+    ACPI=$(acpi 2>/dev/null | command grep -E '^Battery.*(Full|(Disc|C)harging)' | head -1)
+
     # battery status
     local b_status
-    command grep -q Discharging $BAT/status   2>/dev/null || b_status="charging"
-    command grep -E -q '^0$' $BAT/current_now 2>/dev/null || b_status="discharging"
+    b_status=$(sed -nE 's/^Battery.*(Full|(Disc|C)harging).*$/\1/p' <<< "$ACPI")
 
     case "$b_status" in
-      discharging)
-        glyph_full='◂'
-        glyph_void='◃'
-        ;;
-      charging)
-        glyph_full='▸'
-        glyph_void='▹'
-        ;;
-      *)
-        glyph_full='◈'
-        glyph_void='◇'
-        ;;
+      Discharging) glyph_full='◂'; glyph_void='◃' ;;
+      Charging) glyph_full='▸'; glyph_void='▹' ;;
+      *) glyph_full='◈'; glyph_void='◇' ;;
     esac
 
     # current charge?
-    [[ -r $BAT/charge_full && -r $BAT/charge_now ]] || return
-    local f_max="$(< $BAT/charge_full)"
-    local f_cur="$(< $BAT/charge_now)"
+    local f_max=100.0
+    local f_cur=$(cut -f2 -d ',' <<< "$ACPI" | tr -cd '[:digit:]')
 
-    i_charge=0
-    if (( f_max > 0 )); then i_charge=$(( int(ceil(float(f_cur) / f_max * 10.0) ) )); fi
+    i_charge=$(( int(ceil(float(f_cur) / f_max * 10.0) ) ))
     i_discharge=$(( 10 - i_charge ))
 
-    full=$([[ $i_charge    -ne 0 ]] && printf "$glyph_full%.0s" {1..$i_charge})
-    void=$([[ $i_discharge -ne 0 ]] && printf "$glyph_void%.0s" {1..$i_discharge})
+    ((    i_charge > 0 )) && full=$(printf "$glyph_full%.0s" {1..$i_charge})
+    (( i_discharge > 0 )) && void=$(printf "$glyph_void%.0s" {1..$i_discharge})
 
     if [[ $i_charge -gt 6 ]]; then
       color='%F{green}'
