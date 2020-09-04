@@ -58,7 +58,7 @@ for file (${(ko)dotfiles}); do
 	fi
 
 	mkdir -p "${destfile:h}"
-	if error="$(ln -nsf "$srcfile" "$destfile" 2>&1)"; then
+	if error="$(ln -nTsf "$srcfile" "$destfile" 2>&1)"; then
 		msg OK
 	elif [[ -f "$destfile" ]]; then
 		msg ERROR "destination already exists (file)"
