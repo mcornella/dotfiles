@@ -95,8 +95,8 @@ alias -g :NO="1>/dev/null"
 alias -g :NUL='&>/dev/null'
 
 # ip command
-alias ip='ip --color'
-alias ipb='ip --color --brief'
+alias ip='ip -color'
+alias ipb='ip -color -brief'
 
 # Visual Studio Code
 alias vsc='code-insiders'
