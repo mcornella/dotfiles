@@ -51,6 +51,7 @@ alias sudoit='sudo env PATH="$PATH" '
 
 alias gap='git add -p'
 alias gds='git diff --staged'
+alias gdw='git diff -w'
 
 # git fetch
 alias gf='git fetch --prune'
