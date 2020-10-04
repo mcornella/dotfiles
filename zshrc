@@ -17,6 +17,7 @@ ZSH_COLORIZE_TOOL=chroma
 ZSH_COLORIZE_STYLE=vim
 
 # Which plugins would you like to load?
+if [[ -n "$plugins" ]]; then read -A plugins <<< "$plugins"; else
 plugins=(
 	git
 	git-extras
@@ -42,6 +43,7 @@ plugins=(
 	ragequit
 	k
 )
+fi
 
 # Don't load Oh My Zsh on TTYs
 [[ $TTY != /dev/tty* || -n "$OMZ_LOAD" ]] && source "$ZSH/oh-my-zsh.sh"
