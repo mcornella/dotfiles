@@ -54,12 +54,7 @@ fi
 # Disable showing prompt context (user@host) in agnoster theme
 prompt_context(){}
 
-# Idle title
-ZSH_THEME_TERM_TITLE_IDLE="%m: %~"
-
-if [[ "$(uname -r)" = *icrosoft* ]]; then
-	ZSH_THEME_TERM_TAB_TITLE_IDLE="%n@%m: %~"
-fi
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
@@ -76,13 +71,8 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-prompt   ''
 zstyle ':completion:*' select-prompt ''
 
-if [[ $OSTYPE == cygwin ]]; then
-	alias ohmyzsh='vsc $(cygpath -w "$ZSH")'
-	alias zshrc='vsc $(cygpath -w ~/.zshrc)'
-else
-	alias ohmyzsh='vsc "$ZSH"'
-	alias zshrc='vsc ~/.zshrc'
-fi
+alias ohmyzsh='vsc "$ZSH"'
+alias zshrc='vsc ~/.zshrc'
 
 # correct behaviour when specifying commit parent (commit^)
 alias git='noglob git'
@@ -113,7 +103,7 @@ setopt extended_glob
 
 # zmv
 autoload zmv
-alias mmv='noglob zmv -W'
+alias mmv='noglob zmv -W -v'
 
 # Docker completion option stacking
 zstyle ':completion:*:*:docker:*' option-stacking yes

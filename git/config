@@ -36,3 +36,5 @@
 
 [interactive]
 	difffilter = diff-highlight
+[reset]
+	quiet = true
