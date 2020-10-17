@@ -101,6 +101,9 @@ setopt correct
 # extended globbing (adds ^ and other symbols as wildcards)
 setopt extended_glob
 
+# i want all typed commands to be available everywhere
+setopt share_history
+
 # zmv
 autoload zmv
 alias mmv='noglob zmv -W -v'
