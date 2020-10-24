@@ -22,6 +22,8 @@ jobs:
           git fetch --shallow-since=$(git show -s --format=%ct origin/main)
           # fetch commits until master (if master is the old branch)
           git fetch --shallow-since=$(git show -s --format=%ct origin/master)
+          # fetch one more commit in case there's only one commit of difference
+          git fetch --deepen=1
       - name: Sync main and master branch
         run: |
           # debug before:
@@ -29,7 +31,7 @@ jobs:
 
           # if main and master are synced do nothing
           if [[ $(git rev-parse main) = $(git rev-parse master) ]]; then
-            return 0
+            exit 0
           fi
 
           # check whether main or master is behind the other
@@ -41,8 +43,8 @@ jobs:
             git push --force-with-lease origin main:master
           else
             echo "main and master diverged :("
-            return 1
+            exit 1
           fi
 
           # debug after:
-          git log --oneline --decorate --graph --all | head -10; echo
+          echo; git log --oneline --decorate --graph --all | head -10
