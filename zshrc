@@ -3,7 +3,7 @@ export ZSH="$HOME/.zsh/ohmyzsh"
 ZSH_CUSTOM="$HOME/.zsh/ohmyzsh-custom"
 
 # Uncomment this to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+#DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -56,6 +56,9 @@ prompt_context(){}
 
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 
+# add shell level information to prompt for when dealing with nested zsh sessions
+RPROMPT+="${RPROMPT+ }{%F{yellow}$SHLVL%f}"
+
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.zsh/dircolors && eval "$(dircolors -b ~/.zsh/dircolors)" || eval "$(dircolors -b)"
@@ -92,6 +95,12 @@ bindkey '^[[3;3~' kill-word
 bindkey '^H' backward-kill-word
 # ALT + L lowercases word
 bindkey '^[l' down-case-word
+
+# insert all matches
+zle -C all-matches complete-word _generic
+bindkey '^Xa' all-matches
+zstyle ':completion:all-matches:*' insert yes
+zstyle ':completion:all-matches::::' completer _all_matches _complete
 
 ## More zsh options
 
