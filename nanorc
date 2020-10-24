@@ -1,4 +1,5 @@
 set constantshow
 set smarthome
 set smooth
+set linenumbers
 unset historylog
