@@ -91,7 +91,7 @@ bindkey '^U' undo
 bindkey '^K' kill-buffer
 # ALT + DEL deletes whole forward-word
 bindkey '^[[3;3~' kill-word
-# CTRL + BACKSPACE deletes whole backward-word
+# CTRL + H deletes whole backward-word
 bindkey '^H' backward-kill-word
 # ALT + L lowercases word
 bindkey '^[l' down-case-word
