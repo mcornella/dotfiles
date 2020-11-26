@@ -89,8 +89,9 @@ zsh_test_versions() {
 	local command="${(j:; :)@[2,-1]}"
 
 	docker images -f "reference=zshusers/zsh:$version_glob" --format='{{.Repository}}:{{.Tag}}' \
-		| tail +2 | sort -V | while read image; do
-		docker run $image zsh -c 'echo -n "$ZSH_VERSION: "; '"$command"
+		| tail +1 | sort -V | while read image; do
+		echo -n "${${(As.:.)image}[-1]}: "
+		docker run $image zsh -c "$command"
 		sleep 0.2
 	done
 }
