@@ -58,6 +58,7 @@ ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 
 # add shell level information to prompt for when dealing with nested zsh sessions
 RPROMPT+="${RPROMPT+ }{%F{yellow}$SHLVL%f}"
+ZLE_RPROMPT_INDENT=0
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
