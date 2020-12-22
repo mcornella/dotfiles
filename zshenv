@@ -11,11 +11,10 @@
 #   NOTE: avoid syntax and commands that aren't portable to other platforms and
 #   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
-
 # bin folders
 if [ -d "$HOME"/bin ]; then
 	PATH="$PATH:$HOME/bin"
-	for DIR in "$HOME"/bin/*; do
+	for DIR in "$(find "$HOME/bin" -mindepth 1 -maxdepth 1 -print)"; do
 		test -d "$DIR" && PATH="$PATH:$DIR"
 	done > /dev/null 2>&1
 fi
@@ -26,8 +25,8 @@ fi
 
 # opt folder
 if [ -d "$HOME"/opt ]; then
-	for DIR in "$HOME"/opt/*/bin; do
-		test -d "$DIR" && PATH="$PATH:$DIR"
+	for DIR in "$(find "$HOME/opt/" -mindepth 1 -maxdepth 1 -print)"; do
+		test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
 	done > /dev/null 2>&1
 fi
 
