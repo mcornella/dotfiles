@@ -85,10 +85,8 @@ alias bindkey='noglob bindkey'
 
 ## Key bindings
 
-# CTRL + U more accessible Undo
-bindkey '^U' undo
-# CTRL + K deletes whole line
-bindkey '^K' kill-buffer
+# ALT + i more accessible Undo
+bindkey '^[i' undo
 # ALT + DEL deletes whole forward-word
 bindkey '^[[3;3~' kill-word
 # CTRL + BACKSPACE deletes whole backward-word
