@@ -86,12 +86,12 @@ zsh_refresh_docker() {
 zsh_test_versions() {
 	local image
 	local version_glob=${1:-\*}
-	local command="${(j:; :)@[2,-1]}"
+	local command="${(j:; :)@[3,-1]}"
 
 	docker images -f "reference=zshusers/zsh:$version_glob" --format='{{.Repository}}:{{.Tag}}' \
 		| tail +1 | sort -V | while read image; do
 		echo -n "${${(As.:.)image}[-1]}: "
-		docker run $image zsh -c "$command"
+		docker run $image zsh -c "$2" "$command"
 		sleep 0.2
 	done
 }
