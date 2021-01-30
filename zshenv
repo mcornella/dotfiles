@@ -57,10 +57,21 @@ test -d "$HOME/code/go" && {
 	PATH="$PATH:$HOME/code/go/bin"
 }
 
+# fnm (nvm alternative)
+test -d "$HOME/.fnm" && {
+	export PATH="$PATH:$HOME/.fnm"
+	eval "$(fnm env --shell zsh)"
+	test -f "$HOME/.zsh/completions/_fnm" || \
+		fnm completions --shell zsh > "$HOME/.zsh/completions/_fnm"
+}
+
 unset DIR
 
 # remove duplicate entries from PATH
-[ -n "$ZSH_VERSION" ] && typeset -U path
+[ -n "$ZSH_VERSION" ] && {
+	typeset -U path
+	fpath+=("$HOME/.zsh/completions")
+}
 
 # export PATH for other sessions
 export PATH

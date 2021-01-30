@@ -79,3 +79,5 @@ grep -q "\. \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile || {
 		fi
 	EOF
 }
+
+mkdir -p "$HOME/.zsh/completions"
