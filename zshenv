@@ -30,16 +30,25 @@ if [ -d "$HOME"/opt ]; then
 	done > /dev/null 2>&1
 fi
 
-# android
-test -d /opt/android && PATH="$PATH:/opt/android/platform-tools:/opt/android/tools"
+### NODE
 
 # node, npm binaries and settings
 test -d "$HOME/.npm/bin" && PATH="$HOME/.npm/bin:$PATH"
 export NPM_CONFIG_PREFIX=~/.npm
 export NODE_REPL_HISTORY=
 
-# composer binaries
-test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
+# fnm (nvm alternative)
+test -d "$HOME/.fnm" && {
+	export PATH="$PATH:$HOME/.fnm"
+	eval "$(fnm env --shell zsh)"
+	test -f "$HOME/.zsh/completions/_fnm" \
+	|| fnm completions --shell zsh > "$HOME/.zsh/completions/_fnm"
+}
+
+# deno
+test -d "$HOME/.deno/bin" && PATH="$PATH:$HOME/.deno/bin"
+
+### RUBY
 
 # ruby gems
 if command -v ruby >/dev/null 2>&1 && command -v gem >/dev/null 2>&1; then
@@ -47,8 +56,19 @@ if command -v ruby >/dev/null 2>&1 && command -v gem >/dev/null 2>&1; then
 	test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
 fi
 
-# rust cargo
-test -f "$HOME/.cargo/env" && . "$HOME/.cargo/env"
+unset DIR
+
+# rvm
+[[ -d "$HOME/.rvm" ]] && PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+### OTHERS
+
+# android
+test -d /opt/android && PATH="$PATH:/opt/android/platform-tools:/opt/android/tools"
+
+# composer binaries
+test -d "$HOME"/.composer/vendor/bin && PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # go binaries and workspace
 test -d /usr/local/go && PATH="$PATH:/usr/local/go/bin"
@@ -57,15 +77,14 @@ test -d "$HOME/code/go" && {
 	PATH="$PATH:$HOME/code/go/bin"
 }
 
-# fnm (nvm alternative)
-test -d "$HOME/.fnm" && {
-	export PATH="$PATH:$HOME/.fnm"
-	eval "$(fnm env --shell zsh)"
-	test -f "$HOME/.zsh/completions/_fnm" || \
-		fnm completions --shell zsh > "$HOME/.zsh/completions/_fnm"
-}
+# rust cargo
+test -f "$HOME/.cargo/env" && . "$HOME/.cargo/env"
 
-unset DIR
+# sdkman
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && {
+	export SDKMAN_DIR="$HOME/.sdkman"
+	source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+}
 
 # remove duplicate entries from PATH
 [ -n "$ZSH_VERSION" ] && {
