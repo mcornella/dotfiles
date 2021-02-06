@@ -6,9 +6,6 @@
 [commit]
 	gpgsign = true
 
-[includeIf "gitdir:~/code/zondax/"]
-	path = ~/.config/git/config.zondax
-
 [alias]
 	bigbang = checkout --orphan
 	remotes = remote -v
@@ -46,3 +43,6 @@
 
 [reset]
 	quiet = true
+
+[includeIf "gitdir:~/code/zondax/"]
+	path = ~/.config/git/config.zondax
