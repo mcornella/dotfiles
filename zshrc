@@ -31,6 +31,7 @@ plugins=(
 	extract
 	history-substring-search
 	npm
+	yarn
 	github
 	docker-compose
 	sublime
@@ -38,7 +39,9 @@ plugins=(
 	colored-man-pages
 	copybuffer
 	dotenv
+	grc
 	# custom plugins go here
+	zsh-syntax-highlighting
 	git-prompt
 	ragequit
 	k

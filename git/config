@@ -33,9 +33,9 @@
 	coloring = repeatedLines
 
 [pager]
-	diff = diff-highlight | less -FR -x1,5
-	show = diff-highlight | less -FR -x1,5
-	log = diff-highlight | less -FR -x1,5
+	diff = diff-highlight | less -FR -x1,5 -S
+	show = diff-highlight | less -FR -x1,5 -S
+	log = diff-highlight | less -FR -x1,5 -S
 	branch = false
 
 [interactive]
