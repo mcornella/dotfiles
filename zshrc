@@ -92,6 +92,8 @@ alias bindkey='noglob bindkey'
 
 ## Key bindings
 
+# delete whole buffer
+bindkey '^U' kill-buffer
 # ALT + i more accessible Undo
 bindkey '^[i' undo
 # ALT + DEL deletes whole forward-word
