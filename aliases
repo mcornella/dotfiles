@@ -73,6 +73,7 @@ alias glg='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset 
 alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset" --abbrev-commit --date=relative --all'
 
 # git reset
+alias grhs='git reset --soft'
 alias 'grh!'="git reset --hard"
 unalias grhh
 
