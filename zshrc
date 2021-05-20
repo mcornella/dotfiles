@@ -60,6 +60,7 @@ prompt_context(){}
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 
 # Fix invisible comments in zsh-syntax-highlighting
+typeset -gA ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[comment]="fg=cyan"
 
 # add shell level information to prompt for when dealing with nested zsh sessions
