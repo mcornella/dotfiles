@@ -49,7 +49,7 @@ plugins=(
 fi
 
 # Don't load Oh My Zsh on TTYs
-[[ $TTY != /dev/tty* || -n "$OMZ_LOAD" ]] && source "$ZSH/oh-my-zsh.sh"
+[[ $TTY = /dev/tty* && -z "$OMZ_LOAD" && $(uname -r) != *icrosoft* ]] || source "$ZSH/oh-my-zsh.sh"
 
 
 ## User configuration
