@@ -27,7 +27,6 @@ dotfiles=(
 	functions        ".zsh/functions"
 	git              ".config/git"
 	nanorc           ".config/nano/nanorc"
-	npmrc            ".npmrc"
 	ohmyzsh          ".zsh/ohmyzsh"
 	ohmyzsh-custom   ".zsh/ohmyzsh-custom"
 	tigrc            ".config/tig/config"
