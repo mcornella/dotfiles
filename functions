@@ -75,23 +75,27 @@ function apt-depends() {
 
 ## ZSH TESTING FUNCTIONS
 
+zsh_docker_versions() {
+	wget -qO- https://registry.hub.docker.com/v1/repositories/zshusers/zsh/tags \
+		| command sed 's/[^0-9.]*"name": "\([^"]*\)"[^0-9.]*/\n\1\n/g;s/^\n//'
+}
+
 zsh_refresh_docker() {
 	local version
-	wget -q https://registry.hub.docker.com/v1/repositories/zshusers/zsh/tags -O - \
-		| sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n' \
-		| grep -v latest | awk -F: '{print $3}' \
-		| while read version; do docker pull zshusers/zsh:$version; done
+	zsh_docker_versions | while read version; do
+		docker pull ohmyzsh/zsh:$version
+	done
 }
 
 zsh_test_versions() {
-	local image
+	local image version
 	local version_glob=${1:-\*}
 	local command="${(j:; :)@[3,-1]}"
 
-	docker images -f "reference=zshusers/zsh:$version_glob" --format='{{.Repository}}:{{.Tag}}' \
-		| tail +1 | sort -V | while read image; do
-		echo -n "${${(As.:.)image}[-1]}: "
-		docker run $image zsh -c "$2" "$command"
+	docker images -f "reference=ohmyzsh/zsh:$version_glob" --format='{{.Repository}} {{.Tag}}' \
+		| tail +1 | sort -V | while read image version; do
+		echo -n "$version: "
+		docker run "$image:$version" zsh -c "$2" "$command"
 		sleep 0.2
 	done
 }
