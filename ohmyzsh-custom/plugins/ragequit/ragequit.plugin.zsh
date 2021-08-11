@@ -56,7 +56,7 @@ _fuck() {
 	_arguments -C ':who:(you off)' '*:process:->process'
 
 	case $state in
-	process) _process_names ;;
+	process) _process_names -a ;;
 	esac
 }
 
