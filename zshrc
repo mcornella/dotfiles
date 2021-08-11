@@ -16,8 +16,9 @@ ZSH_COLORIZE_TOOL=chroma
 # Nice ones: arduino friendly paraiso-dark solarized-dark solarized-dark256 vim
 ZSH_COLORIZE_STYLE=vim
 
+# Add plugins from the command line
+[[ -z "$add_plugins" ]] || read -A add_plugins <<< "$add_plugins"
 # Which plugins would you like to load?
-if [[ -n "$plugins" ]]; then read -A plugins <<< "$plugins"; else
 plugins=(
 	git
 	git-extras
@@ -40,13 +41,16 @@ plugins=(
 	copybuffer
 	dotenv
 	grc
+	fnm
 	# custom plugins go here
 	zsh-syntax-highlighting
 	git-prompt
 	ragequit
 	k
+	# add_plugins from the command line
+	$add_plugins
 )
-fi
+unset add_plugins
 
 # Don't load Oh My Zsh on TTYs
 [[ $TTY = /dev/tty* && -z "$OMZ_LOAD" && $(uname -r) != *icrosoft* ]] || source "$ZSH/oh-my-zsh.sh"
