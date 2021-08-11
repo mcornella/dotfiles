@@ -78,7 +78,7 @@ alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset
 # git reset
 alias grhs='git reset --soft'
 alias 'grh!'="git reset --hard"
-unalias grhh
+(( ! ${+aliases[grhh]} )) || unalias grhh
 
 ## utilities
 
