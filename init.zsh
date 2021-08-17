@@ -69,9 +69,9 @@ for file (${(ko)dotfiles}); do
 done
 
 # Add sourcing of .zshenv to .profile
-grep -q "\. \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile || {
+grep -q "\. \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile 2>/dev/null || {
+	[[ -s ~/.profile ]] && echo > ~/.profile || touch ~/.profile
 	cat >> ~/.profile <<-EOF
-
 		# load posix-compatible .zshenv
 		if [ -r "\$HOME/${dotfiles[zshenv]}" ]; then
 		    . "\$HOME/${dotfiles[zshenv]}"
