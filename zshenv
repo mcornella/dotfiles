@@ -101,9 +101,10 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 # set less options by default:
 # -F: quit if output is less than one screen
 # -R: keep color control chars
-# -X: not needed after less v530
 export LESS=-FR
 export LESSHISTFILE=-
+# --redraw-on-quit: print last screen when exiting less (v594 and newer)
+[ $(less -V | awk '{print $2;exit}' | sed 's/[^0-9]//g') -ge 594 ] && export LESS="-FR --redraw-on-quit"
 
 [ "$USER" = root ] && ZSH_DISABLE_COMPFIX=true
 

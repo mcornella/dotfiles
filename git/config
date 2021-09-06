@@ -23,7 +23,7 @@
 	default = simple
 
 [core]
-	pager = less -FR -S -x1,5
+	pager = less -S -x1,5
 	whitespace = blank-at-eol,space-before-tab
 
 [help]
@@ -33,9 +33,9 @@
 	coloring = repeatedLines
 
 [pager]
-	diff = diff-highlight | less -FR -x1,5 -S
-	show = diff-highlight | less -FR -x1,5 -S
-	log = diff-highlight | less -FR -x1,5 -S
+	diff = diff-highlight | less -x1,5 -S
+	show = diff-highlight | less -x1,5 -S
+	log = diff-highlight | less -x1,5 -S
 	branch = false
 
 [interactive]
