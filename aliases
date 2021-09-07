@@ -13,7 +13,7 @@ alias exists='command -v &>/dev/null'
 # ls
 # order of output:
 # symbols, UPPERCASE, lowercase (folders first)
-[[ $OSTYPE = darwin* ]] && alias ls='gls'
+command -v gls &>/dev/null && alias ls='command gls'
 alias l='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
 alias ll='l -lF'
 alias la='l -A'
@@ -22,7 +22,7 @@ alias lla='ll -AF'
 # safe copy, move and delete
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'
+command -v grm &>/dev/null && alias rm='command grm -I' || alias rm='rm -I'
 
 # directories
 (( $+aliases[mkdir] )) && unalias mkdir
