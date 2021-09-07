@@ -6,6 +6,8 @@ zmodload zsh/stat
 
 # Base dir as path relative to $HOME directory
 DIR="${0:a:h}"
+# ln flags change on different platforms
+[[ $OSTYPE = darwin* ]] && lnflags="-nsfh" || lnflags="-nsfT"
 
 function msg() {
 	case "$1" in
@@ -57,7 +59,7 @@ for file (${(ko)dotfiles}); do
 	fi
 
 	mkdir -p "${destfile:h}"
-	if error="$(ln -nTsf "$srcfile" "$destfile" 2>&1)"; then
+	if error="$(ln $lnflags "$srcfile" "$destfile" 2>&1)"; then
 		msg OK
 	elif [[ -f "$destfile" ]]; then
 		msg ERROR "destination already exists (file)"

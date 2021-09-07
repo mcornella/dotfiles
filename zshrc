@@ -53,8 +53,8 @@ plugins=(
 unset add_plugins
 
 # Don't load Oh My Zsh on TTYs
-[[ $TTY = /dev/tty* && -z "$OMZ_LOAD" && $(uname -r) != *icrosoft* ]] || source "$ZSH/oh-my-zsh.sh"
-
+[[ -z "$OMZ_LOAD" && $TTY = /dev/tty* && $(uname -a) != ([Dd]arwin*|[Mm]icrosoft*) ]] \
+  || source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
 
