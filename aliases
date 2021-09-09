@@ -8,12 +8,12 @@
 #   check out http://hyperpolyglot.org/unix-shells for more information
 
 # checks if argument exists in path
-alias exists='command -v &>/dev/null'
+alias exists='command -p -v &>/dev/null'
 
 # ls
 # order of output:
 # symbols, UPPERCASE, lowercase (folders first)
-command -v gls &>/dev/null && alias ls='command gls'
+exists gls && alias ls='command gls'
 alias l='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
 alias ll='l -lF'
 alias la='l -A'
@@ -22,7 +22,7 @@ alias lla='ll -AF'
 # safe copy, move and delete
 alias cp='cp -i'
 alias mv='mv -i'
-command -v grm &>/dev/null && alias rm='command grm -I' || alias rm='rm -I'
+exists grm && alias rm='command grm -I' || alias rm='rm -I'
 
 # directories
 (( $+aliases[mkdir] )) && unalias mkdir
