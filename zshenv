@@ -107,6 +107,7 @@ export LESSHISTFILE=-
 [ $(less -V | awk '{print $2;exit}' | sed 's/[^0-9]//g') -ge 594 ] && {
 	export LESS="-FR --redraw-on-quit"
 	READNULLCMD=$(command -v less)
+	export PAGER="$READNULLCMD"
 }
 
 [ "$USER" = root ] && ZSH_DISABLE_COMPFIX=true
