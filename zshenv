@@ -13,14 +13,14 @@
 
 # bin folders
 if [ -d "$HOME"/bin ]; then
-	PATH="$PATH:$HOME/bin"
+	PATH="$HOME/bin:$PATH"
 	for DIR in "$(find "$HOME/bin" -mindepth 1 -maxdepth 1 -print)"; do
-		test -d "$DIR" && PATH="$PATH:$DIR"
+		test -d "$DIR" && PATH="$DIR:$PATH"
 	done > /dev/null 2>&1
 fi
 
 if [ -d "$HOME/.local/bin" ]; then
-	PATH="$PATH:$HOME/.local/bin"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
 # opt folder
