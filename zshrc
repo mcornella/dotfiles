@@ -20,34 +20,34 @@ ZSH_COLORIZE_STYLE=vim
 [[ -z "$add_plugins" ]] || read -A add_plugins <<< "$add_plugins"
 # Which plugins would you like to load?
 plugins=(
-	git
-	git-extras
-	github
-	gitignore
-	z
-	dircycle
-	web-search
-	sudo
-	extract
-	history-substring-search
-	npm
-	yarn
-	github
-	docker-compose
-	sublime
-	colorize
-	colored-man-pages
-	copybuffer
-	dotenv
-	grc
-	fnm
-	# custom plugins go here
-	zsh-syntax-highlighting
-	git-prompt
-	ragequit
-	k
-	# add_plugins from the command line
-	$add_plugins
+    git
+    git-extras
+    github
+    gitignore
+    z
+    dircycle
+    web-search
+    sudo
+    extract
+    history-substring-search
+    npm
+    yarn
+    github
+    docker-compose
+    sublime
+    colorize
+    colored-man-pages
+    copybuffer
+    dotenv
+    grc
+    fnm
+    # custom plugins go here
+    zsh-syntax-highlighting
+    git-prompt
+    ragequit
+    k
+    # add_plugins from the command line
+    $add_plugins
 )
 unset add_plugins
 
@@ -56,9 +56,6 @@ unset add_plugins
   || source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
-
-# Disable showing prompt context (user@host) in agnoster theme
-prompt_context(){}
 
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 
@@ -72,10 +69,10 @@ ZLE_RPROMPT_INDENT=0
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.zsh/dircolors && eval "$(dircolors -b ~/.zsh/dircolors)" || eval "$(dircolors -b)"
+  test -r ~/.zsh/dircolors && eval "$(dircolors -b ~/.zsh/dircolors)" || eval "$(dircolors -b)"
 
-	# ls completion dir_colors
-	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  # ls completion dir_colors
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
 # complete . and .. directories
@@ -85,8 +82,9 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-prompt   ''
 zstyle ':completion:*' select-prompt ''
 
-alias ohmyzsh='vsc "$ZSH"'
-alias zshrc='vsc ~/.zshrc'
+# Docker completion option stacking
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # correct behaviour when specifying commit parent (commit^)
 alias git='noglob git'
@@ -95,17 +93,11 @@ alias git='noglob git'
 alias bindkey='noglob bindkey'
 
 ## Key bindings
-
-# delete whole buffer
-bindkey '^U' kill-buffer
-# ALT + i more accessible Undo
-bindkey '^[i' undo
-# ALT + DEL deletes whole forward-word
-bindkey '^[[3;3~' kill-word
-# CTRL + BACKSPACE deletes whole backward-word
-bindkey '^H' backward-kill-word
-# ALT + L lowercases word
-bindkey '^[l' down-case-word
+bindkey '^U' kill-buffer        # delete whole buffer
+bindkey '^[i' undo              # ALT + i more accessible Undo
+bindkey '^[[3;3~' kill-word     # ALT + DEL deletes whole forward-word
+bindkey '^H' backward-kill-word # CTRL + BACKSPACE deletes whole backward-word
+bindkey '^[l' down-case-word    # ALT + L lowercases word
 
 # insert all matches
 zle -C all-matches complete-word _generic
@@ -114,38 +106,24 @@ zstyle ':completion:all-matches:*' insert yes
 zstyle ':completion:all-matches::::' completer _all_matches _complete
 
 ## More zsh options
-
-# correction of commands
-setopt correct
-
-# extended globbing (adds ^ and other symbols as wildcards)
-setopt extended_glob
-
-# i want all typed commands to be available everywhere
-setopt share_history
+setopt correct        # correction of commands
+setopt extended_glob  # adds ^ and other symbols as wildcards
+setopt share_history  # i want all typed commands to be available everywhere
 
 # zmv
 autoload zmv
 alias mmv='noglob zmv -W -v'
 
-# Docker completion option stacking
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-
-## Sourcing external files
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# custom aliases
-[[ -f ~/.zsh/aliases ]] && . ~/.zsh/aliases
-
-# custom functions
-[[ -f ~/.zsh/functions ]] && . ~/.zsh/functions
-
-# add current directory to the end of PATH
-path+=.
+## Sourcing external files
+[[ -f ~/.zsh/aliases    ]] && . ~/.zsh/aliases    # custom aliases
+[[ -f ~/.zsh/functions  ]] && . ~/.zsh/functions  # custom functions
 
 # Workaround for https://github.com/ohmyzsh/ohmyzsh/issues/10156
 autoload +X -Uz _git && _git &>/dev/null
 eval "_git-stash() { ${functions[_git-stash]//\\_git-notes /} }"
+
+# add current directory to the end of PATH
+path+=(.)

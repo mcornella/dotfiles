@@ -9,11 +9,12 @@
 
 # checks if argument exists in path
 alias exists='command -p -v &>/dev/null'
+alias is_zsh='[ -n "$ZSH_VERSION" ]'
 
 # ls
 # order of output:
 # symbols, UPPERCASE, lowercase (folders first)
-unalias ls
+unalias ls 2>/dev/null
 alias l='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
 alias ll='l -lF'
 alias la='l -A'
@@ -25,7 +26,7 @@ alias mv='mv -i'
 alias rm='rm -I'
 
 # directories
-(( $+aliases[mkdir] )) && unalias mkdir
+unalias mkdir 2>/dev/null
 alias md='mkdir -p'
 alias rd='rmdir'
 alias po='popd'
@@ -36,17 +37,15 @@ alias df='df -h -x squashfs'
 alias du='du -h'
 
 # summary of disk used by child items sorted and unsorted
-alias dus='du -s *'
-alias duss='du -s * | sort -h'
+alias dus='LANG=C du -s *'
+alias duss='dus | LANG=C sort -h'
 # disk space used by system folders
 alias dusss="LANG=C du -s /{{boot,lib*,opt,sbin,tmp,usr,var}/*(N),{bin,etc,root}} 2>/dev/null | grep -vE '^(0|[0-9.]+K)' | LANG=C sort -h"
 
-# expand aliases after sudo
-alias sudo='sudo '
-# preserve environment (-E option) when login as root
-alias usersu='sudo -E -s'
-# preserve PATH
-alias sudoit='sudo env PATH="$PATH" '
+# sudo aliases
+alias sudo='sudo '                      # expand aliases after sudo
+alias usersu='sudo -E -s'               # preserve environment (-E option) when login as root
+alias sudoit='sudo env PATH="$PATH" '   # preserve user PATH
 
 ## git
 
@@ -78,7 +77,7 @@ alias glga='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset
 # git reset
 alias grhs='git reset --soft'
 alias 'grh!'="git reset --hard"
-(( ! ${+aliases[grhh]} )) || unalias grhh
+unalias grhh 2>/dev/null
 
 ## utilities
 
@@ -86,23 +85,23 @@ alias 'grh!'="git reset --hard"
 alias o='open_command'
 alias o.='o .'
 
-# stdin to clipboard
-alias xclip='xclip -selection c'
-
 # enable advanced calculation in bc by default
 alias bc='bc -l'
 
 # default parameters for youtube-dl
 alias ytdl='youtube-dl --prefer-ffmpeg -o "%(title)s.%(ext)s"'
 
-alias -g :L='| command less'
-alias -g :H='| command head'
-alias -g :T='| command tail'
-alias -g :G='| command grep'
-alias -g :LL="2>&1 | command less"
-alias -g :NE="2>/dev/null"
-alias -g :NO="1>/dev/null"
-alias -g :NUL='&>/dev/null'
+# terminating global aliases
+is_zsh && {
+    alias -g :L='| command less'
+    alias -g :H='| command head'
+    alias -g :T='| command tail'
+    alias -g :G='| command grep'
+    alias -g :LL='2>&1 | command less'
+    alias -g :NE='2>/dev/null'
+    alias -g :NO='1>/dev/null'
+    alias -g :NUL='&>/dev/null'
+}
 
 # ip command
 alias ip='ip -color'
@@ -110,5 +109,8 @@ alias ipb='ip -color -brief'
 
 # Visual Studio Code
 alias vsc='code-insiders'
+alias ohmyzsh='vsc "$ZSH"'
+alias zshrc='vsc ~/.zshrc'
 
+# last exit status
 alias '?'='echo $?'
