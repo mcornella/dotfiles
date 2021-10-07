@@ -28,7 +28,6 @@ plugins=(
 	dircycle
 	web-search
 	sudo
-	zsh_reload
 	extract
 	history-substring-search
 	npm
