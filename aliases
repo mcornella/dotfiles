@@ -33,7 +33,9 @@ alias po='popd'
 alias pu='pushd'
 
 # hdd
-alias df='df -h -x squashfs'
+[[ $(uname) = Darwin ]] \
+    && alias df='df -h' \
+    || alias df='df -h -x squashfs'
 alias du='du -h'
 
 # summary of disk used by child items sorted and unsorted
