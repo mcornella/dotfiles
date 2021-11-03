@@ -7,7 +7,7 @@ zmodload zsh/stat
 # Base dir as path relative to $HOME directory
 DIR="${0:a:h}"
 # ln flags change on different platforms
-[[ $OSTYPE = darwin* ]] && lnflags="-nsfh" || lnflags="-nsfT"
+[[ "$OSTYPE" = darwin* ]] && lnflags="-nsfh" || lnflags="-nsfT"
 
 function msg() {
   case "$1" in
