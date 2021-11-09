@@ -124,7 +124,7 @@ alias mmv='noglob zmv -W -v'
 
 # Workaround for https://github.com/ohmyzsh/ohmyzsh/issues/10156
 autoload +X -Uz _git && _git &>/dev/null
-eval "_git-stash() { ${functions[_git-stash]//\\_git-notes /} }"
+functions[_git-stash]=${functions[_git-stash]//\\_git-notes /}
 
 # add current directory to the end of PATH
 path+=(.)
