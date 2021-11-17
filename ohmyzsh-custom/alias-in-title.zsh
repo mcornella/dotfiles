@@ -1,5 +1,5 @@
 function omz_termsupport_preexec {
-  [[ "$DISABLE_AUTO_TITLE" == true ]] && return
+  [[ "${DISABLE_AUTO_TITLE:-}" != true ]] || return
 
   emulate -L zsh
   setopt extended_glob
@@ -42,8 +42,8 @@ function omz_termsupport_preexec {
   fi
 
   # cmd name only, or if this is sudo or ssh, the next cmd
-  local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
+  local CMD="${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}"
   local LINE="${1:gs/%/%%}"
 
-  title '$CMD' '%100>...>$LINE%<<'
+  title "$CMD" "%100>...>${LINE}%<<"
 }

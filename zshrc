@@ -21,34 +21,34 @@ ZSH_COLORIZE_STYLE=vim
 [[ -z "$add_plugins" ]] || read -A add_plugins <<< "$add_plugins"
 # Which plugins would you like to load?
 plugins=(
-    git
-    git-extras
-    github
-    gitignore
-    z
-    dircycle
-    web-search
-    sudo
-    extract
-    history-substring-search
-    npm
-    yarn
-    github
-    docker-compose
-    sublime
-    colorize
-    colored-man-pages
-    copybuffer
-    dotenv
-    grc
-    fnm
-    # custom plugins go here
-    zsh-syntax-highlighting
-    git-prompt
-    ragequit
-    k
-    # add_plugins from the command line
-    $add_plugins
+  git
+  git-extras
+  github
+  gitignore
+  z
+  dircycle
+  web-search
+  sudo
+  extract
+  history-substring-search
+  npm
+  yarn
+  github
+  docker-compose
+  sublime
+  colorize
+  colored-man-pages
+  copybuffer
+  dotenv
+  grc
+  fnm
+  # custom plugins go here
+  zsh-syntax-highlighting
+  git-prompt
+  ragequit
+  k
+  # add_plugins from the command line
+  $add_plugins
 )
 unset add_plugins
 
