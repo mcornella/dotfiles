@@ -90,15 +90,29 @@ zsh_refresh_docker() {
 }
 
 zsh_test_versions() {
-  local version
-  local image=${1:-ohmyzsh/zsh}
-  local version_glob=${2:-\*}
-  local command="${(j:; :)@[4,-1]}"
+  local -A opts
+  zparseopts -D -E -A opts - -image:=image -glob:=glob
 
-  docker images -f "reference=$image:$version_glob" --format='{{.Tag}}' \
+  local image=${opts[--image]:-ohmyzsh/zsh}
+  local glob=${opts[--glob]:-*}
+
+  local input
+  case "$1" in
+  -) input="$(</dev/stdin)" ;;
+  esac
+
+  local version
+  command docker images -f "reference=$image:$glob" --format='{{.Tag}}' \
     | tail +1 | sort -V | while read version; do
-    echo -n "$version: "
-    docker run "$image:$version" zsh -c "$3" "$command"
+    if (( $#input )); then
+      printf '\e[1;34m%s\e[0m\n' "$version: "
+      command docker run -i "$image:$version" zsh -dfis <<< "$input"
+      printf '\r\e[2K'
+    else
+      printf '\e[1;34m%s\e[0m' "$version: "
+      command docker run "$image:$version" zsh -c "$@"
+    fi
+
     sleep 0.2
   done
 }
