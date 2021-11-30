@@ -107,7 +107,7 @@ zsh_test_versions() {
     if (( $#input )); then
       printf '\e[1;34m%s\e[0m\n' "$version: "
       command docker run -i "$image:$version" zsh -dfis <<< "$input"
-      printf '\r\e[2K'
+      printf '\r\e[2K' # clear last line of output (empty zsh prompt)
     else
       printf '\e[1;34m%s\e[0m' "$version: "
       command docker run "$image:$version" zsh -c "$@"

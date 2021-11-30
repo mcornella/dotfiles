@@ -111,9 +111,12 @@ setopt correct        # correction of commands
 setopt extended_glob  # adds ^ and other symbols as wildcards
 setopt share_history  # i want all typed commands to be available everywhere
 
-# zmv
+# zmv (mass mv / cp / ln)
 autoload zmv
 alias mmv='noglob zmv -W -v'
+
+# zed (zsh editor)
+autoload -Uz zed
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
