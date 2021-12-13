@@ -49,15 +49,20 @@ function swap() {
   [[ "$1" == "$2" ]] && echo "Error: files must be different" && return 1
 
   # Check if files specified exist and are files
-  [[ -f "$1" ]] || { echo "Error: '$1' does not exist or is not a valid file" && return 1 }
-  [[ -f "$2" ]] || { echo "Error: '$2' does not exist or is not a valid file" && return 1 }
+  [[ -f "$1" || -f "$2" ]] || { echo "Error: at least one file must exist" && return 1 }
 
-  # Create a temporary file
-  tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
+  # If only one file exists, just rename it. Otherwise create a temp file and swap them
+  if [[ ! -f "$1" ]]; then
+    command mv "$2" "$1"
+  elif [[ ! -f "$2" ]]; then
+    command mv "$1" "$2"
+  else
+    # Create a temporary file
+    tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
+    command mv "$1" "$tmpfile" && command mv "$2" "$1" && command mv "$tmpfile" "$2"
+  fi
 
-  command mv "$1" "$tmpfile" && command mv "$2" "$1" && command mv "$tmpfile" "$2"
   local ret=$?
-
   [ $ret -eq 0 ] && echo "$1 <-> $2"
   return $ret
 }
