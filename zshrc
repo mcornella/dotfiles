@@ -68,6 +68,9 @@ ZSH_HIGHLIGHT_STYLES[comment]="fg=cyan"
 RPROMPT+="${RPROMPT+ }{%F{yellow}$SHLVL%f}"
 ZLE_RPROMPT_INDENT=0
 
+# add color to correct prompt
+SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
+
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.zsh/dircolors && eval "$(dircolors -b ~/.zsh/dircolors)" || eval "$(dircolors -b)"
