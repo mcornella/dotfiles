@@ -6,8 +6,6 @@ zmodload zsh/stat
 
 # Base dir as path relative to $HOME directory
 DIR="${0:a:h}"
-# ln flags change on different platforms
-[[ "$OSTYPE" = darwin* ]] && lnflags="-nsfh" || lnflags="-nsfT"
 
 function msg() {
   case "$1" in
@@ -20,38 +18,19 @@ function msg() {
   print -P %f
 }
 
+function symlink() {
+  local error symlink lnflags
+  local src dest
 
-# Files to be symlinked to home directory
-local -A dotfiles
-dotfiles=(
-  aliases          ".zsh/aliases"
-  dircolors        ".zsh/dircolors"
-  functions        ".zsh/functions"
-  git              ".config/git"
-  nanorc           ".config/nano/nanorc"
-  darwin/nanorc    ".nanorc"
-  ohmyzsh          ".zsh/ohmyzsh"
-  ohmyzsh-custom   ".zsh/ohmyzsh-custom"
-  tigrc            ".config/tig/config"
-  tmux.conf        ".tmux.conf"
-  toprc            ".config/procps/toprc"
-  vimrc            ".vimrc"
-  zshenv           ".zsh/.zshenv"
-  zshrc            ".zsh/.zshrc"
-)
+  # ln flags change on different platforms
+  [[ "$OSTYPE" = darwin* ]] && lnflags="-nsfh" || lnflags="-nsfT"
 
-local error symlink
-local file srcfile destfile
+  src="$1"
+  dest="$2"
 
-for file (${(ko)dotfiles}); do
-  echo -n "symlinking $file... "
-
-  srcfile="$DIR/$file"
-  destfile="$HOME/${dotfiles[$file]}"
-
-  if [[ -h "$destfile" ]]; then
-    symlink="$(zstat +link "$destfile")"
-    if [[ "$symlink" == "$srcfile" ]]; then
+  if [[ -h "$dest" ]]; then
+    symlink="$(zstat +link "$dest")"
+    if [[ "$symlink" == "$src" ]]; then
       msg SKIP "file already symlinked"
       continue
     else
@@ -59,16 +38,79 @@ for file (${(ko)dotfiles}); do
     fi
   fi
 
-  mkdir -p "${destfile:h}"
-  if error="$(ln $lnflags "$srcfile" "$destfile" 2>&1)"; then
+  mkdir -p "${dest:h}"
+  if error="$(ln $lnflags "$src" "$dest" 2>&1)"; then
     msg OK
-  elif [[ -f "$destfile" ]]; then
+  elif [[ -f "$dest" ]]; then
     msg ERROR "destination already exists (file)"
-  elif [[ -d "$destfile" ]]; then
+  elif [[ -d "$dest" ]]; then
     msg ERROR "destination already exists (dir)"
   else
     msg ERROR "$error"
   fi
+}
+
+
+# Files to be symlinked to home directory
+local -A dotfiles
+dotfiles=(
+  aliases             ".zsh/aliases"
+  dircolors           ".zsh/dircolors"
+  functions           ".zsh/functions"
+  git                 ".config/git"
+  ohmyzsh             ".zsh/ohmyzsh"
+  ohmyzsh-custom      ".zsh/ohmyzsh-custom"
+  tigrc               ".config/tig/config"
+  tmux.conf           ".tmux.conf"
+  toprc               ".config/procps/toprc"
+  vimrc               ".vimrc"
+  zshenv              ".zsh/.zshenv"
+  zshrc               ".zsh/.zshrc"
+)
+
+local file src dest
+for file (${(ko)dotfiles}); do
+  src="$DIR/$file"
+  dest="$HOME/${dotfiles[$file]}"
+
+  echo -n "Linking $file... "
+  symlink "$src" "$dest"
+done
+
+# Files specific to the platform
+local system
+case "$OSTYPE" in
+  darwin*) system=darwin ;;
+  linux*) system=linux ;;
+esac
+
+local -A platform
+platform=(
+  nano/darwin/nanorc  ".nanorc"
+  nano/others/nanorc  ".config/nano/nanorc"
+)
+
+local -aU areas files
+areas=(${(ko)platform%%/*})
+
+local area
+for area (${(o)areas}); do
+  # Select the files based on the system
+  files=(${(k)platform[(I)$area/$system/*]})
+  # If no match for $system, select others
+  (( $#files )) || files=(${(k)platform[(I)$area/others/*]})
+  # If others not found, go to next area
+  (( $#files )) || continue
+
+  echo "Setting up $area:"
+
+  for file (${(o)files}); do
+    src="$DIR/$file"
+    dest="$HOME/${platform[$file]}"
+
+    echo -n "Linking $file... "
+    symlink "$src" "$dest"
+  done
 done
 
 # Add ZDOTDIR change to ~/.zshenv
