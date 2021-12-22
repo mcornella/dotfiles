@@ -36,8 +36,8 @@ dotfiles=(
   tmux.conf        ".tmux.conf"
   toprc            ".config/procps/toprc"
   vimrc            ".vimrc"
-  zshenv           ".zshenv"
-  zshrc            ".zshrc"
+  zshenv           ".zsh/.zshenv"
+  zshrc            ".zsh/.zshrc"
 )
 
 local error symlink
@@ -70,6 +70,16 @@ for file (${(ko)dotfiles}); do
     msg ERROR "$error"
   fi
 done
+
+# Add ZDOTDIR change to ~/.zshenv
+grep -q "ZDOTDIR=" "$HOME/.zshenv" 2>/dev/null || {
+  echo -n "setting up ZDOTDIR in ~/.zshenv... "
+  cat > ~/.zshenv <<'EOF'
+ZDOTDIR="$HOME/.zsh"
+. "$ZDOTDIR/.zshenv"
+EOF
+  msg OK
+}
 
 # Add sourcing of .zshenv to .profile
 grep -q "\. \"\$HOME/${dotfiles[zshenv]}\"" ~/.profile 2>/dev/null || {
