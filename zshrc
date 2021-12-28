@@ -42,6 +42,7 @@ plugins=(
   dotenv
   grc
   fnm
+  rust
   # custom plugins go here
   zsh-syntax-highlighting
   git-prompt
