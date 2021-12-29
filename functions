@@ -49,10 +49,10 @@ function swap() {
   [[ "$1" == "$2" ]] && echo "Error: files must be different" && return 1
 
   # Check if files specified exist and are files
-  [[ -f "$1" || -f "$2" ]] || { echo "Error: at least one file must exist" && return 1 }
+  [[ -e "$1" || -e "$2" ]] || { echo "Error: at least one file must exist" && return 1 }
 
   # If only one file exists, just rename it. Otherwise create a temp file and swap them
-  if [[ ! -f "$1" ]]; then
+  if [[ ! -e "$1" ]]; then
     command mv "$2" "$1"
   elif [[ ! -f "$2" ]]; then
     command mv "$1" "$2"
