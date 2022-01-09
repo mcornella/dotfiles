@@ -82,12 +82,14 @@ done
 local system
 case "$OSTYPE" in
   darwin*) system=darwin ;;
+  linux-android) [[ "$PREFIX" = *com.termux* ]] && system=termux ;;
   linux*) system=linux ;;
 esac
 
 local -A platform
 platform=(
   nano/darwin/nanorc  ".nanorc"
+  nano/termux/nanorc  ".nanorc"
   nano/others/nanorc  ".config/nano/nanorc"
 )
 

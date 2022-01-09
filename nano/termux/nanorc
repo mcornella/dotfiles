@@ -1,0 +1,4 @@
+set constantshow
+set smarthome
+set linenumbers
+unset historylog
