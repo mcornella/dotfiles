@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/zsh -df
 #
 # Symlinks files in this directory into $HOME directory
 
@@ -115,7 +115,7 @@ for area (${(o)areas}); do
 done
 
 # Add ZDOTDIR change to ~/.zshenv
-grep -q "ZDOTDIR=" "$HOME/.zshenv" 2>/dev/null || {
+grep -q "ZDOTDIR=\"\$HOME/${ZDOT}\"" "$HOME/.zshenv" 2>/dev/null || {
   echo -n "setting up ZDOTDIR in ~/.zshenv... "
   # .zshenv might be a symlink, so remove it first
   rm -f ~/.zshenv
