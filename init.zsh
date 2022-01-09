@@ -50,22 +50,23 @@ function symlink() {
   fi
 }
 
+local ZDOT=".zsh"
 
 # Files to be symlinked to home directory
 local -A dotfiles
 dotfiles=(
-  aliases             ".zsh/aliases"
-  dircolors           ".zsh/dircolors"
-  functions           ".zsh/functions"
+  aliases             "${ZDOT}/aliases"
+  dircolors           "${ZDOT}/dircolors"
+  functions           "${ZDOT}/functions"
   git                 ".config/git"
-  ohmyzsh             ".zsh/ohmyzsh"
-  ohmyzsh-custom      ".zsh/ohmyzsh-custom"
+  ohmyzsh             "${ZDOT}/ohmyzsh"
+  ohmyzsh-custom      "${ZDOT}/ohmyzsh-custom"
   tigrc               ".config/tig/config"
   tmux.conf           ".tmux.conf"
   toprc               ".config/procps/toprc"
   vimrc               ".vimrc"
-  zshenv              ".zsh/.zshenv"
-  zshrc               ".zsh/.zshrc"
+  zshenv              "${ZDOT}/.zshenv"
+  zshrc               "${ZDOT}/.zshrc"
 )
 
 local file src dest
@@ -116,9 +117,11 @@ done
 # Add ZDOTDIR change to ~/.zshenv
 grep -q "ZDOTDIR=" "$HOME/.zshenv" 2>/dev/null || {
   echo -n "setting up ZDOTDIR in ~/.zshenv... "
-  cat > ~/.zshenv <<'EOF'
-ZDOTDIR="$HOME/.zsh"
-. "$ZDOTDIR/.zshenv"
+  # .zshenv might be a symlink, so remove it first
+  rm -f ~/.zshenv
+  cat > ~/.zshenv <<EOF
+ZDOTDIR="\$HOME/${ZDOT}"
+. "\$ZDOTDIR/.zshenv"
 EOF
   msg OK
 }
