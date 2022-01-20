@@ -15,18 +15,27 @@ for fn in ${(k)functions[(I)_omz::*]}; do
   functions[${fn//_omz/_oh::my}]="${${functions[$fn]//_omz::/_oh::my::}//omz/oh my}"
 done
 
-# Define oh completion function
+# Add 'oh my zsh' command to reload the zsh session
+functions[_oh::my::zsh]="${functions[_oh::my::reload]}"
+
+# This is a hack to offer:
+#
 # • 1st argument: "my"
 #
 # • next arguments: use _omz function while faking the argument position
 #   to be n-1 (2nd argument in _oh will be 1st in _omz, and so on).
+#   Also add "zsh" as an argument equivalent to reload.
 #
-#   > *::message:action
-#   > With two colons before the message, the words special array and the
-#   > CURRENT special parameter are modified to refer only to the normal
-#   > arguments when the action is executed or evaluated.
-#
-function _oh {
-  _arguments '1: :(my)' '*:: :_omz'
-}
+autoload -Uz regexp-replace
+functions[_oh]="${functions[_omz]}"
+regexp-replace 'functions[_oh]' \
+  'if \(\( CURRENT == 2 \)\)' \
+  '
+    cmds+=("zsh:Reload the current zsh session")
+    if (( CURRENT-- == 2 )); then
+      compadd "my"
+      return 0
+    fi
+    ${MATCH}
+  '
 compdef _oh oh
