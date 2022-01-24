@@ -76,24 +76,18 @@ _oh::my::zsh() {
   _oh::my::reload
 }
 
-# This is a hack to offer:
-#
+# Define oh completion function
 # • 1st argument: "my"
 #
 # • next arguments: use _omz function while faking the argument position
 #   to be n-1 (2nd argument in _oh will be 1st in _omz, and so on).
-#   Also add "zsh" as an argument equivalent to reload.
 #
-autoload -Uz regexp-replace
-functions[_oh]="${functions[_omz]}"
-regexp-replace 'functions[_oh]' \
-  'if \(\( CURRENT == 2 \)\)' \
-  '
-    cmds+=("zsh:Reload the current zsh session")
-    if (( CURRENT-- == 2 )); then
-      compadd "my"
-      return 0
-    fi
-    ${MATCH}
-  '
+#   > *::message:action
+#   > With two colons before the message, the words special array and the
+#   > CURRENT special parameter are modified to refer only to the normal
+#   > arguments when the action is executed or evaluated.
+#
+function _oh {
+  _arguments '1: :(my)' '*:: :_omz'
+}
 compdef _oh oh
