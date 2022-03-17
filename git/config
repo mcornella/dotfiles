@@ -44,5 +44,6 @@
 [reset]
 	quiet = true
 
-[includeIf "gitdir:~/code/zondax/"]
-	path = ~/.config/git/config.zondax
+; Use this section for secret per-company configuration
+; [includeIf "gitdir:~/code/<corp>/"]
+; 	path = ~/.config/git/config.<corp>
