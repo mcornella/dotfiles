@@ -4,8 +4,6 @@ This plugin gives you control over your unresponsive programs and your
 uncontrolled rage by killing your programs with the magic words
 `fuck you` or `fuck off` for a more powerful response.
 
-Demo: [URL to mp4]()
-
 ## Instructions
 
 There are two main usage modes:
@@ -19,10 +17,8 @@ If you have something else to say, arguments after the first two are ignored,
 so you can get out all the rage inside you in one nifty command:
 
 ```sh
-$ fuck you chrome you freaking memory-devouring monster gaaaaaaa
+$ fuck you chrome you stupid memory-devouring monster
 ```
-
-_NOTE: this does not represent my opinion about Chrome. I <3 Chrome :)_
 
 ## Thanks
 

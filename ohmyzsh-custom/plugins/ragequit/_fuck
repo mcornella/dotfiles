@@ -1,0 +1,5 @@
+#compdef fuck
+
+_arguments \
+  ':who:(("you\:ask the process to quit" "off\:force quit the process"))' \
+  ':process:_process_names -a'
