@@ -104,6 +104,10 @@ bindkey '^[[3;3~' kill-word     # ALT + DEL deletes whole forward-word
 bindkey '^H' backward-kill-word # CTRL + BACKSPACE deletes whole backward-word
 bindkey '^[l' down-case-word    # ALT + L lowercases word
 
+# beginning history search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
+
 # insert all matches
 zle -C all-matches complete-word _generic
 bindkey '^Xa' all-matches
