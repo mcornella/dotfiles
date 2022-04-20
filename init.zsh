@@ -1,4 +1,4 @@
-#!/usr/bin/zsh -df
+#!/usr/bin/env -S zsh -df
 #
 # Symlinks files in this directory into $HOME directory
 
