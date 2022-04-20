@@ -8,9 +8,9 @@
 #   check out http://hyperpolyglot.org/unix-shells for more information
 
 # checks if argument exists in path
-alias exists='command -p -v &>/dev/null'
-alias is_zsh='[ -n "$ZSH_VERSION" ]'
-alias is_darwin='[ "$OSTYPE" = darwin* ]'
+exists() { command -p -v &>/dev/null }
+is_zsh() { [ -n "$ZSH_VERSION" ] }
+is_darwin() { [ $(uname) = Darwin ] }
 
 # ls
 # order of output:
@@ -24,7 +24,7 @@ alias lla='ll -AF'
 # safe copy, move and delete
 alias cp='cp -i'
 alias mv='mv -i'
-is_darwin && alias rm='rm -i' || alias rm='rm -I'
+is_darwin && alias rm='rm -i' || alias rm='rm -I'
 
 # directories
 unalias mkdir 2>/dev/null
@@ -34,9 +34,7 @@ alias po='popd'
 alias pu='pushd'
 
 # hdd
-[[ $(uname) = Darwin ]] \
-    && alias df='df -h' \
-    || alias df='df -h -x squashfs'
+is_darwin && alias df='df -h' || alias df='df -h -x squashfs'
 alias du='du -h'
 
 # summary of disk used by child items sorted and unsorted
