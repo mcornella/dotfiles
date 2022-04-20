@@ -24,7 +24,11 @@ alias lla='ll -AF'
 # safe copy, move and delete
 alias cp='cp -i'
 alias mv='mv -i'
-is_darwin && alias rm='rm -i' || alias rm='rm -I'
+alias rm='rm -I'
+if is_darwin; then
+    unalias rm 2>/dev/null
+    ! exists grm || alias rm='command grm -I'
+fi
 
 # directories
 unalias mkdir 2>/dev/null
