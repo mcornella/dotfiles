@@ -10,6 +10,7 @@
 # checks if argument exists in path
 alias exists='command -p -v &>/dev/null'
 alias is_zsh='[ -n "$ZSH_VERSION" ]'
+alias is_darwin='[ "$OSTYPE" = darwin* ]'
 
 # ls
 # order of output:
@@ -23,7 +24,7 @@ alias lla='ll -AF'
 # safe copy, move and delete
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'
+is_darwin && alias rm='rm -i' || alias rm='rm -I'
 
 # directories
 unalias mkdir 2>/dev/null
