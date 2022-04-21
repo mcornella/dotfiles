@@ -1,12 +1,16 @@
 [submodule "oh-my-zsh"]
 	path = ohmyzsh
 	url = git@github.com:mcornella/ohmyzsh.git
+	branch = master
 [submodule "ohmyzsh-custom/plugins/k"]
 	path = ohmyzsh-custom/plugins/k
 	url = git@github.com:supercrabtree/k
+	branch = master
 [submodule "ohmyzsh-custom/plugins/git-prompt"]
 	path = ohmyzsh-custom/plugins/git-prompt
 	url = git@github.com:woefe/git-prompt.zsh.git
+	branch = master
 [submodule "ohmyzsh-custom/plugins/zsh-syntax-highlighting"]
 	path = ohmyzsh-custom/plugins/zsh-syntax-highlighting
 	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+	branch = master
