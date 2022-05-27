@@ -11,6 +11,28 @@
 #   NOTE: avoid syntax and commands that aren't portable to other platforms and
 #   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
+[[ $- != *i* ]] || {
+  function echo-off {
+    {
+      autoload -Uz add-zsh-hook
+      stty_bck=$(stty --save)     # back up stty settings
+      stty -echo                  # disable echo
+      add-zsh-hook precmd echo-on # make sure echo-on next time the prompt is shown
+      unfunction $0               # delete function
+    } 2>/dev/null
+  }
+  function echo-on {
+    {
+      autoload -Uz add-zsh-hook
+      [[ -z "$stty_bck" ]] || stty "$stty_bck"  # restore stty settings
+      unset stty_bck                            # delete stty backup variable
+      add-zsh-hook -d precmd echo-on            # remove echo-on from precmd hook
+      unfunction echo-on                        # delete function
+    } 2>/dev/null
+  }
+  echo-off
+}
+
 # bin folders
 if [ -d "$HOME"/bin ]; then
   PATH="$HOME/bin:$PATH"
