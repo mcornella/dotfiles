@@ -66,8 +66,8 @@ typeset -gA ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[comment]="fg=cyan"
 
 # add shell level information to prompt for when dealing with nested zsh sessions
-RPROMPT+="${RPROMPT+ }{%F{yellow}$SHLVL%f}"
-ZLE_RPROMPT_INDENT=0
+RPROMPT+="${RPROMPT+ }%(2L.{%F{yellow}%L%f}.)"
+ZLE_RPROMPT_INDENT=$(( SHLVL > 1 ? 0 : ZLE_RPROMPT_INDENT ))
 
 # add color to correct prompt
 SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
