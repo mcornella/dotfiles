@@ -11,7 +11,7 @@
 #   NOTE: avoid syntax and commands that aren't portable to other platforms and
 #   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
-[[ $- != *i* ]] || {
+[ ! -t 0 ] || [ -z "$ZSH_VERSION" ] || {
   function echo-off {
     {
       autoload -Uz add-zsh-hook
