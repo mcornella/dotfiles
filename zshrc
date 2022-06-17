@@ -23,7 +23,9 @@ ZSH_COLORIZE_STYLE=vim
 plugins=(
   git
   git-extras
-  github
+  gh
+  gcloud
+  kubectl
   gitignore
   z
   dircycle
