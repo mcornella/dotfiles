@@ -135,3 +135,8 @@ export LESSHISTFILE=-
 [ "$USER" = root ] && ZSH_DISABLE_COMPFIX=true
 
 skip_global_compinit=1
+
+find "$(dirname -- "$0")" -name '.zshenv.*' -print0 | while read -d $'\0' file; do
+  source "$file"
+done
+unset file

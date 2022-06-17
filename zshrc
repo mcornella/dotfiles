@@ -138,3 +138,6 @@ functions[_git-stash]=${functions[_git-stash]//\\_git-notes /}
 
 # add current directory to the end of PATH
 path+=(.)
+
+# Load per-host zshrc overriding files
+for file in "$ZDOTDIR"/.zshrc.*(N); do . "$file"; done; unset file
