@@ -23,6 +23,12 @@
 [push]
 	default = simple
 
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
 [core]
 	pager = less -S -x1,5
 	whitespace = blank-at-eol,space-before-tab
