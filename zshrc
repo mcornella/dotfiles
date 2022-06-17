@@ -47,7 +47,6 @@ plugins=(
   zsh-syntax-highlighting
   git-prompt
   ragequit
-  k
   # add_plugins from the command line
   $add_plugins
 )
