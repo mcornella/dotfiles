@@ -142,4 +142,4 @@ functions[_git-stash]=${functions[_git-stash]//\\_git-notes /}
 path+=(.)
 
 # Load per-host zshrc overriding files
-for file in "$ZDOTDIR"/.zshrc.*(N); do . "$file"; done; unset file
+for file in "$ZDOTDIR"/.zshrc.^(bck|new)(N); do . "$file"; done; unset file
