@@ -16,6 +16,7 @@ is_darwin() { [ $(uname) = Darwin ] }
 # order of output:
 # symbols, UPPERCASE, lowercase (folders first)
 unalias ls 2>/dev/null
+unfunction ls 2>/dev/null
 alias l='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
 alias ll='l -lF'
 alias la='l -A'
