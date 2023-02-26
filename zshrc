@@ -46,7 +46,7 @@ plugins=(
   fnm
   rust
   # custom plugins go here
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
   git-prompt
   ragequit
   # add_plugins from the command line
@@ -61,10 +61,6 @@ unset add_plugins
 ## User configuration
 
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
-
-# Fix invisible comments in zsh-syntax-highlighting
-typeset -gA ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[comment]="fg=cyan"
 
 # add shell level information to prompt for when dealing with nested zsh sessions
 RPROMPT+="${RPROMPT+ }%(2L.{%F{yellow}%L%f}.)"

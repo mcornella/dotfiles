@@ -10,3 +10,6 @@
 	path = ohmyzsh-custom/plugins/zsh-syntax-highlighting
 	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
 	branch = master
+[submodule "ohmyzsh-custom/plugins/fast-syntax-highlighting"]
+	path = ohmyzsh-custom/plugins/fast-syntax-highlighting
+	url = git@github.com:zdharma-continuum/fast-syntax-highlighting.git
