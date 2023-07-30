@@ -70,6 +70,12 @@ test -d "$HOME/.fnm" && {
 # deno
 test -d "$HOME/.deno/bin" && PATH="$PATH:$HOME/.deno/bin"
 
+# bun
+test -d "$HOME/.bun" && {
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+}
+
 ### RUBY
 
 # ruby gems
