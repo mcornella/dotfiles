@@ -59,7 +59,18 @@ test -d "$HOME/.npm/bin" && PATH="$HOME/.npm/bin:$PATH"
 export NPM_CONFIG_PREFIX=~/.npm
 export NODE_REPL_HISTORY=
 
-# fnm (nvm alternative)
+# pnpm
+export PNPM_HOME="/home/marc/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+# fnm
 test -d "$HOME/.local/share/fnm" && {
   export PATH="$PATH:$HOME/.local/share/fnm"
   [[ -z "${ZSH_VERSION}" ]] && eval "$(fnm env --shell bash)" || eval "$(fnm env --shell zsh)"
