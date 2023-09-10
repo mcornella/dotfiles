@@ -57,3 +57,6 @@
 ; Use this section in config.inc for secret per-company configuration
 ; [includeIf "gitdir:~/code/<corp>/"]
 ; 	path = ~/.config/git/config.<corp>
+
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
