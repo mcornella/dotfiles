@@ -60,8 +60,8 @@ export NPM_CONFIG_PREFIX=~/.npm
 export NODE_REPL_HISTORY=
 
 # fnm (nvm alternative)
-test -d "$HOME/.fnm" && {
-  export PATH="$PATH:$HOME/.fnm"
+test -d "$HOME/.local/share/fnm" && {
+  export PATH="$PATH:$HOME/.local/share/fnm"
   [[ -z "${ZSH_VERSION}" ]] && eval "$(fnm env --shell bash)" || eval "$(fnm env --shell zsh)"
   test -f "$HOME/.zsh/completions/_fnm" \
   || fnm completions --shell zsh > "$HOME/.zsh/completions/_fnm"
