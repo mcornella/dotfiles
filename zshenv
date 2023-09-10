@@ -114,8 +114,11 @@ test -f "$HOME/.cargo/env" && . "$HOME/.cargo/env"
   source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 }
 
-# remove duplicate entries from PATH
 [ -n "$ZSH_VERSION" ] && {
+  # move history file
+  HISTFILE="$HOME"/.zsh/.history
+
+  # remove duplicate entries from PATH
   typeset -U path
   fpath+=("$HOME/.zsh/completions")
 }
