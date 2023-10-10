@@ -46,6 +46,7 @@ plugins=(
   fnm
   rust
   terraform
+  rtx
   # custom plugins go here
   fast-syntax-highlighting
   git-prompt

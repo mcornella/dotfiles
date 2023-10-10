@@ -52,55 +52,6 @@ if [ -d "$HOME"/opt ]; then
   done > /dev/null 2>&1
 fi
 
-### NODE
-
-# node, npm binaries and settings
-test -d "$HOME/.npm/bin" && PATH="$HOME/.npm/bin:$PATH"
-export NPM_CONFIG_PREFIX=~/.npm
-export NODE_REPL_HISTORY=
-
-# pnpm
-export PNPM_HOME="/home/marc/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
-
-# fnm
-test -d "$HOME/.local/share/fnm" && {
-  export PATH="$PATH:$HOME/.local/share/fnm"
-  [[ -z "${ZSH_VERSION}" ]] && eval "$(fnm env --shell bash)" || eval "$(fnm env --shell zsh)"
-  test -f "$HOME/.zsh/completions/_fnm" \
-  || fnm completions --shell zsh > "$HOME/.zsh/completions/_fnm"
-}
-
-# deno
-test -d "$HOME/.deno/bin" && PATH="$PATH:$HOME/.deno/bin"
-
-# bun
-test -d "$HOME/.bun" && {
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
-}
-
-### RUBY
-
-# ruby gems
-if command -v ruby >/dev/null 2>&1 && command -v gem >/dev/null 2>&1; then
-  DIR="$(gem environment gempath 2>/dev/null | cut -d: -f1)"
-  test -d "$DIR/bin" && PATH="$PATH:$DIR/bin"
-fi
-
-unset DIR
-
-# rvm
-[[ -d "$HOME/.rvm" ]] && PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 ### OTHERS
 
 # android
