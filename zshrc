@@ -3,8 +3,8 @@ export ZSH="$HOME/.zsh/ohmyzsh"
 ZSH_CUSTOM="$HOME/.zsh/ohmyzsh-custom"
 
 # Auto update settings
-zstyle ':omz:update' mode auto
-zstyle ':omz:update' frequency 1
+zstyle ':omz:update' mode background-alpha
+zstyle ':omz:update' frequency 0
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
