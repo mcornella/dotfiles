@@ -68,6 +68,9 @@ ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 RPROMPT+="${RPROMPT+ }%(2L.{%F{yellow}%L%f}.)"
 ZLE_RPROMPT_INDENT=$(( SHLVL > 1 ? 0 : ZLE_RPROMPT_INDENT ))
 
+# show comments in fast-syntax-highlighting
+FAST_HIGHLIGHT_STYLES[comment]='fg=006'
+
 # add color to correct prompt
 SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
 
