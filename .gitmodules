@@ -6,10 +6,6 @@
 	path = ohmyzsh-custom/plugins/git-prompt
 	url = ../../woefe/git-prompt.zsh.git
 	branch = master
-[submodule "ohmyzsh-custom/plugins/zsh-syntax-highlighting"]
-	path = ohmyzsh-custom/plugins/zsh-syntax-highlighting
-	url = ../../zsh-users/zsh-syntax-highlighting.git
-	branch = master
 [submodule "ohmyzsh-custom/plugins/fast-syntax-highlighting"]
 	path = ohmyzsh-custom/plugins/fast-syntax-highlighting
 	url = ../../zdharma-continuum/fast-syntax-highlighting.git
