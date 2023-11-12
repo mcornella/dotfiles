@@ -51,6 +51,7 @@ plugins=(
   fast-syntax-highlighting
   git-prompt
   ragequit
+  zsh-no-ps2
   # add_plugins from the command line
   $add_plugins
 )

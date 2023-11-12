@@ -9,3 +9,6 @@
 [submodule "ohmyzsh-custom/plugins/fast-syntax-highlighting"]
 	path = ohmyzsh-custom/plugins/fast-syntax-highlighting
 	url = ../../zdharma-continuum/fast-syntax-highlighting.git
+[submodule "zsh-no-ps2"]
+	path = ohmyzsh-custom/plugins/zsh-no-ps2
+	url = ../../romkatv/zsh-no-ps2.git
