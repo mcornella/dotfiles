@@ -123,3 +123,6 @@ alias zshrc='vsc "${ZDOTDIR:-$HOME}/.zshrc"'
 
 # last exit status
 alias '?'='echo $?'
+
+# bat shortcuts
+alias batsh='bat -l sh'

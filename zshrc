@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh configuration.
 export ZSH="$HOME/.zsh/ohmyzsh"
 ZSH_CUSTOM="$HOME/.zsh/ohmyzsh-custom"
+ZSH_THEME="robbyrussell"
 
 # Auto update settings
 zstyle ':omz:update' mode background-alpha
@@ -46,10 +47,9 @@ plugins=(
   fnm
   rust
   terraform
-  rtx
+  mise
   # custom plugins go here
   fast-syntax-highlighting
-  git-prompt
   ragequit
   zsh-no-ps2
   # add_plugins from the command line
@@ -70,6 +70,7 @@ RPROMPT+="${RPROMPT+ }%(2L.{%F{yellow}%L%f}.)"
 ZLE_RPROMPT_INDENT=$(( SHLVL > 1 ? 0 : ZLE_RPROMPT_INDENT ))
 
 # show comments in fast-syntax-highlighting
+typeset -A FAST_HIGHLIGHT_STYLES
 FAST_HIGHLIGHT_STYLES[comment]='fg=006'
 
 # add color to correct prompt

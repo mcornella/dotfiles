@@ -82,7 +82,7 @@ test -f "$HOME/.cargo/env" && . "$HOME/.cargo/env"
 
   # remove duplicate entries from PATH
   typeset -U path
-  fpath+=("$HOME/.zsh/completions")
+  fpath=("$HOME/.zsh/completions" "${fpath[@]}")
 }
 
 # export PATH for other sessions
