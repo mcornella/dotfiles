@@ -12,7 +12,7 @@
 #   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
 [ ! -t 0 ] || [ -z "$ZSH_VERSION" ] || {
-  function echo-off {
+  echo-off() {
     {
       autoload -Uz add-zsh-hook
       stty_bck=$(stty --save)     # back up stty settings
@@ -21,7 +21,7 @@
       unfunction $0               # delete function
     } 2>/dev/null
   }
-  function echo-on {
+  echo-on() {
     {
       autoload -Uz add-zsh-hook
       [[ -z "$stty_bck" ]] || stty "$stty_bck"  # restore stty settings

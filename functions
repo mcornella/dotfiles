@@ -80,6 +80,21 @@ function apt-depends() {
 
 ## ZSH TESTING FUNCTIONS
 
+function batsh() {
+  [[ -z "$1" ]] && {
+    bat -l sh
+    return
+  }
+  [[ -f "$1" ]] && {
+    bat -l sh "$1"
+    return
+  }
+  (( ${+functions[$1]} )) && {
+    which "$1" | bat -l sh
+    return
+  }
+}
+
 zsh_docker_versions() {
   local image=${1:-zshusers/zsh}
   wget -qO- https://registry.hub.docker.com/v1/repositories/${image}/tags \

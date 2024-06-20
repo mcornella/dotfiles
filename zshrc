@@ -129,6 +129,8 @@ alias mmv='noglob zmv -W -v'
 
 # zed (zsh editor)
 autoload -Uz zed
+# zargs (zsh equivalent for xargs)
+autoload -Uz zargs
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
