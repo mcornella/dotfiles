@@ -65,6 +65,7 @@ dotfiles=(
   tmux.conf           ".tmux.conf"
   toprc               ".config/procps/toprc"
   vimrc               ".vimrc"
+  zprofile            "${ZDOT}/.zprofile"
   zshenv              "${ZDOT}/.zshenv"
   zshrc               "${ZDOT}/.zshrc"
 )

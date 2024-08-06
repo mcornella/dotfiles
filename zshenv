@@ -97,7 +97,7 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 export LESS=-FR
 export LESSHISTFILE=-
 # --redraw-on-quit: print last screen when exiting less (v594 and newer)
-[ $(less -V | awk '{print $2;exit}' | sed 's/[^0-9]//g') -ge 594 ] && {
+[ $(less -V | awk '{sub(/\..*/,"",$2); print $2; exit}') -ge 594 ] && {
   export LESS="-FR --redraw-on-quit"
   READNULLCMD=$(command -v less)
   export PAGER="$READNULLCMD"

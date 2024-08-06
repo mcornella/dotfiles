@@ -8,7 +8,7 @@
 #   check out http://hyperpolyglot.org/unix-shells for more information
 
 # checks if argument exists in path
-exists() { command -p -v &>/dev/null }
+exists() { command -v $1 &>/dev/null }
 is_zsh() { [ -n "$ZSH_VERSION" ] }
 is_darwin() { [ $(uname) = Darwin ] }
 
@@ -17,7 +17,12 @@ is_darwin() { [ $(uname) = Darwin ] }
 # symbols, UPPERCASE, lowercase (folders first)
 unalias ls 2>/dev/null
 unfunction ls 2>/dev/null
-alias l='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
+
+is_darwin && {
+    alias l='LC_COLLATE=C gls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
+} || {
+    alias l='LC_COLLATE=C ls -h --color=always --dereference-command-line-symlink-to-dir --group-directories-first'
+}
 alias ll='l -lF'
 alias la='l -A'
 alias lla='ll -AF'
@@ -116,8 +121,13 @@ alias ip='ip -color'
 alias ipb='ip -color -brief'
 
 # Visual Studio Code
-alias vsc='code-insiders'
-alias 'vsc.'='code-insiders .'
+if exists code-insiders; then
+    alias vsc='code-insiders'
+    alias 'vsc.'='code-insiders .'
+elif exists code; then
+    alias vsc='code'
+    alias 'vsc.'='code .'
+fi
 alias ohmyzsh='vsc "$ZSH"'
 alias zshrc='vsc "${ZDOTDIR:-$HOME}/.zshrc"'
 

@@ -40,13 +40,17 @@
 	coloring = repeatedLines
 
 [pager]
-	diff = diff-highlight | less -x1,5 -S
-	show = diff-highlight | less -x1,5 -S
-	log = diff-highlight | less -x1,5 -S
+	diff = delta
+	show = delta
+	log = delta
 	branch = false
 
 [interactive]
-	difffilter = diff-highlight
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	tabs = 4
 
 [reset]
 	quiet = true

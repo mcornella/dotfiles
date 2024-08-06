@@ -22,6 +22,7 @@ ZSH_COLORIZE_STYLE=vim
 [[ -z "$add_plugins" ]] || read -A add_plugins <<< "$add_plugins"
 # Which plugins would you like to load?
 plugins=(
+  mise
   git
   git-extras
   gh
@@ -47,7 +48,7 @@ plugins=(
   fnm
   rust
   terraform
-  mise
+  brew
   # custom plugins go here
   fast-syntax-highlighting
   ragequit
