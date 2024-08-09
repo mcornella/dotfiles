@@ -48,6 +48,7 @@ plugins=(
   rust
   terraform
   brew
+  virtualenv
   # custom plugins go here
   fast-syntax-highlighting
   ragequit
@@ -68,6 +69,7 @@ ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
 # add shell level information to prompt for when dealing with nested zsh sessions
 RPROMPT+="${RPROMPT+ }%(2L.{%F{yellow}%L%f}.)"
 ZLE_RPROMPT_INDENT=$(( SHLVL > 1 ? 0 : ZLE_RPROMPT_INDENT ))
+RPROMPT='$(virtualenv_prompt_info)'" $RPROMPT"
 
 # show comments in fast-syntax-highlighting
 typeset -A FAST_HIGHLIGHT_STYLES
