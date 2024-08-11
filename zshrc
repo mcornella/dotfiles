@@ -36,7 +36,6 @@ plugins=(
   extract
   history-substring-search
   npm
-  yarn
   github
   docker-compose
   sublime
