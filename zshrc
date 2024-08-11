@@ -75,6 +75,8 @@ FAST_HIGHLIGHT_STYLES[comment]='fg=006'
 
 # add color to correct prompt
 SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
+# and to xtrace prompt for debugging (+_describe:76> )
+PS4='+%F{green}%N%f:%F{yellow}%i%F{red}>%f '
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
