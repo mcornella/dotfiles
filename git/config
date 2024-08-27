@@ -43,6 +43,7 @@
 	diff = delta
 	show = delta
 	log = delta
+	blame = delta
 	branch = false
 
 [interactive]
@@ -51,6 +52,8 @@
 [delta]
 	navigate = true
 	tabs = 4
+	line-numbers = true
+	color-only = true
 
 [reset]
 	quiet = true

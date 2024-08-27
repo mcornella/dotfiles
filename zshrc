@@ -22,6 +22,7 @@ ZSH_COLORIZE_STYLE=vim
 [[ -z "$add_plugins" ]] || read -A add_plugins <<< "$add_plugins"
 # Which plugins would you like to load?
 plugins=(
+  brew
   mise
   git
   git-extras
@@ -47,8 +48,10 @@ plugins=(
   fnm
   rust
   terraform
-  brew
   virtualenv
+  python
+  docker
+  poetry
   # custom plugins go here
   fast-syntax-highlighting
   ragequit
@@ -81,12 +84,14 @@ SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
 PS4='+%F{green}%N%f:%F{yellow}%i%F{red}>%f '
 
 # enable color support
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.zsh/dircolors && eval "$(dircolors -b ~/.zsh/dircolors)" || eval "$(dircolors -b)"
+dircolors=${commands[dircolors]:-$commands[gdircolors]}
+if [[ -n "$dircolors" ]]; then
+  test -r ~/.zsh/dircolors && eval "$($dircolors -b ~/.zsh/dircolors)" || eval "$($dircolors -b)"
 
   # ls completion dir_colors
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
+unset dircolors
 
 # complete . and .. directories
 zstyle ':completion:*' special-dirs true
@@ -111,6 +116,9 @@ bindkey '^[i' undo              # ALT + i more accessible Undo
 bindkey '^[[3;3~' kill-word     # ALT + DEL deletes whole forward-word
 bindkey '^H' backward-kill-word # CTRL + BACKSPACE deletes whole backward-word
 bindkey '^[l' down-case-word    # ALT + L lowercases word
+
+bindkey '^[^[[D' backward-word  # Option + Left
+bindkey '^[^[[C' forward-word   # Option + Right
 
 # beginning history search
 bindkey '^P' up-line-or-beginning-search
