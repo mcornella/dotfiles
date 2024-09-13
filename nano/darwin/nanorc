@@ -2,5 +2,4 @@ set constantshow
 set smarthome
 set linenumbers
 unset historylog
-
-include "/usr/local/share/nano/*.nanorc"
+bind ^Z suspend main
