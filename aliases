@@ -110,6 +110,7 @@ is_zsh && {
     alias -g :H='| command head'
     alias -g :T='| command tail'
     alias -g :G='| command grep'
+    alias -g :Gh="| command grep --color=always -e '\$' -e " # only highlight provided string
     alias -g :LL='2>&1 | command less'
     alias -g :NE='2>/dev/null'
     alias -g :NO='1>/dev/null'

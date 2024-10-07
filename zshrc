@@ -52,6 +52,7 @@ plugins=(
   python
   docker
   poetry
+  shrink-path
   # custom plugins go here
   fast-syntax-highlighting
   ragequit
