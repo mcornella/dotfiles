@@ -58,6 +58,7 @@ dotfiles=(
   aliases             "${ZDOT}/aliases"
   dircolors           "${ZDOT}/dircolors"
   functions           "${ZDOT}/functions"
+  fxrc.js             ".fxrc.js"
   git                 ".config/git"
   ohmyzsh             "${ZDOT}/ohmyzsh"
   ohmyzsh-custom      "${ZDOT}/ohmyzsh-custom"
