@@ -40,11 +40,9 @@ plugins=(
   github
   docker-compose
   sublime
-  colorize
   colored-man-pages
   copybuffer
   dotenv
-  grc
   fnm
   rust
   terraform
@@ -63,8 +61,7 @@ plugins=(
 unset add_plugins
 
 # Don't load Oh My Zsh on TTYs
-[[ -z "$OMZ_LOAD" && $TTY = /dev/tty* && $(uname -a) != ([Dd]arwin*|[Mm]icrosoft*) ]] \
-  || source "$ZSH/oh-my-zsh.sh"
+[[ -z "$OMZ_LOAD" && $TTY = /dev/tty* && $OSTYPE = linux* ]] || source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
 
@@ -88,8 +85,6 @@ PS4='+%F{green}%N%f:%F{yellow}%i%F{red}>%f '
 dircolors=${commands[dircolors]:-$commands[gdircolors]}
 if [[ -n "$dircolors" ]]; then
   test -r ~/.zsh/dircolors && eval "$($dircolors -b ~/.zsh/dircolors)" || eval "$($dircolors -b)"
-
-  # ls completion dir_colors
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 unset dircolors
@@ -151,10 +146,6 @@ autoload -Uz zargs
 ## Sourcing external files
 [[ -f ~/.zsh/aliases    ]] && . ~/.zsh/aliases    # custom aliases
 [[ -f ~/.zsh/functions  ]] && . ~/.zsh/functions  # custom functions
-
-# Workaround for https://github.com/ohmyzsh/ohmyzsh/issues/10156
-autoload +X -Uz _git && _git &>/dev/null
-functions[_git-stash]=${functions[_git-stash]//\\_git-notes /}
 
 # add current directory to the end of PATH
 path+=(.)
