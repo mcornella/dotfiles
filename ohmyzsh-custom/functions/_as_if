@@ -1,0 +1,5 @@
+#autoload
+local service=$1 words=("$words[@]") CURRENT=$CURRENT
+words[1]=("$@")
+(( CURRENT += $# - 1 ))
+_normal

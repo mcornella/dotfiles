@@ -90,10 +90,18 @@ function batsh() {
     return
   }
   (( ${+functions[$1]} )) && {
-    which "$1" | bat -l sh
+    which "$@" | bat -l sh
     return
   }
 }
+
+function _batsh {
+  _alternative \
+    'files:file:_files' \
+    'functions:function:_functions'
+}
+
+compdef _batsh batsh
 
 zsh_docker_versions() {
   local image=${1:-zshusers/zsh}

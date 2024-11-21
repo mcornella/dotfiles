@@ -1,0 +1,4 @@
+#compdef dive
+
+autoload -Uz _as_if
+_as_if docker image inspect

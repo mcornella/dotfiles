@@ -74,7 +74,7 @@ command -v nano > /dev/null 2>&1 && export EDITOR=nano || export EDITOR=vim
 # -F: quit if output is less than one screen
 # -R: keep color control chars
 export LESS=-FR LESSHISTFILE=-
-READNULLCMD=$(command -v less)
+READNULLCMD=less
 export PAGER="$READNULLCMD"
 # --redraw-on-quit: print last screen when exiting less (v594 and newer)
 ver="$(less -V)"; ver="${ver%% \(*}"; ver="${ver#less *}"; ver="${ver%%.*}"
