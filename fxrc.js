@@ -1,4 +1,4 @@
-globalThis.csv = (sep = ",") => x => {
+globalThis.csv = (sep = "\t") => x => {
     if (!Array.isArray(x) || x.length < 1 || typeof x[0] !== "object") return;
 
     const kx = Object.keys(x[0]);
