@@ -11,7 +11,7 @@
 #   NOTE: avoid syntax and commands that aren't portable to other platforms and
 #   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
-if [[ ! -t 0 || -z "$ZSH_VERSION" ]]; then
+if [[ -t 0 && -n "$ZSH_VERSION" && -o interactive ]]; then
   echo:off() {
     autoload -Uz add-zsh-hook
     stty_bck=$(stty -g)         # back up stty settings
