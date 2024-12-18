@@ -78,8 +78,11 @@ FAST_HIGHLIGHT_STYLES[comment]='fg=006'
 
 # add color to correct prompt
 SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
+
 # and to xtrace prompt for debugging (+_describe:76> )
-PS4='+%F{green}%N%f:%F{yellow}%i%F{red}>%f '
+function _def$((++_def)) { typeset -g PS4='+%F{green}%N%f:%F{yellow}%i%F{red}>%f '; }
+functions[_def$_def]+="; set -A precmd_functions \${precmd_functions:#_def$_def}; unset -f _def$_def; unset _def"
+precmd_functions+=("_def$_def")
 
 # enable color support
 dircolors=${commands[dircolors]:-$commands[gdircolors]}
