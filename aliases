@@ -53,7 +53,7 @@ alias duss='dus | LANG=C sort -h'
 # disk space used by system folders
 alias dusss="LANG=C du -s /{{boot,lib*,opt,sbin,tmp,usr,var}/*(N),{bin,etc,root}} 2>/dev/null | grep -vE '^(0|[0-9.]+K)' | LANG=C sort -h"
 
-alias diff='diff -u'
+diff() { command diff --color -u "$@"; }
 
 # sudo aliases
 alias sudo='sudo '                      # expand aliases after sudo
