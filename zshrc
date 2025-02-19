@@ -60,91 +60,10 @@ plugins=(
 )
 unset add_plugins
 
-# Don't load Oh My Zsh on TTYs
+# Don't load Oh My Zsh on Linux TTYs
 [[ -z "$OMZ_LOAD" && $TTY = /dev/tty* && $OSTYPE = linux* ]] || source "$ZSH/oh-my-zsh.sh"
 
 ## User configuration
-
-ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
-
-# add shell level information to prompt for when dealing with nested zsh sessions
-RPROMPT+="${RPROMPT+ }%(2L.{%F{yellow}%L%f}.)"
-ZLE_RPROMPT_INDENT=$(( SHLVL > 1 ? 0 : ZLE_RPROMPT_INDENT ))
-RPROMPT='$(virtualenv_prompt_info)'" $RPROMPT"
-
-# show comments in fast-syntax-highlighting
-typeset -A FAST_HIGHLIGHT_STYLES
-FAST_HIGHLIGHT_STYLES[comment]='fg=006'
-
-# add color to correct prompt
-SPROMPT="Correct '%F{red}%R%f' to '%F{green}%r%f' [nyae]? "
-
-# and to xtrace prompt for debugging (+_describe:76> )
-function _def$((++_def)) { typeset -g PS4='+%F{green}%N%f:%F{yellow}%i%F{red}>%f '; }
-functions[_def$_def]+="; set -A precmd_functions \${precmd_functions:#_def$_def}; unset -f _def$_def; unset _def"
-precmd_functions+=("_def$_def")
-
-# enable color support
-dircolors=${commands[dircolors]:-$commands[gdircolors]}
-if [[ -n "$dircolors" ]]; then
-  test -r ~/.zsh/dircolors && eval "$($dircolors -b ~/.zsh/dircolors)" || eval "$($dircolors -b)"
-  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-fi
-unset dircolors
-
-# complete . and .. directories
-zstyle ':completion:*' special-dirs true
-
-# paginated completion
-zstyle ':completion:*' list-prompt   ''
-zstyle ':completion:*' select-prompt ''
-
-# Docker completion option stacking
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-
-# correct behaviour when specifying commit parent (commit^)
-alias git='noglob git'
-
-# prevent adding files as key strokes when using bindkey
-alias bindkey='noglob bindkey'
-
-## Key bindings
-bindkey '^U' kill-buffer        # delete whole buffer
-bindkey '^[i' undo              # ALT + i more accessible Undo
-bindkey '^[[3;3~' kill-word     # ALT + DEL deletes whole forward-word
-bindkey '^H' backward-kill-word # CTRL + BACKSPACE deletes whole backward-word
-bindkey '^[l' down-case-word    # ALT + L lowercases word
-
-bindkey '^[^[[D' backward-word  # Option + Left
-bindkey '^[^[[C' forward-word   # Option + Right
-
-# beginning history search
-bindkey '^P' up-line-or-beginning-search
-bindkey '^N' down-line-or-beginning-search
-
-# insert all matches
-zle -C all-matches complete-word _generic
-bindkey '^Xa' all-matches
-zstyle ':completion:all-matches:*' insert yes
-zstyle ':completion:all-matches::::' completer _all_matches _complete
-
-## More zsh options
-setopt correct        # correction of commands
-setopt extended_glob  # adds ^ and other symbols as wildcards
-setopt share_history  # i want all typed commands to be available everywhere
-
-# zmv (mass mv / cp / ln)
-autoload zmv
-alias mmv='noglob zmv -W -v'
-
-# zed (zsh editor)
-autoload -Uz zed
-# zargs (zsh equivalent for xargs)
-autoload -Uz zargs
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 ## Sourcing external files
 [[ -f ~/.zsh/aliases    ]] && . ~/.zsh/aliases    # custom aliases
@@ -154,4 +73,6 @@ autoload -Uz zargs
 path+=(.)
 
 # Load per-host zshrc overriding files
+# ^(bck|new) - matching anything except "bck" and "new" (e.g. .zshrc.bck or .zshrc.new)
+# (N) - NULL_GLOB: match nothing without giving error if there are no matches
 for file in "$ZDOTDIR"/.zshrc.^(bck|new)(N); do . "$file"; done; unset file

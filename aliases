@@ -9,8 +9,8 @@
 
 # checks if argument exists in path
 exists() { command -v $1 &>/dev/null }
-is_zsh() { [ -n "$ZSH_VERSION" ] }
-is_darwin() { [ $(uname) = Darwin ] }
+[ -n "$ZSH_VERSION" ] && is_zsh() { return 0; }    || is_zsh() { return 1; }
+[ $(uname) = Darwin ] && is_darwin() { return 0; } || is_darwin() { return 1; }
 
 # ls
 # order of output:
@@ -130,7 +130,7 @@ elif exists code; then
     alias 'vsc.'='code .'
 fi
 alias ohmyzsh='vsc "${ZSH:A}"'
-alias zshrc='vsc "$(readlink "${ZDOTDIR:-$HOME}/.zshrc")"'
+alias zshrc='vsc "${${:-${ZDOTDIR:-$HOME}/.zshrc}:A}"'
 
 # last exit status
 alias '?'='echo $?'
