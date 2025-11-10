@@ -132,5 +132,16 @@ fi
 alias ohmyzsh='vsc "${ZSH:A}"'
 alias zshrc='vsc "${${:-${ZDOTDIR:-$HOME}/.zshrc}:A}"'
 
+# worktrees
+vscwt() {
+    vsc "$@"
+}
+_vscwt() {
+    (( ${+functions[_git]} )) || autoload -Uz _git
+    (( ${+functions[__git_worktrees]} )) || _git &>/dev/null
+    __git_worktrees
+}
+compdef _vscwt vscwt
+
 # last exit status
 alias '?'='echo $?'
