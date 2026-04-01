@@ -1,11 +1,16 @@
 # Path to your oh-my-zsh configuration.
-export ZSH="$HOME/.zsh/ohmyzsh"
+export ZSH="${ZSH:-$HOME/.zsh/ohmyzsh}"
 ZSH_CUSTOM="$HOME/.zsh/ohmyzsh-custom"
 ZSH_THEME="robbyrussell"
 
 # Auto update settings
-zstyle ':omz:update' mode background-alpha
+zstyle ':omz:update' mode disabled
 zstyle ':omz:update' frequency 0
+
+# Add git function to async
+zstyle ':omz:alpha:lib:git' async-functions \
+  git_prompt_info \
+  git_prompt_status
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -17,6 +22,10 @@ _Z_NO_RESOLVE_SYMLINKS="true"
 ZSH_COLORIZE_TOOL=chroma
 # Nice ones: arduino friendly paraiso-dark solarized-dark solarized-dark256 vim
 ZSH_COLORIZE_STYLE=vim
+
+zstyle :omz:completion fuzzy-match yes
+
+zs_set_path=1
 
 # Add plugins from the command line
 [[ -z "$add_plugins" ]] || read -A add_plugins <<< "$add_plugins"
@@ -48,15 +57,16 @@ plugins=(
   terraform
   virtualenv
   python
-  docker
   poetry
   shrink-path
+  docker
   # custom plugins go here
-  fast-syntax-highlighting
   ragequit
-  zsh-no-ps2
   # add_plugins from the command line
   $add_plugins
+  zsh-no-ps2
+  fast-syntax-highlighting
+  zsh-sweep
 )
 unset add_plugins
 

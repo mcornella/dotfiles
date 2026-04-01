@@ -12,21 +12,21 @@
 #   shells. Check out http://hyperpolyglot.org/unix-shells for more information.
 
 if [[ -t 0 && -n "$ZSH_VERSION" && -o interactive ]]; then
-  echo:off() {
+  echo-off() {
     autoload -Uz add-zsh-hook
     stty_bck=$(stty -g)         # back up stty settings
     stty -echo                  # disable echo
-    add-zsh-hook precmd echo:on # run echo:on next time the prompt is shown
-    unfunction echo:off         # delete function
+    add-zsh-hook precmd echo-on # run echo-on next time the prompt is shown
+    unfunction echo-off         # delete function
   }
-  echo:on() {
+  echo-on() {
     autoload -Uz add-zsh-hook
     [[ -z "$stty_bck" ]] || stty "$stty_bck"  # restore stty settings
     unset stty_bck                            # delete stty backup variable
-    add-zsh-hook -d precmd echo:on            # remove echo:on from precmd hook
-    unfunction echo:on                        # delete function
+    add-zsh-hook -d precmd echo-on            # remove echo-on from precmd hook
+    unfunction echo-on                        # delete function
   }
-  echo:off
+  echo-off
 fi
 
 # bin folders
